@@ -1,0 +1,9 @@
+.footer-1-container {
+    height: 1000px;
+    border: 2px dashed yellow;
+    width: 100%;
+    background-color: black;
+    color: white;
+    margin-top: 880px;
+    z-index: -10;
+}

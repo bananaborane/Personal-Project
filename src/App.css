@@ -1,3 +1,291 @@
+
+/* REAL PINK BIKE FONT
+    ARIAL, VERANDA SANS SERIF
+    NORMAL STYLE
+    700 WEIGHT
+    13PX, 14PX, 22PX
+    #FFFFFF FOR WHITE
+    #333333 FOR BLACK
+
+
+
+    Montserrat, HelveticaNeue, "Helvetica Neue", sans-serif;
+    Style normal
+    Weight 700
+    14PX
+    LINE HEIGHT 19PX #FFFFFF
+
+
+
+
+    Family "Open Sans Condensed", HelveticaNeue, "Helvetica Neue", sans-serif;
+    STYLE NORMAL
+    WEIGHT 400
+    36PX
+    LINE HEIGHT 50PX
+    #FFFFFFF
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*                   PINKBIKE FONT??                 */
+
+/* ! Font Awesome - http://fortawesome.github.com/Font-Awesome
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../i/font-awesome-4.0.3/fonts/fontawesome-webfont.eot?v=4.0.3');
+  src: url('../i/font-awesome-4.0.3/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('../i/font-awesome-4.0.3/fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('../i/font-awesome-4.0.3/fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('../i/font-awesome-4.0.3/fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+
+
+
+
+
+
+/* $buttons-filter-background:        transparent;
+$buttons-filter-foreground:        #4678B4;
+$buttons-filter-hover-background:  #D0DCE6;
+$buttons-filter-hover-foreground:  #4678B4;
+$buttons-filter-selected-background: #1C5890;
+$buttons-filter-selected-foreground: #EFEFEF;
+
+$list-background:                  $buttons-filter-background;
+$list-foreground:                  $buttons-filter-foreground;
+$list-hover-background:            $buttons-filter-hover-background;
+$list-hover-foreground:            $buttons-filter-hover-foreground;
+$list-selected-background:         $buttons-filter-selected-background;
+$list-selected-foreground:         $buttons-filter-selected-foreground;
+
+$error-color:                      #95040B;
+$success-color:                    #008300;
+
+$tooltip-background: #111;
+$tooltip-foreground: #FDFDFD;
+$tooltip-error-background: $error-color;
+$tooltip-error-foreground: $tooltip-foreground;
+ */
+
+
+
+
+/******************* PINKBIKE BUTTONS *******************************
+
+a.pb-button {
+  color: #333;
+}
+
+.pb-button {
+  border: 1px solid;
+  border-color: #B9B9B9 #B9B9B9 #A0A0A0;
+  @include backgroundGradient(#FDFDFD, #D8D8D8);
+  border-radius: .37em;
+  color: #222;
+  display: inline-block;
+  height: 1.92em;
+  line-height: 1.5;
+  white-space: nowrap;
+  padding: .21em .7em;
+  text-shadow: 1px 1px 1px #eee;
+  cursor: pointer;
+  vertical-align: middle;
+  box-sizing: border-box;
+  box-shadow: none;
+  transition: none;
+  text-transform: none;
+  margin: 0;
+  text-align: center;
+}
+
+.pb-button:hover {
+  border-color: #CACACA #CACACA #B1B1B1;
+  @include backgroundGradient(#FEFEFE, #E9E9E9);
+}
+
+.pb-button:disabled {
+  border-color: #CACACA #CACACA #B1B1B1;
+  background: #fafafa;
+  color: #777;
+}
+
+//.pb-button:focus {
+//    border-color: #777 #777 #666;
+//    outline: none;
+//}
+
+.pb-button.target-visible,
+.pb-button:active {
+  background: rgb(251,251,251);
+  box-shadow: 0 0 5px #cdcdcd inset;
+}
+
+//******************** different sizes ****************************************/
+
+/* .pb-button {
+  &.large,
+  &.b-large {
+      font-size: 1.2em;
+      height: 2em;
+      line-height: 2em;
+      padding: 0 .8em;
+      font-weight: normal;
+  }
+}
+
+.pb-button.small {
+  font-size: .84em;
+  font-weight: bold;
+  border-radius: .27em;
+  height: 1.84em;
+  line-height: 1.7em;
+  padding: 0 .461535em;
+} */
+
+
+
+
+
+
+
+/********************PINKBIKE COLORS ????**************************************************/
+/******************** different colors ***************************************/
+
+/* %colored-button {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-weight: normal;
+}
+%colored-button-hover {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+
+.pb-button.blue {
+  @extend %colored-button;
+  @include backgroundGradient(#5882d5, #28509f);
+  border-color: #2a54a7 #2a54a7 #1e3b76;
+  &:hover {
+      @extend %colored-button-hover;
+      @include backgroundGradient(#3265c8, #1e3b76);
+  }
+}
+.pb-button.grey {
+  @extend %colored-button;
+  @include backgroundGradient(#aaa, #777);
+  border-color: #707070 #707070 #505050;
+  &:hover {
+      @include backgroundGradient(#888, #555);
+  }
+
+  &.target-visible,
+  &:active {
+      //@include backgroundGradient(#888, #555);
+      box-shadow: 0 0 5px #555 inset;
+  }
+}
+.pb-button.green {
+  @extend %colored-button;
+  @include backgroundGradient(#00a200, #006f00);
+  border-color: #006f00 #006f00 #003c00;
+  &:hover {
+      @include backgroundGradient(#008000, #004d00);
+  }
+}
+.pb-button.red {
+  @extend %colored-button;
+  @include backgroundGradient(#f80303, #b60303);
+  border-color: #a50202 #a50202 #940202;
+  &:hover {
+      @include backgroundGradient(#d70303, #940202);
+  }
+}
+
+// TODO active state for colored buttons
+
+//******************** selectable buttons ************************************/
+
+/* .pb-button.selectable %icon {
+  color: #999;
+}
+.pb-button.selectable.selected %icon {
+  color: blue;
+}
+
+.if-selected {
+  display: none;
+}
+
+.selected {
+  .if-selected {
+      display: inline;
+  }
+
+  .if-not-selected {
+      display: none;
+  } */
+
+*/
+
+/* /******************* target visible buttons ********************************
+// basically the same exact thing as selectable buttons, but with a more
+// appropriate class name
+
+.if-target-visible {
+  display: none;
+}
+
+.if-target-not-visible {
+  display: inherit;
+}
+
+.target-visible {
+  .if-target-visible {
+      display: inherit;
+  }
+  .if-target-not-visible {
+      display: none;
+  }
+}
+*/
+
+//******************** dropdown buttons ***************************************/
+
+/* .pb-button.dropdown:after {
+  font-family: 'FontAwesome';
+  content: "\f0d7";
+  margin-left: .46em;
+  min-width: .78em;
+  display: inline-block;
+  transition: transform 100ms ease-in-out;
+}
+
+.pb-button.dropdown.target-visible:after {
+  transform: rotateX(-180deg) translateY(1px);
+}  */
+
+
+
+
+
+
+
+
+
 .App {
   text-align: center;
 }

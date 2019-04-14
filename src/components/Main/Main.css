@@ -1,0 +1,28 @@
+.main {
+    background-image: url('https://images.unsplash.com/photo-1519255903420-ba9ebf45288e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+
+    overflow: visible;
+    border: red 2px dashed;
+    background-repeat: no-repeat;
+
+}
+
+
+.inside-main {
+    background: lightgray;
+    bottom: 0;
+    opacity: 0.7;
+    
+}
+
+
+.main-container {
+    width: 95%;
+    height: 200px;
+    border: violet 2px dotted;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
