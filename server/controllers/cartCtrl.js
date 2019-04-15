@@ -8,9 +8,9 @@ module.exports = {
                     /// HATS ARE ONE SIZE FITS ALL
         const { user } = req.session;
         const db = req.app.get("db");
-        let cartCheck = await db.check_cart_items([user.id, user.cartId, product_id]);
+        let cartCheck = await db.check_cart_items([user.id, user.cartId, product_id, size]);
         if (cartCheck[0]){
-            db.add_qty_to_cart_item([user.id, user.cartId, product_id, qty])
+            db.add_qty_to_cart_item([user.id, user.cartId, product_id, size, qty])
             .then(()=>{
                 user.cartCount+=qty;
                 return res.status(200).send({ message: 'Product quantity increased', loggedIn: true })})
@@ -68,12 +68,28 @@ module.exports = {
 
         
     },
-    displayCart: (req, res)=>{},
-    checkout: (req, res, next)=>{
-        const { id: product_id } = req.body;
+    displayCart: async (req, res)=>{
         const { user } = req.session;
         const db = req.app.get("db");
-        db.checkout([user.user_id, user.cart_id])
+        let products = await db.retrieve_cart_product_ids([user.id, user.cartId]);
+  
+        if(!products[0]){
+            return res.status(200).send({ message:'No products to display', loggedIn: true })
+        }
+        let retrieveAll = await products.map((val, i, arr)=>{
+            return db.retrieve_all_product_details(val)
+        }); // should work, no?
+        
+        return res.status(200).send({ message:'Cart is sent', payload: retrieveAll  })
+
+    },
+    checkout: (req, res, next)=>{
+
+        const { user } = req.session;
+        const db = req.app.get("db");
+        let userCarts = await db.checkout([user.user_id, user.cart_id])
+        user.cartId = userCarts[userCarts.length-1].cart_id; // switches the cart into the NEWEST ONE
+        user.cartCount = 0;
         .then((res)=>{
             res.status(200).send({ message: 'Cart has been checked out and processed into orders', loggedIn: true })
         })

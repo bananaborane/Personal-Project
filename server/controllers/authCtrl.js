@@ -16,14 +16,15 @@ module.exports = {
 
     const salt = bcrypt.genSaltSync(10);
     const pepper = bcrypt.hashSync(password, salt);
-    let newAccArr = await db.create_user([email, pepper, username]);\
-    let newCart = await db.init_cart(newAccArr[0].user_id);
+    let newAccArr = await db.create_user([email, pepper, username]);
+
+    let arrayOfCarts = await db.init_cart(newAccArr[0].user_id); // returns an ARRAY of carts
     // running another async request to the db after first one
     req.session.user =  {
       email: newAccArr[0].user_email, 
       id: newAccArr[0].user_id, 
       username: newAccArr[0].username,
-      cartId: newCart[newCart.length-1].cart_id,
+      cartId: arrayOfCarts[arrayOfCarts.length-1].cart_id,
       cartCount: 0
       };
         // places them in a session after registering by adding them to the req.session object
@@ -45,22 +46,25 @@ module.exports = {
     }
     const result = bcrypt.compareSync(password, accountArr[0].user_hash); // checks if passwords match up, evaluates to true or false
     if(!result){ // if result is false and IS THEN FLIPPED TO TRUE, then code below runs
-        return res.status(401).send({ message: 'incorrect password, who dis?' })
+        return res.status(401).send({ message: 'incorrect email & password combo, who dis?' })
     }
-    let newCart = async db.init_cart(accountArr[0].user_id)
+
+    let arrayOfCarts = await db.init_cart(accountArr[0].user_id); // returns an ARRAY of carts
     req.session.user = { 
       email: accountArr[0].user_email, 
       id: accountArr[0].user_id, 
       username: accountArr[0].username,
-      cartId: newCart[newCart.length-1].cart_id,
+      cartId: arrayOfCarts[arrayOfCarts.length-1].cart_id,
       cartCount: 0
       };
           // places them in session after logging in
           // initializes new cart after logging in
 
     res.status(200).send({ 
-      message: 'login successful', 
-      loggedIn: true })
+      message: 'login successful',
+      userData: req.session.user ,
+      loggedIn: true 
+    })
   },
   userData: (req, res) => {
       if(req.session.user){
@@ -79,7 +83,7 @@ module.exports = {
     .then(response=>{
       console.log(response);
       res.status(200).send({
-        message: "user location updated, thank you",
+        message: "User location updated, thank you",
         userData: req.session.user,
         loggedIn: true
       });
@@ -88,7 +92,8 @@ module.exports = {
   },
   logout: (req, res)=>{
     req.session.destroy();
-    res.redirect('http://localhost:4000/#/shop')
+    res.redirect('http://localhost:4000/#/shop');
+    res.status(200).send({ message: 'Logout successful, please come again', loggedIn: false })
     }
 }
 

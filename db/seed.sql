@@ -25,7 +25,8 @@ create table products (
     title varchar(150),
     description varchar(500),
     size varchar(15),
-    image_url text
+    image_url text,
+    type varchar(20)
 );
 
 create table carts (
