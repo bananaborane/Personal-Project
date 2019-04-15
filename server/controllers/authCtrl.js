@@ -4,11 +4,13 @@ module.exports = {
   register: async (req, res) => {
     const { email, password, username } = req.body;
     const db = req.app.get("db");
-    const accountArr = await db.find_user_by_email([email]);
+    const accountArr = await db.find_user_by_email([email])
+      .catch(err=>console.log(`Something happened while finding user by email: ${err}`))
     if (accountArr[0]) {
       return res.status(200).send({ message: "Email already in use." });
     }
-    const anotherAccountArr = await db.find_user_by_username([username]);
+    const anotherAccountArr = await db.find_user_by_username([username])
+      .catch(err=>console.log(`Something happened while finding user by username: ${err}`))
     if(anotherAccountArr[0]){
       return res.status(200).send({ message: "Username already in use." })
     }
@@ -16,9 +18,11 @@ module.exports = {
 
     const salt = bcrypt.genSaltSync(10);
     const pepper = bcrypt.hashSync(password, salt);
-    let newAccArr = await db.create_user([email, pepper, username]);
+    let newAccArr = await db.create_user([email, pepper, username])
+      .catch(err=>console.log(`Something happened while creating user: ${err}`))
 
-    let arrayOfCarts = await db.init_cart(newAccArr[0].user_id); // returns an ARRAY of carts
+    let arrayOfCarts = await db.init_cart(newAccArr[0].user_id)
+      .catch(err=>console.log(`Something happened while initializing a new cart: ${err}`)); // returns an ARRAY of carts
     // running another async request to the db after first one
     req.session.user =  {
       email: newAccArr[0].user_email, 
@@ -39,7 +43,8 @@ module.exports = {
   login: async (req, res) => {
     const { email, password } = req.body;
     const db = req.app.get("db");
-    const accountArr = await db.find_user_by_email([email]);
+    const accountArr = await db.find_user_by_email([email])
+      .catch(err=>console.log(`Something happened while finding user by email: ${err}`))
     if (!accountArr[0]){
         return res.status(200).send({ message:'Email not found' });
 
@@ -49,7 +54,9 @@ module.exports = {
         return res.status(401).send({ message: 'incorrect email & password combo, who dis?' })
     }
 
-    let arrayOfCarts = await db.init_cart(accountArr[0].user_id); // returns an ARRAY of carts
+    let arrayOfCarts = await db.init_cart(accountArr[0].user_id)
+      .catch(err=>console.log(`Something happened while initializing a new cart: ${err}`));
+    // returns an ARRAY of carts
     req.session.user = { 
       email: accountArr[0].user_email, 
       id: accountArr[0].user_id, 
@@ -70,7 +77,7 @@ module.exports = {
       if(req.session.user){
           res.status(200).send(req.session.user)
       } else {
-          res.status(401).send('Please log in')
+          res.status(401).send('Please log in and/or register')
       }
   },
   addLocation: (req, res)=>{
@@ -92,8 +99,8 @@ module.exports = {
   },
   logout: (req, res)=>{
     req.session.destroy();
-    res.redirect('http://localhost:4000/#/shop');
-    res.status(200).send({ message: 'Logout successful, please come again', loggedIn: false })
+    res.redirect('http://localhost:4000/#/shop'); // should replace the redirect URL to CURRENT
+    res.status(200).send({ message: 'Logout successful, please come again', userData: null, loggedIn: false })
     }
 }
 

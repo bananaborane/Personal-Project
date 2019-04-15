@@ -8,12 +8,16 @@ module.exports = {
                     /// HATS ARE ONE SIZE FITS ALL
         const { user } = req.session;
         const db = req.app.get("db");
-        let cartCheck = await db.check_cart_items([user.id, user.cartId, product_id, size]);
+        let cartCheck = await db.check_cart_items([user.id, user.cartId, product_id, size])
+            .catch(err=>console.log(`Something happened while checking cart items: ${err}`))
         if (cartCheck[0]){
             db.add_qty_to_cart_item([user.id, user.cartId, product_id, size, qty])
             .then(()=>{
                 user.cartCount+=qty;
-                return res.status(200).send({ message: 'Product quantity increased', loggedIn: true })})
+                return res.status(200).send({ 
+                    message: 'Product quantity increased', 
+                    userData: req.session.user, 
+                    loggedIn: true })})
             .catch(err=>console.log(`Something happened when increasing product quantity: ${err}`))
 
                 /// MAKE SURE 'ADD TO CART BUTTON' PASSES IN A QTY OF 1
@@ -24,18 +28,26 @@ module.exports = {
                 user.cartCount+=qty;
             })
             .catch(err=>console.log(`Something happened when adding item to cart: ${err}`))
-            return res.status(200).send({ message: 'Product Added to Cart', loggedIn: true });
+            return res.status(200).send({ 
+                message: 'Product Added to Cart', 
+                userData: req.session.user, 
+                loggedIn: true });
         }
     },
     removeFromCart: async (req, res, next)=>{
         const { id: product_id } = req.body;
         const { user } = req.session;
         const db = req.app.get('db');
-        let itemToBeRemoved = await db.retrieve_cart_item_qty([user.id, user.cartId, product_id]);
+        let itemToBeRemoved = await db.retrieve_cart_item_qty([user.id, user.cartId, product_id])
+            .catch(err=>console.log(`Something happened while retrieving qty from cart items: ${err}`))
+            // captures the QTY from the item to be removed and decrements cartCount by QTY
         db.remove_from_cart([user.id, user.cartId, product_id])
         .then(()=>{
             user.cartCount-=itemToBeRemoved.qty;
-            return res.status(200).send({ message: 'Product Removed from Cart', loggedIn: true })
+            return res.status(200).send({ 
+                message: 'Product Removed from Cart',
+                userData: req.session.user, 
+                loggedIn: true })
         })
         .catch(err=>console.log(`Something happened while removing item from cart: ${err}`))
     },
@@ -43,25 +55,36 @@ module.exports = {
         const { id: product_id } = req.body;
         const { user } = req.session;
         const db = req.app.get("db");
-        let qtyCheck = await db.qty_check([user.id, user.cartId, product_id]);
-
+        let qtyCheck = await db.qty_check([user.id, user.cartId, product_id])
+            .catch(err=>console.log(`Something happened while checking qty: ${err}`));
 
         if (qtyCheck[0].qty < 1){
-            return res.status(200).send({ message:'Cannot have a product with a quantity less than 0', loggedIn: true })
+            return res.status(200).send({ 
+                message:'Cannot have a product with a quantity less than 0',
+                userData: req.session.user, 
+                loggedIn: true })
         }
+
         if (qtyCheck[0].qty == 1){
             db.remove_from_cart([user.id, user.cartId, product_id])
             .then(()=>{
                 user.cartCount--;
-                return res.status(200).send({ message: 'Product Removed from Cart', loggedIn: true })
+                return res.status(200).send({ 
+                    message: 'Product Removed from Cart', 
+                    userData: req.session.user,
+                    loggedIn: true })
             })
             .catch(err=>console.log(`Something happened while removing item from cart: ${err}`))
         }
+
         if (qtyCheck[0].qty > 1){
 
             db.decrement_qty_from_cart_item([user.id, user.cartId, product_id, qty])
             .then(()=>{
-                return res.status(200).send({ message: 'Product quantity decreased', loggedIn: true 
+                return res.status(200).send({ 
+                    message: 'Product quantity decreased',
+                    userData: req.session.user, 
+                    loggedIn: true 
             })})
             .catch(err=>console.log(`Something happened when decreasing product quantity: ${err}`))
         }
@@ -71,27 +94,41 @@ module.exports = {
     displayCart: async (req, res)=>{
         const { user } = req.session;
         const db = req.app.get("db");
-        let products = await db.retrieve_cart_product_ids([user.id, user.cartId]);
+        let productsFromCart = await db.retrieve_products_from_cart([user.id, user.cartId])
+            .catch(err=>console.log(`Something happened while retrieving products from cart: ${err}`))
   
-        if(!products[0]){
+        if(!productsFromCart[0]){
             return res.status(200).send({ message:'No products to display', loggedIn: true })
         }
-        let retrieveAll = await products.map((val, i, arr)=>{
-            return db.retrieve_all_product_details(val)
-        }); // should work, no?
         
-        return res.status(200).send({ message:'Cart is sent', payload: retrieveAll  })
+        return res.status(200).send({ 
+            message:'Cart is sent',
+            userData: req.session.user, 
+            payload: productsFromCart  })
 
     },
-    checkout: (req, res, next)=>{
+    searchProducts: async (req, res)=>{
+        let { search } = req.query;
+        let db = req.app.get('db');
+        let searchedProducts = await db.search_products([search])
+            .catch(err=>console.log(`Something happened while searching for products: ${err}`))
+        return res.status(200).send({ 
+            message: 'Searched products have been sent', 
+            payload: searchedProducts  })
+    },
+    checkout: async (req, res, next)=>{
 
         const { user } = req.session;
         const db = req.app.get("db");
         let userCarts = await db.checkout([user.user_id, user.cart_id])
+            .catch(err=>console.log(`Something happened while checking out: ${err}`))
         user.cartId = userCarts[userCarts.length-1].cart_id; // switches the cart into the NEWEST ONE
         user.cartCount = 0;
         .then((res)=>{
-            res.status(200).send({ message: 'Cart has been checked out and processed into orders', loggedIn: true })
+            res.status(200).send({ 
+                message: 'Cart has been checked out and processed into orders',
+                userData: req.session.user, 
+                loggedIn: true })
         })
         .catch(err=>console.log(`Something happened while checking out: ${err}`))
     }
