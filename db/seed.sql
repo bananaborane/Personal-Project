@@ -24,8 +24,8 @@ create table products (
     product_id serial primary key,
     title varchar(150),
     description varchar(500),
-    size varchar(15),
     image_url text,
+    price decimal,
     type varchar(20)
 );
 

@@ -1,0 +1,11 @@
+.each-product{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    border: 1px darkorange dashed;
+    height: 350px;
+}

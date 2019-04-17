@@ -11,14 +11,6 @@ export class Main extends Component {
       <div className="main">
         <div className="inside-main">
           <Header1 />
-          <Link to="/loginregister">Go to LoginRegister</Link>
-          <Link to="/shop">Go to Shop</Link>
-          <Link to="/shop/collections">Go to Collections</Link>
-          <Link to="/shop/collections/mens">Go to Mens</Link>
-          <Link to="/shop/collections/womens">Go to Womens</Link>
-          <Link to="/shop/collections/headwear">Go to Headwear</Link>
-          <Link to="/shop/collections/accessories">Go to Accessories</Link>
-          <Link to="/shop/collections/marketplace">Go to Marketplace</Link>
           <br />
           <a href="https://www.pinkbike.com/">Go to the OG Site</a>
           <div className='main-container'>

@@ -21,7 +21,7 @@ module.exports = {
     let newAccArr = await db.create_user([email, pepper, username])
       .catch(err=>console.log(`Something happened while creating user: ${err}`))
 
-    let arrayOfCarts = await db.init_cart(newAccArr[0].user_id)
+    let arrayOfCarts = await db.init_cart(newAccArr[0].user_id)   
       .catch(err=>console.log(`Something happened while initializing a new cart: ${err}`)); // returns an ARRAY of carts
     // running another async request to the db after first one
     req.session.user =  {
@@ -34,7 +34,7 @@ module.exports = {
         // places them in a session after registering by adding them to the req.session object
         // initializes new cart after registering
 
-    res.status(200).send({
+    return res.status(200).send({
       message: "logged in",
       userData: req.session.user,
       loggedIn: true
@@ -68,7 +68,7 @@ module.exports = {
           // initializes new cart after logging in
 
     res.status(200).send({ 
-      message: 'login successful',
+      message: 'Login successful, welcome.',
       userData: req.session.user ,
       loggedIn: true 
     })
@@ -81,7 +81,9 @@ module.exports = {
       }
   },
   addLocation: (req, res)=>{
-    const { email, city, state } = req.body;
+    console.log(req.session.user)
+    const { city, state } = req.body;
+    const { email } = req.session.user;
     if ( city == '' || state == '' ){
       return res.status(400).send({ message:'Please enter a valid city/state' })
     }
@@ -89,18 +91,18 @@ module.exports = {
     db.add_location([email, city, state])
     .then(response=>{
       console.log(response);
-      res.status(200).send({
+      return res.status(200).send({
         message: "User location updated, thank you",
         userData: req.session.user,
         loggedIn: true
       });
     })
-    .catch(err=> console.log('Error occurred while adding location', err)
+    .catch(err=> console.log('Error occurred while adding location', err))
   },
   logout: (req, res)=>{
     req.session.destroy();
-    res.redirect('http://localhost:4000/#/shop'); // should replace the redirect URL to CURRENT
-    res.status(200).send({ message: 'Logout successful, please come again', userData: null, loggedIn: false })
+    // res.redirect('http://localhost:3000/#/shop'); // should replace the redirect URL to CURRENT
+    return res.status(200).send({ message: 'Logout successful, please come again', userData: null, loggedIn: false })
     }
 }
 

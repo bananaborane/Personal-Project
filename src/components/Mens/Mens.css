@@ -1,0 +1,22 @@
+.list-of-products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-of-products-container {
+    width: 100%;
+}
+
+/* .each-product{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+} */

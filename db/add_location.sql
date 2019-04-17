@@ -1,3 +1,3 @@
-update table users
+update users
 set city = $2, state = $3
-where users.user_email = $1; 
+where user_email = $1; 
