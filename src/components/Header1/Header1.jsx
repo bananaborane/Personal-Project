@@ -24,7 +24,7 @@ export class Header1 extends Component {
             <Link to="/shop/collections/womens">Go to Womens</Link>
             <Link to="/shop/collections/footwear">Go to Footwear</Link>
             <Link to="/shop/collections/headwear">Go to Headwear</Link>
-            <Link to="/shop/collections/accessories">Go to Accessories</Link>
+            <Link to="/shop/collections/misc">Go to Misc</Link>
             <Link to="/shop/collections/marketplace">Go to Marketplace</Link>
           </div>
           <div className="empty" />

@@ -4,7 +4,7 @@ import Main from "./components/Main/Main";
 import Mens from "./components/Mens/Mens";
 import Womens from "./components/Womens/Womens";
 import Headwear from "./components/Headwear/Headwear";
-import Accessories from "./components/Accessories/Accessories";
+import Misc from "./components/Misc/Misc";
 import Marketplace from "./components/Marketplace/Marketplace";
 import Header1 from "./components/Header1/Header1";
 import Collections from "./components/Collections/Collections";
@@ -12,21 +12,26 @@ import NotFound from "./components/NotFound/NotFound";
 import Shop from "./components/Shop/Shop";
 import LoginRegister from "./components/LoginRegister/LoginRegister";
 import Profile from "./components/Profile/Profile";
-import Footwear from './components/Footwear/Footwear'
-import EachProduct from './components/EachProduct/EachProduct'
+import Footwear from './components/Footwear/Footwear';
+import EachBike from './components/EachBike/EachBike';
+import EachMiscProduct from './components/EachMiscProduct/EachMiscProduct';
+import EachMensProduct from './components/EachMensProduct/EachMensProduct';
+import EachWomensProduct from './components/EachWomensProduct/EachWomensProduct';
+import EachFootwearProduct from './components/EachFootwearProduct/EachFootwearProduct';
+import EachHeadwearProduct from './components/EachHeadwearProduct/EachHeadwearProduct';
 
 export default (
   <Switch>
     <Route exact path="/" render={() => <Main />} />
     <Route exact path="/shop" component={Shop} />
-    <Route path="/shop/collections/marketplace/:id" component={EachProduct} />
-    <Route path="/shop/collections/accessories/:id" component={EachProduct} />
-    <Route path="/shop/collections/headwear/:id" component={EachProduct} />
-    <Route path="/shop/collections/footwear/:id" component={EachProduct} />
-    <Route path="/shop/collections/womens/:id" component={EachProduct} />
-    <Route path="/shop/collections/mens/:id" component={EachProduct} />
+    <Route path="/shop/collections/marketplace/:id" component={EachBike} />
+    <Route path="/shop/collections/misc/:id" component={EachMiscProduct} />
+    <Route path="/shop/collections/headwear/:id" component={EachHeadwearProduct} />
+    <Route path="/shop/collections/footwear/:id" component={EachFootwearProduct} />
+    <Route path="/shop/collections/womens/:id" component={EachWomensProduct} />
+    <Route path="/shop/collections/mens/:id" component={EachMensProduct} />
     <Route path="/shop/collections/marketplace" component={Marketplace} />
-    <Route path="/shop/collections/accessories" component={Accessories} />
+    <Route path="/shop/collections/misc" component={Misc} />
     <Route path="/shop/collections/headwear" component={Headwear} />
     <Route path="/shop/collections/footwear" component={Footwear} />
     <Route path="/shop/collections/womens" component={Womens} />

@@ -18,7 +18,7 @@ export class Footwear extends Component {
 
   render() {
     console.log(this.props.products)
-    let mappedFootwearProducts = this.props.products.listOfProducts.map((val, i)=>{return ( <Product className='each-product' key={val.product_id} id={val.product_id} image_url={val.image_url} title={val.title} price={val.price} />
+    let mappedFootwearProducts = this.props.products.listOfProducts.map((val, i)=>{return ( <Product className='each-product' key={val.product_id} id={val.product_id} type={val.type} image_url={val.image_url} title={val.title} price={val.price} />
  )})
     return (
       <div>

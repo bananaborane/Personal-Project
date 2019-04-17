@@ -7,7 +7,6 @@ export class Product extends Component {
       let { key, id, image_url, title, price, type  } = this.props;
     return (
       <Link to={{
-        // onClick={()=>{this.goToSpecificProduct(id)}}
         pathname:`/shop/collections/${type}/${id}`
       }}>
         <div className='each-product'>
