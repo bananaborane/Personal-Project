@@ -2,25 +2,25 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   addToCart: async (req, res, next) => {
-    const { id: product_id, size, qty } = req.body;
+    let { id, size, qty } = req.body;
     qty = 1 * qty;
     /// DONT FORGET TO HAVE size || '' IN THE FRONT END
     /// HATS ARE ONE SIZE FITS ALL
     const { user } = req.session;
     const db = req.app.get("db");
-    let cartCheck = await db
-      .check_cart_items([user.id, user.cartId, product_id, size])
+    let cartCheck = await db.check_cart_items([user.id, user.cartId, id, size])
       .catch(err =>
         console.log(`Something happened while checking cart items: ${err}`)
       );
     if (cartCheck[0]) {
-      db.add_qty_to_cart_item([user.id, user.cartId, product_id, size, qty])
-        .then(() => {
+      db.add_qty_to_cart_item([user.id, user.cartId, id, size, qty])
+        .then((response) => {
           user.cartCount += qty;
           return res.status(200).send({
             message: "Product quantity increased",
             userData: req.session.user,
-            loggedIn: true
+            loggedIn: true,
+            payload: response
           });
         })
         .catch(err =>
@@ -31,9 +31,12 @@ module.exports = {
 
       /// MAKE SURE 'ADD TO CART BUTTON' PASSES IN A QTY OF 1
     } else {
-      db.add_to_cart([user.cartId, user.id, product_id, qty, size])
-        .then(() => {
+      let response;
+      db.add_to_cart([user.cartId, user.id, id, qty, size])
+        .then((resp) => {
           user.cartCount += qty;
+          response = resp;
+          console.log('line 39',resp)
         })
         .catch(err =>
           console.log(`Something happened when adding item to cart: ${err}`)
@@ -41,7 +44,8 @@ module.exports = {
       return res.status(200).send({
         message: "Product Added to Cart",
         userData: req.session.user,
-        loggedIn: true
+        loggedIn: true,
+        payload: response
       });
     }
   },
@@ -131,7 +135,7 @@ module.exports = {
           `Something happened while retrieving products from cart: ${err}`
         )
       );
-
+      console.log(productsFromCart)
     if (!productsFromCart[0]) {
       return res
         .status(200)
@@ -146,7 +150,7 @@ module.exports = {
   },
   displayProductsByType: (req, res) => {
     let { type } = req.body;
-    console.log(type)
+    // console.log(type)
     let db = req.app.get("db");
     db.display_products_by_type([type])
       .then(response => {
@@ -160,6 +164,19 @@ module.exports = {
           `Something happened while retrieving products by type to display: ${err}`
         )
       );
+  },
+  displayTheProduct: (req, res)=>{
+    let { id } = req.params;
+    console.log(req.params)
+    let db = req.app.get('db');
+    db.retrieve_product_by_id([id])
+    .then(response =>{
+      return res.status(200).send({ 
+        message:'Product by id has been sent', 
+        payload: response })
+    })
+    .catch(err=>console.log(`Something happened while retrieving THE product: ${err}`))
+
   },
   searchProducts: async (req, res) => {
     let { search } = req.query;

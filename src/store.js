@@ -10,7 +10,7 @@ import userReducer from './ducks/userReducer';
 
 const rootReducer = combineReducers({
     products: productsReducer,
-    user: userReducer
+    user: userReducer,
 })
 
 // applies promiseMiddleware when doing asycn HTTP requests

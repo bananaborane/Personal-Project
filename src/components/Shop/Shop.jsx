@@ -10,11 +10,12 @@ import Marketplace from './../Marketplace/Marketplace'
 import Header1 from './../Header1/Header1'
 import Collections from './../Collections/Collections'
 import NotFound from './../NotFound/NotFound'
+import './Shop.css'
 
 export class Shop extends Component {
   render() {
     return (
-      <div>
+      <div className='shop'>
         <Header2 />
         From Shop.jsx
         <Link to="/shop/collections">Go to Collections</Link>

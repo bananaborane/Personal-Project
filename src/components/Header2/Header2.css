@@ -1,29 +1,121 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+
 .header-2 {
-    /* display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; */
-    width: 100%;
+    align-items: center;
     /* height: 3000px; */
-    background-color: lightpink;
+    width: 100%;
+    background-color: black;
     z-index: -10;
+    /* top: -20px; */
+    /* position: relative; */
+    border: dotted black;
+}
 
-    
+.search{
+    color:white;
+}
+
+.search-cart {
+    display: flex;
+    flex-direction: row;
+}
+
+.the-containers {
+    width: 76%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px darkorange dashed;
 }
 
 .first-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin: 20px;
+    margin: 15px;
+    top: 0px;
+    border: white 1px dotted;
+    width: 100%;
 }
 
 .second-container {
-    padding-left: 140px;
+
     position: sticky;
     position: -webkit-sticky;
     top: 0;
     background-color: black;
     color: white;
+    border: blue 1px dotted;
+    width: 100%;
 }
+
+.logo {
+    
+}
+
+.links {
+    font-size: 20px;
+}
+
+.each-link{
+    text-decoration: none;
+    padding: 10px
+}
+

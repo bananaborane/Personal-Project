@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import "./Header1.css";
 import { Link, Route, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
+import { login, register, logout } from './../../ducks/userReducer'
+import axios from 'axios'
 
 export class Header1 extends Component {
+
+  logout = ()=>{
+    axios.get('/auth/logout')
+    .then(res=>{
+        console.log(res);
+        this.props.logout()
+        alert('Logout successful')
+        this.props.history.push('/');
+    })
+    .catch(err => console.log(`Something happened while logging out: ${err}`))
+}
+
   render() {
     return (
       <div className="header-1">
@@ -12,7 +27,7 @@ export class Header1 extends Component {
               <Link to="/">PINKBIKE LOGO</Link>
             </div>
             <div>
-              <Link to="/loginregister">Go to LoginRegister</Link>
+              {this.props.user.isUserLoggedIn ? ( <div>Welcome, {this.props.user.username}!  <Link onClick={()=>{this.logout()}}>Logout</Link></div> ) : ( <Link to="/loginregister">Login/Register</Link>)}
             </div>
           </div>
           <div className="between" />
@@ -34,4 +49,11 @@ export class Header1 extends Component {
   }
 }
 
-export default Header1;
+let mapStateToProps = (reduxState) => {
+  return {
+    user: reduxState.user
+  }
+}
+
+
+export default connect(mapStateToProps, { login, register, logout })(Header1);

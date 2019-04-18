@@ -7,7 +7,7 @@ const massive = require('massive');
 const authCtrl = require('./controllers/authCtrl')
 const PORT = 3005;
 const checkForSession = require('./middlewares/checkForSession');
-const cartCtrl = require('./controllers/cartCtrl');
+const productCtrl = require('./controllers/productCtrl');
 const marketplaceCtrl = require('./controllers/marketplaceCtrl');
 
 
@@ -31,7 +31,14 @@ app.use(session({
 
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
-app.post('/collections', cartCtrl.displayProductsByType)
+app.post('/collections', productCtrl.displayProductsByType)
+app.post('/collections/addtocart', productCtrl.addToCart)
+app.post('/displaycart', productCtrl.displayCart)
+app.get('/collections/mens/:id', productCtrl.displayTheProduct)
+app.get('/collections/womens/:id', productCtrl.displayTheProduct)
+app.get('/collections/headwear/:id', productCtrl.displayTheProduct)
+app.get('/collections/footwear/:id', productCtrl.displayTheProduct)
+app.get('/collections/misc/:id', productCtrl.displayTheProduct)
 
 
 

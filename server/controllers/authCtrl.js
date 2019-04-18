@@ -45,6 +45,7 @@ module.exports = {
     const db = req.app.get("db");
     const accountArr = await db.find_user_by_email([email])
       .catch(err=>console.log(`Something happened while finding user by email: ${err}`))
+    console.log(accountArr[0])
     if (!accountArr[0]){
         return res.status(200).send({ message:'Email not found' });
 
@@ -67,7 +68,7 @@ module.exports = {
           // places them in session after logging in
           // initializes new cart after logging in
 
-    res.status(200).send({ 
+    return res.status(200).send({ 
       message: 'Login successful, welcome.',
       userData: req.session.user ,
       loggedIn: true 

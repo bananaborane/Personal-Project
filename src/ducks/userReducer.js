@@ -2,17 +2,19 @@ import axios from 'axios';
 
 const initState = {
     isUserLoggedIn: false,
+    id: '',
     email: '',
     password: '',
     username: '',
-    loading: true
+    loading: true,
+    theProduct: {}
 };
 
-const DISPLAY_PRODUCTS_BY_TYPE = 'DISPLAY_PRODUCTS_BY_TYPE';
 const LOGIN = "LOGIN";
+const LOGOUT = "LOGOUT";
 const REGISTER = "REGISTER";
 const REDUX_HANDLE_CHANGE = "REDUX_HANDLE_CHANGE";
-const DISPLAY_THE_PRODUCT = 'DISPLAY_THE_PRODUCT';
+
 
 
 
@@ -22,9 +24,16 @@ export const login = (email, password) => {
     console.log(res.data);  
     return res.data})
   .catch(err=>console.log(`Something happened while logging in through Redux: ${err}`))
+  console.log(data)
   return {
     type: LOGIN,
     payload: data
+  }
+}
+
+export const logout = () => {
+  return {
+    type: LOGOUT
   }
 }
 
@@ -44,18 +53,9 @@ export const register = (email, password, username) => {
 }
 }
 
-export const displayTheProduct = (type, id)=>{
-  let data = axios.get(`/collections/${type}/${id}`)
-  .then(res => {
-    console.log(res.data);
-    return res.data
-  })
-  .catch(err=>console.log(`Something happened while displaying the product: ${err}`))
-  return {
-    type: DISPLAY_THE_PRODUCT,
-    payload: data
-  }
-}
+
+
+
 
 export const reduxHandleChange = (e) => {
     console.log(initState)
@@ -73,28 +73,22 @@ export default function userReducer(state = initState, action) {
     case LOGIN + '_PENDING':
       return { ...state, loading: true }
     case LOGIN + '_FULFILLED':
-      let { email, username } = action.payload.userData;
-      return { ...state, email, password: '', username, loading: false, isUserLoggedIn: true }
+      let { email, username, id } = action.payload.userData;
+      return { ...state, email, password: '', username, id, loading: false, isUserLoggedIn: true }
     case LOGIN + '_REJECTED':
         return {...state, loading: false}
     case REGISTER + '_PENDING':
       return { ...state, loading: true }
     case REGISTER + '_FULFILLED':
         console.log(state)
-        return { ...state, email:action.payload.userData.email, password: '', username: action.payload.userData.username, loading: false , isUserLoggedIn: true }
+        return { ...state, email: action.payload.userData.email, id:action.payload.userData.id, password: '', username: action.payload.userData.username, loading: false , isUserLoggedIn: true }
     case REGISTER + '_REJECTED':
-      return {...state, loading: false}
-    case DISPLAY_THE_PRODUCT + '_PENDING':
-      return { ...state, loading: true }
-    case DISPLAY_THE_PRODUCT + '_FULFILLED':
-        console.log(state)
-        return { ...state, loading: false, isUserLoggedIn: true }
-    case DISPLAY_THE_PRODUCT + '_REJECTED':
       return {...state, loading: false}
     case REDUX_HANDLE_CHANGE:
       console.log(state)
       return { ...state, [action.payload.name]: action.payload.value }
-
+    case LOGOUT:
+      return {...state, isUserLoggedIn: false}
     default:
       return state;
   }

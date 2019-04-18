@@ -10,4 +10,7 @@ insert into cart_items (
     $3,
     $4,
     $5
-)
+);
+
+select * from cart_items
+where user_id = $2 and cart_id = $1;

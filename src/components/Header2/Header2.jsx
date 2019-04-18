@@ -1,34 +1,82 @@
 import React, { Component } from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import "./Header2.css";
+import axios from 'axios'
+import { connect } from 'react-redux';
+import { login, register, logout } from './../../ducks/userReducer'
+import { withRouter } from 'react-router-dom'
+
+
 
 export class Header2 extends Component {
+
+  logout = ()=>{
+    axios.get('/auth/logout')
+    .then(res=>{
+        console.log(res);
+        this.props.logout()
+        this.props.history.push('/');
+        alert('Logout successful')
+    })
+    .catch(err => console.log(`Something happened while logging out: ${err}`))
+}
+
   render() {
     return (
       <div className="header-2">
-        <div className="first-container">
-          <div className="logo">
-            <Link to="/">PINKBIKE LOGO</Link>
+        <div className='the-containers'>
+          <div className="first-container">
+            <div className="logo">
+              <Link to="/"><img src='https://cdn.shopify.com/s/files/1/1358/2295/files/Pinkbike-Corporate-Logo_RGB_200x.png?v=1499283796' alt='pink bike logo' /></Link>
+            </div>
+            <div className='right-side'>
+            {this.props.user.isUserLoggedIn ? (
+              <div className="search-cart">
+              <Link onClick={()=>{this.logout()}} to='/'>Logout</Link>
+              <span className='search'>SEARCH</span>
+            <Link to='/shop/displaycart'>
+              CART
+            </Link>
           </div>
-          <div className="search-cart">SEARCH CART</div>
-        </div>
-        <div className="second-container">
-          <div className="links">
-            <Link to="/loginregister">Go to LoginRegister</Link>
-            <Link to="/shop">Go to Shop</Link>
-            <Link to="/shop/collections">Go to Collections</Link>
-            <Link to="/shop/collections/mens">Go to Mens</Link>
-            <Link to="/shop/collections/womens">Go to Womens</Link>
-            <Link to="/shop/collections/footwear">Go to Footwear</Link>
-            <Link to="/shop/collections/headwear">Go to Headwear</Link>
-            <Link to="/shop/collections/misc">Go to Misc</Link>
-            <Link to="/shop/collections/marketplace">Go to Marketplace</Link>
+            ) : (
+              <div className='search-cart'>
+                <Link to='/loginregister'>Login/Register</Link>
+                <div className="search-cart">
+                  <span className='search'>SEARCH</span>
+                <Link to='/shop/displaycart'>
+                  CART
+                </Link>
+                </div>  
+              </div>
+            )}
+            </div>
           </div>
-          <div className="empty-offset" />
+
+          <div className="second-container">
+            <div className="links">
+              {/* <Link to="/loginregister">Go to LoginRegister</Link> */}
+              <Link className='each-link' to="/shop">Go to Shop</Link>
+              <Link className='each-link' to="/shop/collections">Go to Collections</Link>
+              <Link className='each-link' to="/shop/collections/mens">Go to Mens</Link>
+              <Link className='each-link' to="/shop/collections/womens">Go to Womens</Link>
+              <Link className='each-link' to="/shop/collections/footwear">Go to Footwear</Link>
+              <Link className='each-link' to="/shop/collections/headwear">Go to Headwear</Link>
+              <Link className='each-link' to="/shop/collections/misc">Go to Misc</Link>
+              <Link className='each-link' to="/shop/collections/marketplace">Go to Marketplace</Link>
+            </div>
+            <div className="empty-offset" />
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default Header2;
+
+let mapStateToProps = (reduxState) => {
+  return {
+    user: reduxState.user
+  }
+}
+
+export default withRouter(connect(mapStateToProps, { login, register, logout })(Header2));
