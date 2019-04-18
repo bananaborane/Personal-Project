@@ -55,16 +55,16 @@ export class Header2 extends Component {
           <div className="second-container">
             <div className="links">
               {/* <Link to="/loginregister">Go to LoginRegister</Link> */}
-              <Link className='each-link' to="/shop">Go to Shop</Link>
-              <Link className='each-link' to="/shop/collections">Go to Collections</Link>
-              <Link className='each-link' to="/shop/collections/mens">Go to Mens</Link>
-              <Link className='each-link' to="/shop/collections/womens">Go to Womens</Link>
-              <Link className='each-link' to="/shop/collections/footwear">Go to Footwear</Link>
-              <Link className='each-link' to="/shop/collections/headwear">Go to Headwear</Link>
-              <Link className='each-link' to="/shop/collections/misc">Go to Misc</Link>
-              <Link className='each-link' to="/shop/collections/marketplace">Go to Marketplace</Link>
+              <Link className='each-link' to="/shop">Shop</Link>
+              <Link className='each-link' to="/shop/collections">Collections</Link>
+              <Link className='each-link' to="/shop/collections/mens">Mens</Link>
+              <Link className='each-link' to="/shop/collections/womens">Womens</Link>
+              <Link className='each-link' to="/shop/collections/footwear">Footwear</Link>
+              <Link className='each-link' to="/shop/collections/headwear">Headwear</Link>
+              <Link className='each-link' to="/shop/collections/misc">Misc</Link>
+              <Link className='each-link' to="/shop/collections/marketplace">Marketplace</Link>
             </div>
-            <div className="empty-offset" />
+            <div className="empty-offset"></div>
           </div>
         </div>
       </div>

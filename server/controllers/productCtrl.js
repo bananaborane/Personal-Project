@@ -12,16 +12,24 @@ module.exports = {
       .catch(err =>
         console.log(`Something happened while checking cart items: ${err}`)
       );
+      console.log(cartCheck)
     if (cartCheck[0]) {
       db.add_qty_to_cart_item([user.id, user.cartId, id, size, qty])
         .then((response) => {
-          user.cartCount += qty;
-          return res.status(200).send({
-            message: "Product quantity increased",
-            userData: req.session.user,
-            loggedIn: true,
-            payload: response
-          });
+          db.retrieve_total_price_of_cart([user.id, user.cartId])
+          .then((ourResponse)=>{
+            user.cartCount += qty;
+            console.log(ourResponse)
+            return res.status(200).send({
+              message: "Product quantity increased",
+              userData: req.session.user,
+              loggedIn: true,
+              payload: response,
+              payload2: ourResponse
+            });
+          })
+          .catch(err=>console.log(`Something happened while retrieving total price of cart: ${err}`))
+
         })
         .catch(err =>
           console.log(
@@ -135,17 +143,20 @@ module.exports = {
           `Something happened while retrieving products from cart: ${err}`
         )
       );
-      console.log(productsFromCart)
+      console.log('line 146',productsFromCart)
     if (!productsFromCart[0]) {
       return res
         .status(200)
         .send({ message: "No products to display", loggedIn: true });
-    }
-
+    } 
+    let myResponse = await db.retrieve_total_price_of_cart([user.id, user.cartId])
+    .catch(err=>console.log(`Something happened while retrieving total price of the cart, ${err}`))
+    console.log('line 154', myResponse)
     return res.status(200).send({
       message: "Cart is sent",
       userData: req.session.user,
-      payload: productsFromCart
+      payload: productsFromCart,
+      payload2: myResponse
     }); // can access DETAILS OF EACH PRODUCT with payload
   },
   displayProductsByType: (req, res) => {

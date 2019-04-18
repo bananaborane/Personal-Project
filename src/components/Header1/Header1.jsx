@@ -24,7 +24,7 @@ export class Header1 extends Component {
         <div className="header-1-container">
           <div className="black-nav">
             <div>
-              <Link to="/">PINKBIKE LOGO</Link>
+              <Link to="/"><img src='https://cdn.shopify.com/s/files/1/1358/2295/files/Pinkbike-Corporate-Logo_RGB_200x.png?v=1499283796' alt='pink bike logo' height={32} /></Link>
             </div>
             <div>
               {this.props.user.isUserLoggedIn ? ( <div>Welcome, {this.props.user.username}!  <Link onClick={()=>{this.logout()}}>Logout</Link></div> ) : ( <Link to="/loginregister">Login/Register</Link>)}

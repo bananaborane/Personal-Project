@@ -4,7 +4,8 @@ const initState = {
     listOfProducts : [],
     loading: false,
     theProduct: {},
-    theCart: []
+    theCart: [],
+    totalPrice: 0
 };
 
 // const REQUEST_BUDGET_DATA = 'REQUEST_BUDGET_DATA';
@@ -14,6 +15,9 @@ const DISPLAY_PRODUCTS_BY_TYPE = 'DISPLAY_PRODUCTS_BY_TYPE';
 const DISPLAY_THE_PRODUCT = 'DISPLAY_THE_PRODUCT';
 const ADD_TO_CART = 'ADD_TO_CART';
 const DISPLAY_CART = 'DISPLAY_CART';
+const UPDATE_TOTAL_PRICE = 'UPDATE_TOTAL_PRICE';
+const DECREMENT_QTY = 'DECREMENT_QTY';
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 export const requestProducts = (type) => {
   let data = axios.post('/collections', { type: type })
@@ -26,7 +30,7 @@ export const requestProducts = (type) => {
 }
 
 export const displayTheProduct = (type, id)=>{
-  let data = axios.get(`/collections/${type}/${id}`)
+  let data = axios.get(`/collections/${type}/${id}`)  
   .then(res => {
     console.log(res.data);
     return res.data
@@ -41,15 +45,22 @@ export const displayTheProduct = (type, id)=>{
 export const displayCart = (id, cartId)=>{
   let data = axios.post(`/displaycart`, { id, cartId })
   .then(res => {
-    console.log('hi')
+    console.log(res.data)
     return res.data
   })
-  .catch(err=>console.log(`Something happened while displaying the product: ${err}`))
+  .catch(err=>console.log(`Something happened while displaying the product from reducer: ${err}`))
   return {
     type: DISPLAY_CART,
     payload: data
   }
 }
+
+export const updateTotalPrice = (totalPrice) => {
+  return {
+    type: UPDATE_TOTAL_PRICE,
+    payload: totalPrice
+  }
+} 
 
 export const addToCart = (id, qty, size = 'One Size Only') => {
   let data;
@@ -67,6 +78,20 @@ export const addToCart = (id, qty, size = 'One Size Only') => {
   return {
     type: ADD_TO_CART,
     payload: data
+  }
+}
+
+export const decrementQty = ()=>{
+  return {
+    type: DECREMENT_QTY,
+    payload: null
+  }
+}
+
+export const removeFromCart = ()=>{
+  return {
+    type: REMOVE_FROM_CART,
+    payload: null
   }
 }
 
@@ -93,13 +118,30 @@ export default function productsReducer(state = initState, action) {
         return { ...state, loading: false, theCart: action.payload.payload }
     case ADD_TO_CART + '_REJECTED':
         return {...state, loading: false}
-    case DISPLAY_CART + '_PENDING':
+        case DISPLAY_CART + '_PENDING':
         return { ...state, loading: true }
     case DISPLAY_CART + '_FULFILLED':
         console.log(action.payload)
-        return { ...state, theCart: action.payload.payload, loading: false}
+        return { ...state, theCart: action.payload.payload, totalPrice:action.payload.payload2[0], loading: false}
     case DISPLAY_CART + '_REJECTED':
         return {...state, loading: false}
+    case DECREMENT_QTY + '_PENDING':
+        return { ...state, loading: true }
+    case DECREMENT_QTY + '_FULFILLED':
+        console.log(action.payload)
+        return { ...state, loading: false}
+    case DECREMENT_QTY + '_REJECTED':
+        return {...state, loading: false} 
+    case REMOVE_FROM_CART + '_PENDING':
+        return { ...state, loading: true }
+    case REMOVE_FROM_CART + '_FULFILLED':
+        console.log(action.payload)
+        return { ...state, loading: false}
+    case REMOVE_FROM_CART + '_REJECTED':
+        return {...state, loading: false}   
+    case UPDATE_TOTAL_PRICE:
+        console.log(action.payload)
+        return { ...state, totalPrice:action.payload, loading: false}
     default:
       return state;
   }

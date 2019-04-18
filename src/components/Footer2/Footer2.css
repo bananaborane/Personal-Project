@@ -1,5 +1,29 @@
 .footer-2{
-    background-color: lightcoral;
-    /* height: 2000px; */
+    background-color: black;
+    color: white;
+    height: 13.6rem;
+    width: 100%;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 3rem;
+}
+
+
+.second-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }

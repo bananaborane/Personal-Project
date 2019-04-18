@@ -32,7 +32,6 @@ app.use(session({
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.post('/collections', productCtrl.displayProductsByType)
-app.post('/collections/addtocart', productCtrl.addToCart)
 app.post('/displaycart', productCtrl.displayCart)
 app.get('/collections/mens/:id', productCtrl.displayTheProduct)
 app.get('/collections/womens/:id', productCtrl.displayTheProduct)
@@ -45,6 +44,7 @@ app.get('/collections/misc/:id', productCtrl.displayTheProduct)
 app.use(checkForSession) // checkForSession middleware has to be below login/register
 
 
+app.post('/collections/addtocart', productCtrl.addToCart)
 app.put('/auth/addlocation', authCtrl.addLocation);
 app.get('/auth/logout', authCtrl.logout)
 

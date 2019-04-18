@@ -16,6 +16,11 @@
     width: 100%;
 }
 
+a {
+    color:lightgreen;
+    text-decoration: none;
+}
+
 .black-nav {
     border: 2px darkorange dashed;
     background-color: black;
