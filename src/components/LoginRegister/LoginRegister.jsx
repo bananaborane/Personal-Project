@@ -27,6 +27,7 @@ export class LoginRegister extends Component {
     axios.post('/auth/register', this.props.user)
     .then(()=>{
       alert('Register successful')
+      this.props.user.isUserLoggedIn = true;
       this.props.history.push('/profile')})
     .catch(err=>console.log(`Something happened while registering: ${err}`))
   }

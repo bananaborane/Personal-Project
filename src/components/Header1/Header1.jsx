@@ -32,15 +32,15 @@ export class Header1 extends Component {
           </div>
           <div className="between" />
           <div className="navy-nav">
-            <Link to="/loginregister">Go to LoginRegister</Link>
-            <Link to="/shop">Go to Shop</Link>
-            <Link to="/shop/collections">Go to Collections</Link>
-            <Link to="/shop/collections/mens">Go to Mens</Link>
-            <Link to="/shop/collections/womens">Go to Womens</Link>
-            <Link to="/shop/collections/footwear">Go to Footwear</Link>
-            <Link to="/shop/collections/headwear">Go to Headwear</Link>
-            <Link to="/shop/collections/misc">Go to Misc</Link>
-            <Link to="/shop/collections/marketplace">Go to Marketplace</Link>
+            <Link to="/loginregister"> Login/Register</Link>
+            <Link to="/shop"> Shop</Link>
+            <Link className='collections-link' to="/shop/collections"> Collections</Link>
+            <Link className='mens-link' to="/shop/collections/mens"> Mens</Link>
+            <Link className='womens-link' to="/shop/collections/womens"> Womens</Link>
+            <Link className='footwear-link' to="/shop/collections/footwear"> Footwear</Link>
+            <Link className='headwear-link' to="/shop/collections/headwear"> Headwear</Link>
+            <Link className='misc-link' to="/shop/collections/misc"> Misc</Link>
+            <Link to="/shop/collections/marketplace"> Marketplace</Link>
           </div>
           <div className="empty" />
         </div>

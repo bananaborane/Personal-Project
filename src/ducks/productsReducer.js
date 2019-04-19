@@ -141,7 +141,7 @@ export default function productsReducer(state = initState, action) {
         return {...state, loading: false}   
     case UPDATE_TOTAL_PRICE:
         console.log(action.payload)
-        return { ...state, totalPrice:action.payload, loading: false}
+        return { ...state, totalPrice: action.payload, loading: false}
     default:
       return state;
   }

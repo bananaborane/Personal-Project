@@ -100,6 +100,21 @@ module.exports = {
     })
     .catch(err=> console.log('Error occurred while adding location', err))
   },
+  deleteLocation: (req, res)=>{
+    let { id: user_id } = req.params;
+    const { email } = req.session.user;
+    const db = req.app.get('db');
+    db.remove_location([user_id, email])
+    .then(response=>{
+      console.log(response);
+      return res.status(200).send({
+        message: "Current user location was removed, thank you",
+        userData: req.session.user,
+        loggedIn: true
+      })
+    })
+    .catch(err=>console.log(`Error occurred while removing location, ${err}`))
+  },
   logout: (req, res)=>{
     req.session.destroy();
     // res.redirect('http://localhost:3000/#/shop'); // should replace the redirect URL to CURRENT

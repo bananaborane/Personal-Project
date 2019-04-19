@@ -23,8 +23,8 @@ export class EachCartItem extends Component {
         let ourProduct = res.data.payload.find((val, i)=>{
           return val.product_id === this.props.id
         })
-        console.log(res.data.payload2)
-        let totalPrice = res.data.payload2[0]
+        console.log(res.data.payload2[0].sum)
+        let totalPrice = res.data.payload2[0].sum
         this.props.updateTotalPrice(totalPrice);
         this.setState({
           qty: ourProduct.qty
@@ -35,19 +35,28 @@ export class EachCartItem extends Component {
   };
 
   decrement = () => {
-    if (this.state.qty > 1) {
+    if (this.state.qty >= 1) {
+      axios.post('/collections/decrementqty', { id: this.props.id, size: this.props.size, qty: 1 })
+      .then((res)=>{
+        console.log(res.data)
+        let ourProduct = res.data.payload.find((val, i)=>{
+          return val.product_id === this.props.id
+        })
+        console.log(res.data.payload2)
+        let totalPrice = res.data.payload2[0].sum || 0;
+        this.props.updateTotalPrice(totalPrice);
+        this.setState({
+          qty: ourProduct.qty
+        })
+      })
+      .catch(err=>console.log(`Something happened while decrementing qty for product in cart on front end: ${err}`))
       this.props.decrementQty()
       this.setState({
-        qty: this.state.qty - 1
+        qty: this.state.qty - 1 || 0
       });
 
     }
-    if (this.state.qty = 1){
-      this.props.removeFromCart()
-      this.setState({
-        qty: 0
-      })
-    }
+
   };
 
   handleSelectChange = (e)=>{

@@ -50,6 +50,18 @@ export class Profile extends Component {
       .catch(err=>console.log(`Something happened while adding location: ${err}`))
     }
 
+    removeLocation = () => {
+      axios.delete(`/auth/removelocation/${this.props.user.id}`)
+      .then(()=>{
+        alert('Current location was deleted');
+        this.setState({
+          city: '',
+          state: ''
+        })
+      })
+      .catch(err=>console.log(`Something happened while removing location: ${err}`))
+    }
+
 
     render() {
     return (
@@ -57,11 +69,13 @@ export class Profile extends Component {
         <Header2/>
         {this.props.user.isUserLoggedIn ? ( 
         <div>
-          <h3>Welcome back {this.props.user.username}</h3>
+          <h3>Welcome there, {this.props.user.username}</h3>
           <input onChange={(e)=>{this.handleChange(e)}} name='city' placeholder='Enter your city here' value={this.state.city}></input>
           <input onChange={(e)=>{this.handleChange(e)}} name='state' placeholder='Enter your state here' value={this.state.state}></input>
         
           <button onClick={()=>{this.addLocation()}}>Update Location</button>
+          <br></br>
+          <button onClick={()=>{this.removeLocation()}}>Remove Location</button>
           <br></br>
           <button onClick={()=>{this.logout()}}>Logout</button>
         </div> ) : ( <h2>Wrong way buddy</h2> )}

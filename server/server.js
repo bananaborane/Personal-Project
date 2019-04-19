@@ -45,7 +45,9 @@ app.use(checkForSession) // checkForSession middleware has to be below login/reg
 
 
 app.post('/collections/addtocart', productCtrl.addToCart)
+app.post('/collections/decrementqty', productCtrl.decrementQty)
 app.put('/auth/addlocation', authCtrl.addLocation);
+app.delete('/auth/deletelocation/:id', authCtrl.deleteLocation)
 app.get('/auth/logout', authCtrl.logout)
 
 

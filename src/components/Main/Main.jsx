@@ -9,15 +9,32 @@ export class Main extends Component {
   render() {
     return (
       <div className="main">
-        <div className="inside-main">
-          <Header1 />
-          <br />
-          <a href="https://www.pinkbike.com/">Go to the OG Site</a>
-          <div className='main-container'>
-            From Main.jsx
+        <Header1 />
+        <div className='main-2'>
+          <div className="inside-main">
+            <br />
+            <div className="main-container">
+              <div className='left-column'>
+                <div className='red-container-1'>
+                  <div className='inside-red-container-1'></div>
+                </div>
+                <div className='red-container-2'>
+                  <div className='inside-red-container-2'></div>
+                </div>
+                <div className='red-container-3'>
+                  <div className='inside-red-container-3'></div>
+                </div>
+              </div>
+              <div className='red-container-4'>
+                <div className='inside-red-container-4'></div>
+              </div>
+              <div className='red-container-5'>
+                <div className='inside-red-container-5'></div>
+              </div>
+            </div>
           </div>
-          <Footer1 />
         </div>
+        <Footer1 />
       </div>
     );
   }

@@ -57,4 +57,26 @@ a {
 /* #AE0000, #1E3144 */
 
 
-
+@media (max-width: 650px){
+    .navy-nav{
+        font-size: 0.9rem;
+    }
+    .collections-link{
+        display: none;
+    }
+    .mens-link{
+        display: none;
+    }
+    .womens-link{
+        display: none;
+    }
+    .footwear-link{
+        display: none;
+    }
+    .headwear-link{
+        display: none;
+    }
+    .misc-link{
+        display: none;
+    }
+}

@@ -6,24 +6,23 @@ import { connect } from 'react-redux';
 import { reduxHandleChange } from './../../ducks/userReducer'
 import { displayTheProduct, displayCart } from './../../ducks/productsReducer'
 import EachCartItem from './../EachCartItem/EachCartItem'
+import { Link, Switch, Route } from 'react-router-dom'
 
 export class DisplayCart extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      theCart: [],
-      totalPrice: 0
+      theCart: []
     }
   }
 
   componentDidMount(){
     let { displayCart, user } = this.props;
-    console.log(this.props)
+    console.log('line 20',this.props)
     displayCart(user.id, user.cartId)
     .then(()=>{
       this.setState({
-        theCart: this.props.products.theCart,
-        totalPrice: this.props.products.totalPrice
+        theCart: this.props.products.theCart
       })
       console.log('hi')
     })
@@ -31,16 +30,19 @@ export class DisplayCart extends Component {
   }
 
   render() {
-
+    console.log('line 33', this.props.products.totalPrice)
     return (
       <div>
         <Header2 />
             From DisplayCart.jsx
-            Your cart items:  {this.state.theCart ? ( <div className='cart-items'>{ this.state.theCart.map((val, i)=>{return ( <EachCartItem key={val.product_id} id={val.product_id} price={val.price} title={val.title} description={val.description} image_url={val.image_url} type={val.type} qty={val.qty} size={val.size} /> ) })  }</div> ) : ( <div><h2>No products to display from cart!</h2></div> )}
-            Total price: {this.props.products.theCart ? (this.props.products.theCart.reduce((tot, curr)=>{ return tot+=curr.price*curr.qty }, 0)) : (<span> 0 </span>) }
+            Your cart items:  {this.props.products.theCart ? ( <div className='cart-items'>{ this.props.products.theCart.map((val, i)=>{return ( <EachCartItem key={val.product_id} id={val.product_id} price={val.price} title={val.title} description={val.description} image_url={val.image_url} type={val.type} qty={val.qty} size={val.size} /> ) })  }</div> ) : ( <div><h2>No products to display from cart!</h2></div> )}
+            {console.log(this.props.products)}
+            Total price: {this.props.products.theCart ? (this.props.products.totalPrice.sum || this.props.products.totalPrice) : (<span> 0 </span>) }
             <h4>SPECIAL INSTRUCTIONS FOR SELLER</h4>
             <input type='text' />
-            <button>CHECK OUT</button>
+            <Link to='/shop/collections/checkout'>
+              <button>CHECK OUT</button>
+            </Link>
         <Footer2 />
       </div>
     )

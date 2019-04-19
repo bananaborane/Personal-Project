@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   addToCart: async (req, res, next) => {
+    console.log('line 5', req)
     let { id, size, qty } = req.body;
     qty = 1 * qty;
     /// DONT FORGET TO HAVE size || '' IN THE FRONT END
@@ -44,7 +45,7 @@ module.exports = {
         .then((resp) => {
           user.cartCount += qty;
           response = resp;
-          console.log('line 39',resp)
+          console.log('line 48',resp)
         })
         .catch(err =>
           console.log(`Something happened when adding item to cart: ${err}`)
@@ -83,11 +84,12 @@ module.exports = {
       );
   },
   decrementQty: async (req, res) => {
-    const { id: product_id } = req.body;
+    console.log('line 86', req)
+    const { size, qty, id: product_id } = req.body;
     const { user } = req.session;
     const db = req.app.get("db");
     let qtyCheck = await db
-      .qty_check([user.id, user.cartId, product_id])
+      .qty_check([user.id, user.cartId, product_id, size])
       .catch(err =>
         console.log(`Something happened while checking qty: ${err}`)
       );
@@ -101,14 +103,22 @@ module.exports = {
     }
 
     if (qtyCheck[0].qty == 1) {
-      db.remove_from_cart([user.id, user.cartId, product_id])
-        .then(() => {
+      db.remove_from_cart([user.id, user.cartId, product_id, size])
+        .then((response) => {
+          db.retrieve_total_price_of_cart([user.id, user.cartId])
+          .then((ourResponse)=>{
+            user.cartCount -= qty;
+            console.log(ourResponse)
+            return res.status(200).send({
+              message: "Product removed from cart",
+              userData: req.session.user,
+              loggedIn: true,
+              payload: response,
+              payload2: ourResponse
+            });
+          })
+          .catch(err=>console.log(`Something happened while retrieving total price of cart: ${err}`))
           user.cartCount--;
-          return res.status(200).send({
-            message: "Product Removed from Cart",
-            userData: req.session.user,
-            loggedIn: true
-          });
         })
         .catch(err =>
           console.log(
@@ -118,14 +128,23 @@ module.exports = {
     }
 
     if (qtyCheck[0].qty > 1) {
-      db.decrement_qty_from_cart_item([user.id, user.cartId, product_id, qty])
-        .then(() => {
+      db.decrement_qty_from_cart_item([user.id, user.cartId, product_id, size])
+      .then((response) => {
+        db.retrieve_total_price_of_cart([user.id, user.cartId])
+        .then((ourResponse)=>{
+          user.cartCount -= qty;
+          console.log(ourResponse)
           return res.status(200).send({
             message: "Product quantity decreased",
             userData: req.session.user,
-            loggedIn: true
+            loggedIn: true,
+            payload: response,
+            payload2: ourResponse
           });
         })
+        .catch(err=>console.log(`Something happened while retrieving total price of cart: ${err}`))
+        user.cartCount--;
+      })
         .catch(err =>
           console.log(
             `Something happened when decreasing product quantity: ${err}`

@@ -43,9 +43,6 @@ export class Header2 extends Component {
                 <Link to='/loginregister'>Login/Register</Link>
                 <div className="search-cart">
                   <span className='search'>SEARCH</span>
-                <Link to='/shop/displaycart'>
-                  CART
-                </Link>
                 </div>  
               </div>
             )}
