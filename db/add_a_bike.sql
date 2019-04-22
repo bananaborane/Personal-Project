@@ -6,7 +6,8 @@ insert into bikes (
     model,
     bike_size,
     bike_type,
-    wheel_size
+    wheel_size,
+    image_url
 ) values (
     ${user_id},
     ${title},
@@ -15,7 +16,8 @@ insert into bikes (
     ${model},
     ${bike_size},
     ${bike_type},
-    ${wheel_size}
+    ${wheel_size},
+    ${image_url}
 );
 
 select * from bikes;

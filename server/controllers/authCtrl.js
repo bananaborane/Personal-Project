@@ -101,6 +101,7 @@ module.exports = {
     .catch(err=> console.log('Error occurred while adding location', err))
   },
   deleteLocation: (req, res)=>{
+    console.log(req.params)
     let { id: user_id } = req.params;
     const { email } = req.session.user;
     const db = req.app.get('db');

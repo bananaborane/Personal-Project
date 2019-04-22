@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   addToCart: async (req, res, next) => {
-    console.log('line 5', req)
+    console.log('line 5', req.body)
     let { id, size, qty } = req.body;
     qty = 1 * qty;
     /// DONT FORGET TO HAVE size || '' IN THE FRONT END
@@ -15,18 +15,29 @@ module.exports = {
       );
       console.log(cartCheck)
     if (cartCheck[0]) {
-      db.add_qty_to_cart_item([user.id, user.cartId, id, size, qty])
+      await db.add_qty_to_cart_item([user.id, user.cartId, id, size, qty])
         .then((response) => {
           db.retrieve_total_price_of_cart([user.id, user.cartId])
           .then((ourResponse)=>{
+            console.log('line 22', ourResponse)
+            let theBestResponse; 
+            db.retrieve_products_from_cart([user.id, user.cartId])
+              .then((res)=>{
+                console.log('line 26', res)
+                theBestResponse = res.data;
+              })
+              .catch(err=>console.log(`Something happened while retrieving products from cart, ${err}`))
             user.cartCount += qty;
             console.log(ourResponse)
+
+
             return res.status(200).send({
               message: "Product quantity increased",
               userData: req.session.user,
               loggedIn: true,
               payload: response,
-              payload2: ourResponse
+              payload2: ourResponse,
+              payload3: theBestResponse
             });
           })
           .catch(err=>console.log(`Something happened while retrieving total price of cart: ${err}`))
@@ -45,7 +56,7 @@ module.exports = {
         .then((resp) => {
           user.cartCount += qty;
           response = resp;
-          console.log('line 48',resp)
+          console.log('line 59',resp)
         })
         .catch(err =>
           console.log(`Something happened when adding item to cart: ${err}`)
@@ -83,13 +94,32 @@ module.exports = {
         console.log(`Something happened while removing item from cart: ${err}`)
       );
   },
+  incrementQty: async (req, res, next)=>{
+    let { id: product_id, size, qty } = req.body;
+    const { user } = req.session;
+    const db = req.app.get("db");
+    let qtyCheck = await db.qty_check([user.id, user.cartId, product_id, size])
+    .catch(err =>
+      console.log(`Something happened while checking qty: ${err}`)
+    );
+    if (qtyCheck[0].qty < 10){
+      let ourResponse = db.add_qty_to_cart_item([user.id, user.cartId, product_id, size, qty])
+      let bestResponse = await db.retrieve_products_from_cart([user.id, user.cartId])
+      return res.status(200).send({
+        message: 'Qty of a certain product has been increased',
+        payload: ourResponse,
+        payload2: bestResponse
+      })
+    }
+    return res.status(200).send({
+      message: 'Cannot have more than a qty of 10 for a given product'
+    })
+  },
   decrementQty: async (req, res) => {
-    console.log('line 86', req)
     const { size, qty, id: product_id } = req.body;
     const { user } = req.session;
     const db = req.app.get("db");
-    let qtyCheck = await db
-      .qty_check([user.id, user.cartId, product_id, size])
+    let qtyCheck = await db.qty_check([user.id, user.cartId, product_id, size])
       .catch(err =>
         console.log(`Something happened while checking qty: ${err}`)
       );
@@ -103,53 +133,92 @@ module.exports = {
     }
 
     if (qtyCheck[0].qty == 1) {
-      db.remove_from_cart([user.id, user.cartId, product_id, size])
-        .then((response) => {
-          db.retrieve_total_price_of_cart([user.id, user.cartId])
-          .then((ourResponse)=>{
-            user.cartCount -= qty;
-            console.log(ourResponse)
-            return res.status(200).send({
-              message: "Product removed from cart",
-              userData: req.session.user,
-              loggedIn: true,
-              payload: response,
-              payload2: ourResponse
-            });
-          })
-          .catch(err=>console.log(`Something happened while retrieving total price of cart: ${err}`))
-          user.cartCount--;
-        })
-        .catch(err =>
-          console.log(
-            `Something happened while removing item from cart: ${err}`
-          )
-        );
+
+      let removeFromCartResponse = db.remove_from_cart([user.id, user.cartId, product_id, size])
+        .catch(err=>console.log(`Something happened: ${err}`))
+      let totalPriceResponse = await db.retrieve_total_price_of_cart([user.id, user.cartId])
+        .catch(err=>console.log(`Something happened: ${err}`))
+      let cartProductsResponse = await db.retrieve_products_from_cart([user.id, user.cartId])
+        .catch(err=>console.log(`Something happened: ${err}`))
+
+        user.cartCount -= qty;
+        return res.status(200).send({
+          message: "Product removed from cart",
+          userData: req.session.user,
+          loggedIn: true,
+          payload1: removeFromCartResponse,
+          payload2: totalPriceResponse,
+          payload3: cartProductsResponse
+        });
+
+
+      // db.remove_from_cart([user.id, user.cartId, product_id, size])
+      //   .then((response) => {
+      //     db.retrieve_total_price_of_cart([user.id, user.cartId])
+      //     .then((ourResponse)=>{
+      //       user.cartCount -= qty;
+      //       console.log(ourResponse)
+      //       return res.status(200).send({
+      //         message: "Product removed from cart",
+      //         userData: req.session.user,
+      //         loggedIn: true,
+      //         payload: response,
+      //         payload2: ourResponse
+      //       });
+      //     })
+      //     .catch(err=>console.log(`Something happened while retrieving total price of cart: ${err}`))
+      //     user.cartCount--;
+      //   })
+      //   .catch(err =>
+      //     console.log(
+      //       `Something happened while removing item from cart: ${err}`
+      //     )
+      //   );
     }
 
     if (qtyCheck[0].qty > 1) {
-      db.decrement_qty_from_cart_item([user.id, user.cartId, product_id, size])
-      .then((response) => {
-        db.retrieve_total_price_of_cart([user.id, user.cartId])
-        .then((ourResponse)=>{
-          user.cartCount -= qty;
-          console.log(ourResponse)
-          return res.status(200).send({
-            message: "Product quantity decreased",
-            userData: req.session.user,
-            loggedIn: true,
-            payload: response,
-            payload2: ourResponse
-          });
-        })
-        .catch(err=>console.log(`Something happened while retrieving total price of cart: ${err}`))
-        user.cartCount--;
-      })
-        .catch(err =>
-          console.log(
-            `Something happened when decreasing product quantity: ${err}`
-          )
-        );
+
+      let decrementQtyResponse = db.decrement_qty_from_cart_item([user.id, user.cartId, product_id, size])
+        .catch(err=>console.log(`Something happened: ${err}`))
+      let totalPriceResponse = await db.retrieve_total_price_of_cart([user.id, user.cartId])
+        .catch(err=>console.log(`Something happened: ${err}`))
+      let cartProductsResponse = await db.retrieve_products_from_cart([user.id, user.cartId])
+        .catch(err=>console.log(`Something happened: ${err}`))
+
+        user.cartCount -= qty;
+        return res.status(200).send({
+          message: "Product removed from cart",
+          userData: req.session.user,
+          loggedIn: true,
+          payload1: decrementQtyResponse,
+          payload2: totalPriceResponse,
+          payload3: cartProductsResponse
+        });
+
+
+      // db.decrement_qty_from_cart_item([user.id, user.cartId, product_id, size])
+      // .then((response) => {
+      //   db.retrieve_total_price_of_cart([user.id, user.cartId])
+      //   .then((ourResponse)=>{
+      //     db.retrieve_products_from_cart([user.id, user.cartId])
+      //     user.cartCount -= qty;
+      //     console.log(ourResponse)
+      //     return res.status(200).send({
+      //       message: "Product quantity decreased",
+      //       userData: req.session.user,
+      //       loggedIn: true,
+      //       payload: response,
+      //       payload2: ourResponse
+      //     });
+      //   })
+      //   .catch(err=>console.log(`Something happened while retrieving total price of cart: ${err}`))
+      //   user.cartCount--;
+      // })
+      //   .catch(err =>
+      //     console.log(
+      //       `Something happened when decreasing product quantity: ${err}`
+      //     )
+      //   );
     }
   },
   displayCart: async (req, res) => {
@@ -162,7 +231,7 @@ module.exports = {
           `Something happened while retrieving products from cart: ${err}`
         )
       );
-      console.log('line 146',productsFromCart)
+      console.log('line 191',productsFromCart)
     if (!productsFromCart[0]) {
       return res
         .status(200)
@@ -170,7 +239,9 @@ module.exports = {
     } 
     let myResponse = await db.retrieve_total_price_of_cart([user.id, user.cartId])
     .catch(err=>console.log(`Something happened while retrieving total price of the cart, ${err}`))
-    console.log('line 154', myResponse)
+    console.log('line 199', myResponse)
+
+
     return res.status(200).send({
       message: "Cart is sent",
       userData: req.session.user,
@@ -208,6 +279,23 @@ module.exports = {
     .catch(err=>console.log(`Something happened while retrieving THE product: ${err}`))
 
   },
+  retrieveQty: async (res, req)=>{
+    const { size, id: product_id } = req.body;
+    const { user } = req.session;
+    const db = req.app.get("db");
+    let qtyCheck = await db.qty_check([user.id, user.cartId, product_id, size])
+      .catch(err =>
+        console.log(`Something happened while checking qty: ${err}`)
+      );
+    console.log('line 249', qtyCheck)
+    if (qtyCheck[0].qty > 0){
+      return res.status(200).send({
+        message: 'Qty of certain product has been sent',
+        userData: req.session.user,
+        payload: qtyCheck
+      })
+    }
+  },
   searchProducts: async (req, res) => {
     let { search } = req.query;
     let db = req.app.get("db");
@@ -220,6 +308,17 @@ module.exports = {
       message: "Searched products have been sent",
       payload: searchedProducts
     });
+  },
+  getTotalPrice: async (req, res, next)=>{
+    const { user } = req.session;
+    let db = req.app.get("db");
+    let response = await db.retrieve_total_price_of_cart([user.id, user.cartId])
+      .catch(err=>console.log(`Something happened while getting total price of cart: ${err}`))
+    console.log(response[0])
+    return res.status(200).send({
+      message: 'total price of cart has been sent',
+      payload: response
+    })
   },
   checkout: async (req, res, next) => {
     const { user } = req.session;

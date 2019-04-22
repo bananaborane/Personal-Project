@@ -44,10 +44,16 @@ app.get('/collections/misc/:id', productCtrl.displayTheProduct)
 app.use(checkForSession) // checkForSession middleware has to be below login/register
 
 
+app.get('/shop/collections/marketplace/:id', marketplaceCtrl.displayTheBike)
+app.post('/addabiketomarketplace', marketplaceCtrl.addBike)
+app.get('/displaybikes', marketplaceCtrl.displayBikes)
+app.get('/collections/gettotalprice', productCtrl.getTotalPrice)
+app.post('/collections/incrementqty', productCtrl.incrementQty)
+app.post('/collections/product/retrieveqty', productCtrl.retrieveQty)
 app.post('/collections/addtocart', productCtrl.addToCart)
 app.post('/collections/decrementqty', productCtrl.decrementQty)
 app.put('/auth/addlocation', authCtrl.addLocation);
-app.delete('/auth/deletelocation/:id', authCtrl.deleteLocation)
+app.delete('/auth/removelocation/:id', authCtrl.deleteLocation)
 app.get('/auth/logout', authCtrl.logout)
 
 

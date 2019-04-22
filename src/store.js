@@ -3,7 +3,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import productsReducer from './ducks/productsReducer';
 import userReducer from './ducks/userReducer';
-
+import marketplaceReducer from './ducks/marketplaceReducer'
 
 
 // combineReducers brings all reducers to ONE OBJECT
@@ -11,6 +11,7 @@ import userReducer from './ducks/userReducer';
 const rootReducer = combineReducers({
     products: productsReducer,
     user: userReducer,
+    marketplace: marketplaceReducer
 })
 
 // applies promiseMiddleware when doing asycn HTTP requests

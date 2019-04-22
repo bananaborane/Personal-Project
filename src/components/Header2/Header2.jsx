@@ -32,6 +32,9 @@ export class Header2 extends Component {
             <div className='right-side'>
             {this.props.user.isUserLoggedIn ? (
               <div className="search-cart">
+              <Link to='/profile'>
+               | {this.props.user.username} |
+              </Link>
               <Link onClick={()=>{this.logout()}} to='/'>Logout</Link>
               <span className='search'>SEARCH</span>
             <Link to='/shop/displaycart'>
