@@ -1,7 +1,12 @@
 require('dotenv').config();
 const { SERVER_PORT, CONNECTION_STRING, SECRET } = process.env;
 const express = require('express');
+const socket = require('socket.io')
 const app = express();
+const http = require('http').Server(app)
+// const server = require('http').createServer(app);
+const io = socket(http);
+// module.exports.io
 const session = require('express-session')
 const massive = require('massive');
 const authCtrl = require('./controllers/authCtrl')
@@ -10,14 +15,55 @@ const checkForSession = require('./middlewares/checkForSession');
 const productCtrl = require('./controllers/productCtrl');
 const marketplaceCtrl = require('./controllers/marketplaceCtrl');
 
+// app.use(express.static(__dirname + '/public'))
 
 app.use(express.json());
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
-    app.listen(SERVER_PORT, ()=>{console.log(`server is currently listening to port: ${SERVER_PORT}`)})
+    http.listen(SERVER_PORT, ()=>{console.log(`server is currently listening to port: ${SERVER_PORT}`)})
     console.log('db connected, you may now try for requests');
 });
+
+
+// const io = socket(server);
+
+
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/index.html');
+  });
+
+io.on('connection', function(socket){
+    console.log('an user has connected');
+
+
+    socket.on('SEND_MESSAGE', function(msg){
+        console.log('message: ' + msg)
+        io.emit('RECEIVE_MESSAGE', msg)
+    })
+
+    socket.on('disconnect', function(){
+      console.log('an user has disconnected');
+    });
+});
+
+
+
+// io.on('connection', function (socket) {
+//     socket.emit('news', { hello: 'world' });
+//     socket.on('my other event', function (data) {
+//       console.log(data);
+//     });
+//   });
+
+// io.on('connection', (socket) => {
+//     console.log(socket.id);
+
+//     socket.on('SEND_MESSAGE', function(data){
+//         io.emit('RECEIVE_MESSAGE', data);
+//     })
+// });
+  
 
 app.use(session({
     resave: true,

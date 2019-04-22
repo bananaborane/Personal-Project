@@ -2,8 +2,12 @@ import React, { Component } from 'react'
 import Header2 from './../Header2/Header2'
 import Footer2 from './../Footer2/Footer2'
 import axios from 'axios'
+import './Profile.css'
 import { connect } from 'react-redux'
 import { login, register, logout, reduxHandleChange } from './../../ducks/userReducer'
+// import Chat from './../Chat/Chat'
+import socketIOClient from 'socket.io-client'
+import io from 'socket.io-client'
 
 
 export class Profile extends Component {
@@ -19,12 +23,91 @@ export class Profile extends Component {
             bike_size: '',
             bike_type: '',
             wheel_size: '',
-            image_url: ''
+            image_url: '',
+            endpoint: 'http://localhost:4000',
+            message: '',
+            listOfMessages: []
 
         }
+    this.socket = io(this.state.endpoint)
+    this.socket.on('RECEIVE_MESSAGE', function(data){
+      addMessage(data);
+    });
+
+    const addMessage = data => {
+      console.log(data);
+      this.setState({listOfMessages: [...this.state.listOfMessages, data]});
+      console.log(this.state.listOfMessages);
+  };
+
+    this.sendMessage = e => {
+      e.preventDefault();
+      this.socket.emit('SEND_MESSAGE', {
+          author: this.props.user.username,
+          message: this.state.message
+      })
+      this.setState({message: ''});
+
+  }
+
+  this.handleEnter = e => {
+    e.preventDefault();
+    const body = e.target.value;
+    if(e.keyCode === 13 && body){
+      this.socket.emit('SEND_MESSAGE', {
+        author: this.props.user.username,
+        message: this.state.message
+      })
+      this.setState({message: ''})
+    }
+
+}
     }
 
 
+
+
+    componentDidMount(){
+      this.socket.on('SEND_MESSAGE', msg =>{
+        this.setState({ listOfMessages: [msg, ...this.state.listOfMessages] })
+      })
+    }
+
+
+    // socketioSubmitForm = (e)=>{
+    //   e.preventDefault();
+    //   const socket = socketIOClient(this.state.endpoint);
+    //   socket.emit('chat message', document.getElementById('m').value);
+    //   document.getElementById('m').value = '';
+    //   socket.on('chat message', function(msg){
+    //     let newMessage = document.createElement('LI');
+    //     let text = document.createTextNode(msg);
+    //     newMessage.appendChild(text)
+    //     document.getElementById('messages').appendChild(newMessage);
+    //   })
+    //   return false;
+    
+    // }
+
+
+    // send = ()=>{
+    //   const socket = socketIOClient(this.state.endpoint)
+    //   socket.emit('change color', this.state.color)
+    // }
+
+    // setColor = (color)=>{
+    //   this.setState({
+    //     color
+    //   })
+    // }
+
+    // componentDidMount(){
+    //   const socket = socketIOClient(this.state.endpoint)
+    //   setInterval(this.send(), 1000);
+    //   socket.on('change color', (col)=>{
+    //     document.body.style.backgroundColor = col;
+    //   })
+    // }
 
     handleChange = (e)=>{
       let { name, value } = e.target;
@@ -101,6 +184,8 @@ export class Profile extends Component {
 
 
     render() {
+      const socket = socketIOClient(this.state.endpoint)
+
     return (
       <div>
         <Header2/>
@@ -133,6 +218,18 @@ export class Profile extends Component {
               <button >Add Bike to Marketplace</button>
             </form>
           </div>
+
+
+          <div className="messages">
+            {this.state.listOfMessages.map(message => {return (
+                <div>{message.author}: {message.message}</div>)
+                })}
+          </div>
+          
+            <input type="text" name='message' placeholder="Enter a message..." className="form-control" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
+                                <br/>
+            <button onClick={(e)=>this.sendMessage(e)} className="btn btn-primary form-control">Send</button>
+
 
         </div> ) : ( <h2>Wrong way buddy</h2> )}
 

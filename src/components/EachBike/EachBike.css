@@ -1,3 +1,13 @@
 .each-bike-img {
     width: 35%;
 }
+
+.bike-right-column {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.bike-right-column button {
+    width: 20%;
+}

@@ -17,21 +17,44 @@ export class EachBike extends Component {
 
   render() {
     // console.log(this.props.match.params)
-    let { user_id, bike_id, title, description, image_url, city, state, username  } = this.props.marketplace.theBike;
+    let { user_id, bike_id, title, description, image_url, city, state, username, make, model, bike_size, bike_type, wheel_size  } = this.props.marketplace.theBike;
+    let isItTrue = this.props.user.id === this.props.marketplace.theBike.user_id;
     return (
       <div>
         <Header2/>
           From EachBike.jsx
-          <img src={image_url} alt={title} className='each-bike-img' />
-          <div className='bike-right-column'></div>
-          <div>
-            User: {username}
-          </div>
-          <div>
-            location: {city}, {state}
-          </div>
-          <div>
-            {description} 
+          <div className='each-bike'>
+            <img src={image_url} alt={title} className='each-bike-img' />
+            <div className='bike-right-column'>
+              <div>
+                {title}
+              </div>
+              <div>
+                Make: {make}
+              </div>
+              <div>
+                Model: {model}
+              </div>
+              <div>
+                Bike_Size: {bike_size}
+              </div>
+              <div>
+                Bike Type: {bike_type}
+              </div>
+              <div>
+                Wheel size: {wheel_size}
+              </div>
+              <div>
+                User: {username}
+              </div>
+              <div>
+                location: {city}, {state}
+              </div>
+              <div>
+                {description} 
+              </div>
+              { isItTrue ? (null) : (<button>Inquire</button>)}
+            </div>
           </div>
         <Footer2/>
       </div>
