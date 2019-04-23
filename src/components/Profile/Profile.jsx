@@ -219,16 +219,20 @@ export class Profile extends Component {
             </form>
           </div>
 
+          <br/>
+          <br/>
 
-          <div className="messages">
-            {this.state.listOfMessages.map(message => {return (
-                <div>{message.author}: {message.message}</div>)
-                })}
-          </div>
-          
-            <input type="text" name='message' placeholder="Enter a message..." className="form-control" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
-                                <br/>
-            <button onClick={(e)=>this.sendMessage(e)} className="btn btn-primary form-control">Send</button>
+          <div className='chat-section'>
+            <div className="messages" id='messages'>
+              {this.state.listOfMessages.map(message => {return (
+                <div className='each-message'>{message.author}: {message.message}</div>)
+              })}
+            </div>
+            
+              <input type="text" name='message' placeholder="Enter a message..." className="form-control" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
+                                  <br/>
+              <button onClick={(e)=>this.sendMessage(e)} className="btn btn-primary form-control">Send</button>
+            </div>
 
 
         </div> ) : ( <h2>Wrong way buddy</h2> )}

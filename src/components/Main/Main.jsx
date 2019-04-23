@@ -11,9 +11,10 @@ const Main2 = styled.div`
   justify-content: center;
   align-items: center;
   border: violet 8px dashed;
-  height: 40px;
+  height: 5rem;
   margin: 0;
   padding: 0;
+  
 `
 
 const LeftColumn = styled.div`
@@ -21,10 +22,11 @@ const LeftColumn = styled.div`
   flex-direction: column;
   width: 13%;
   border: 2px blue dotted;
+  padding-right: 10px;
 `
 
 const RedContainer1 = styled.div`
-  height: 240px;
+  height: 30%;
   width: 92%;
   background-color: #AE0000;
   margin: 0 10px;
@@ -55,6 +57,7 @@ const InsideRedContainer1 = styled.div`
 
 const InsideRedContainer1Image = styled.img`
   padding-top: 0.6rem;
+  width: 80%;
 `
 
 const InsideRedContainer1ATag = styled.a`
@@ -63,7 +66,7 @@ const InsideRedContainer1ATag = styled.a`
 `
 
 const RedContainer2 = styled.div`
-  height: 180px;
+  height: 30%;
   width: 92%;
   background-color: #AE0000;
   margin: 10px;
@@ -94,6 +97,7 @@ const Above2ndImage = styled.div`
 const InsideRedContainer2Image = styled.img`
   padding: 0.4rem;
   border: 1px solid gray;
+  width: 75%;
 `
 
 const InsideRedContainer2ATag = styled.a`
@@ -112,12 +116,14 @@ const PbSponsoredEvents = styled.div`
 `
 
 const RedContainer3 = styled.div`
-  height: 400px;
+  height: 70%;
   width: 92%;
   background-color: #AE0000;
   margin: 10px;
   margin-bottom: 0;
   margin-top: 0;
+  padding-right: 0;
+  margin-right: 0;
   border-radius: 0.4rem;
   position: relative;
 `
@@ -140,6 +146,26 @@ const InsideRedContainer3 = styled.div`
   border-left: 1px solid black;
 `
 
+const InsideRedContainer3Image = styled.img`
+  width: 80%;
+`
+
+const ArticleImage1 = styled.img`
+  width: 25%;
+`
+
+const ArticleImage2 = styled.img`
+  width: 25%;
+`
+
+const ArticleImage3 = styled.img`
+  width: 25%;
+`
+
+const ArticleImage4 = styled.img`
+  width: 25%;
+`
+
 
 
 export class Main extends Component {
@@ -153,18 +179,18 @@ export class Main extends Component {
             <div className="main-container">
               <LeftColumn>
 
-                <RedContainer1>
-                <PhotoOfTheDay>Photo of the day</PhotoOfTheDay>
-                  <InsideRedContainer1>                
-                    <InsideRedContainer1Image src='https://ep1.pinkbike.org/p5pb16996162/p5pb16996162.jpg' alt='' width={150} />
+                <RedContainer1 className='red-container-1'>
+                <PhotoOfTheDay className='photo-of-the-day'>Photo of the day</PhotoOfTheDay>
+                  <InsideRedContainer1 className='inside-red-container-1'>                
+                    <InsideRedContainer1Image src='https://ep1.pinkbike.org/p5pb16996162/p5pb16996162.jpg' alt='' />
                     <InsideRedContainer1ATag>Comments (4)</InsideRedContainer1ATag>
                     <InsideRedContainer1ATag>Previous PODs</InsideRedContainer1ATag>
                   </InsideRedContainer1>
                 </RedContainer1>
 
-                <RedContainer2>
-                  <VideoOfTheDay>Video of the day</VideoOfTheDay>
-                  <InsideRedContainer2>
+                <RedContainer2 className='red-container-2'>
+                  <VideoOfTheDay className='video-of-the-day'>Video of the day</VideoOfTheDay>
+                  <InsideRedContainer2 className='inside-red-container-2'>
                     <Above2ndImage></Above2ndImage>
                     <InsideRedContainer2Image src='https://ev1.pinkbike.org/vt/2/tvt-500149-6.jpg' alt='' width={135} />
                     <InsideRedContainer2ATag>Comments (2)</InsideRedContainer2ATag>
@@ -172,14 +198,14 @@ export class Main extends Component {
                   </InsideRedContainer2>
                 </RedContainer2>
 
-                <RedContainer3>
+                <RedContainer3 className='red-container-3'>
                 <PbSponsoredEvents>PB Sponsored Events</PbSponsoredEvents>
                   <InsideRedContainer3>
-                    <img src='https://es.pinkbike.org/246/sprt/i/pbsponsoredevents/2/p2pb15026273.jpg' width={160} alt='' />
-                    <img src='https://ep1.pinkbike.org/p0pb14714748/p0pb14714748.jpg' width={150} alt='' />
-                    <img src='https://ep1.pinkbike.org/p2pb15026254/p2pb15026254.jpg' width={160} alt='' />
-                    <img src='https://ep1.pinkbike.org/p0pb16500024/p0pb16500024.jpg' width={160} alt='' />
-                    <img src='https://ep1.pinkbike.org/p4pb15995073/p4pb15995073.jpg' width={160} alt='' />
+                    <InsideRedContainer3Image src='https://es.pinkbike.org/246/sprt/i/pbsponsoredevents/2/p2pb15026273.jpg' width={160} alt='' />
+                    <InsideRedContainer3Image src='https://ep1.pinkbike.org/p0pb14714748/p0pb14714748.jpg' width={150} alt='' />
+                    <InsideRedContainer3Image src='https://ep1.pinkbike.org/p2pb15026254/p2pb15026254.jpg' width={160} alt='' />
+                    <InsideRedContainer3Image src='https://ep1.pinkbike.org/p0pb16500024/p0pb16500024.jpg' width={160} alt='' />
+                    <InsideRedContainer3Image src='https://ep1.pinkbike.org/p4pb15995073/p4pb15995073.jpg' width={160} alt='' />
                   </InsideRedContainer3>
                 </RedContainer3>
 
@@ -196,7 +222,7 @@ export class Main extends Component {
                   </div>
 
                   <div className="article-1">
-                    <img width={220} src='https://ep1.pinkbike.org/p2pb17094365/p2pb17094365.jpg' alt='article 1 picture' />
+                    <ArticleImage1 width={220} src='https://ep1.pinkbike.org/p2pb17094365/p2pb17094365.jpg' alt='article 1 picture' />
                     <div className="article-1-text-section">
                       <b>FIRST LOOK Mike Kazimer Apr 17, 2019</b>
                       <a>First Look: Push Unveils HC97 RockShox Charger Damper Upgrade</a>
@@ -206,7 +232,7 @@ export class Main extends Component {
                   </div>
 
                   <div className="article-2">
-                    <img width={220} src='https://ep1.pinkbike.org/p2pb17101444/p2pb17101444.jpg' alt='' />
+                    <ArticleImage2 width={220} src='https://ep1.pinkbike.org/p2pb17101444/p2pb17101444.jpg' alt='' />
                     <div className="article-2-text-section">
                       <b>PRESS RELEASES Fox Head Apr 17, 2019</b>
                       <a>Details Announced for 2019 US Open of Mountain Biking</a>
@@ -216,7 +242,7 @@ export class Main extends Component {
                   </div>
 
                   <div className="article-3">
-                    <img width={220} src='https://ep1.pinkbike.org/p2pb17044682/p2pb17044682.jpg' alt='' />
+                    <ArticleImage3 width={220} src='https://ep1.pinkbike.org/p2pb17044682/p2pb17044682.jpg' alt='' />
                     <div className="article-3-text-section">
                       <b> USFLAGHERE SPONSORED Apr 8, 2019</b>
                       <a>Enter to Win 1 of 50 Continental Tires Prize Packs</a>
@@ -226,7 +252,7 @@ export class Main extends Component {
                   </div>
 
                   <div className="article-4">
-                    <img width={220} src='https://ep1.pinkbike.org/p2pb16035583/p2pb16035583.jpg' alt='' />
+                    <ArticleImage4 width={220} src='https://ep1.pinkbike.org/p2pb16035583/p2pb16035583.jpg' alt='' />
                     <div className="article-4-text-section">
                       <b>RACING James Smurthwaite Apr 17, 2019</b>
                       <a>Every Downhill World Cup Track of 2019</a>
@@ -239,7 +265,122 @@ export class Main extends Component {
                 </div>
               </div>
               <div className='red-container-5'>
-                <div className='inside-red-container-5'></div>
+                <div>Pinkbike Poll</div>
+                <div className='inside-red-container-5'>
+                  <div>What Full Face Helmet Brand do you wear?</div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Troy Lee Designs</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Bell</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Six Six One</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Bluegrass</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Urge</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Fox</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Fly</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>POC</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Nema</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>O'Neal</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>6D</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Leatt</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Lazer</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>MET</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Kali</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Giro</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Specialized</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>iXS</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>One-Industries</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>THE</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>7iDP</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Giant</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Trek</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Cannondale</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Intense</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Evil</span>
+                  </div>
+                  <div className='each-checkbox'>
+                    <input type='checkbox' /> 
+                    <span>Other</span>
+                  </div>
+
+
+                  <br/>
+                  <button>Answer</button>
+                </div>
               </div>
             </div>
           </div>

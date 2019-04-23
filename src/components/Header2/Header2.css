@@ -132,3 +132,18 @@ table {
     font-size: 1.8rem;
 }
 
+
+@media (max-width: 1200px){
+    .each-link{
+        font-size: 1.4rem;
+        padding: 5px
+    }
+}
+
+
+@media (max-width: 600px){
+    .each-link{
+        font-size: 1rem;
+        padding: 1px
+    }
+}

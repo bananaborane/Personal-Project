@@ -16,7 +16,12 @@
     width: 100%;
 }
 
-a {
+.navy-nav a {
+    color:lightgreen;
+    text-decoration: none;
+}
+
+.black-nav a {
     color:lightgreen;
     text-decoration: none;
 }
@@ -78,5 +83,14 @@ a {
     }
     .misc-link{
         display: none;
+    }
+    .empty {
+       height: 100px;
+    }
+    .between{
+        height: 60px;
+    }
+    .black-nav img {
+        height: 28px;
     }
 }
