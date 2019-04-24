@@ -1,9 +1,50 @@
 .footer-1-container {
-    height: 1000px;
-    border: 2px dashed yellow;
+    height: 350px;
+    /* border: 2px dashed yellow; */
     width: 100%;
     background-color: black;
     color: white;
     margin-top: 880px;
     z-index: -10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-row{
+    width: 100%;
+    /* border: blue dashed 1px; */
+    height: 40%;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    text-align: left;
+    /* padding-top: 3rem; */
+}
+
+.first-row div h3 {
+    color: #AE0000;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.first-row div p {
+    font-size: 0.7rem;
+}
+
+.second-row div {
+    font-size: 0.7rem;
+}
+.third-row div {
+    font-size: 0.7rem;
+}
+
+@media (max-width: 800px){
+    .first-row div h3 {
+        color: #AE0000;
+        font-size: 1.0rem;
+        font-weight: bold;
+    }
 }

@@ -1,0 +1,9 @@
+.each-footwear-product {
+    margin-bottom: 300px;
+    margin-top: 30px;
+}
+
+.footwear-section{
+    display: flex;
+    justify-content: center;
+}

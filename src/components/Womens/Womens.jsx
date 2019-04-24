@@ -23,7 +23,6 @@ export class Womens extends Component {
     return (
       <div>
         <Header2 />
-        From Womens.jsx
         <div className='list-of-products-container'>
           <div className='list-of-products'>
             {mappedWomensProducts}

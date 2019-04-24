@@ -5,6 +5,7 @@ import Footer2 from "./../Footer2/Footer2";
 import { connect } from "react-redux";
 import { reduxHandleChange } from "./../../ducks/userReducer";
 import { displayTheProduct, addToCart } from "./../../ducks/productsReducer";
+import { Link, Switch, Route } from 'react-router-dom'
 
 export class EachMensProduct extends Component {
   constructor() {
@@ -65,8 +66,9 @@ export class EachMensProduct extends Component {
     return (
       <div>
         <Header2 />
+        <div className='each-mens-product'>
+
         <div className="each-product" style={{ width: 300 }}>
-          From EachMensProduct.jsx
           <img src={image_url} alt={title} width={220} />
           {title}
           {description}
@@ -94,7 +96,7 @@ export class EachMensProduct extends Component {
               onClick={() => {
                 this.increment();
               }}
-            >
+              >
               +
             </button>
           </div>
@@ -102,10 +104,12 @@ export class EachMensProduct extends Component {
             onClick={() => {
               this.addToCart();
             }}
-          >
+            >
             ADD TO CART
           </button>
         </div>
+            </div>
+        <Link to='/shop/collections/mens'>Back to Mens</Link>
         <Footer2 />
       </div>
     );

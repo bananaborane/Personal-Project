@@ -10,7 +10,7 @@ const Main2 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: violet 8px dashed;
+  // border: violet 8px dashed;
   height: 5rem;
   margin: 0;
   padding: 0;
@@ -21,7 +21,7 @@ const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 13%;
-  border: 2px blue dotted;
+  // border: 2px blue dotted;
   padding-right: 10px;
 `
 
@@ -199,7 +199,7 @@ export class Main extends Component {
                 </RedContainer2>
 
                 <RedContainer3 className='red-container-3'>
-                <PbSponsoredEvents>PB Sponsored Events</PbSponsoredEvents>
+                <PbSponsoredEvents className='pb-sponsored-events'>PB Sponsored Events</PbSponsoredEvents>
                   <InsideRedContainer3>
                     <InsideRedContainer3Image src='https://es.pinkbike.org/246/sprt/i/pbsponsoredevents/2/p2pb15026273.jpg' width={160} alt='' />
                     <InsideRedContainer3Image src='https://ep1.pinkbike.org/p0pb14714748/p0pb14714748.jpg' width={150} alt='' />
@@ -265,9 +265,9 @@ export class Main extends Component {
                 </div>
               </div>
               <div className='red-container-5'>
-                <div>Pinkbike Poll</div>
+                <div className='pinkbike-poll'>Pinkbike Poll</div>
                 <div className='inside-red-container-5'>
-                  <div>What Full Face Helmet Brand do you wear?</div>
+                  <div className='what-full-face'>What Full Face Helmet Brand do you wear?</div>
                   <div className='each-checkbox'>
                     <input type='checkbox' /> 
                     <span>Troy Lee Designs</span>

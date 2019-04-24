@@ -6,7 +6,7 @@ export class Product extends Component {
   render() {
       let { key, id, image_url, title, price, type  } = this.props;
     return (
-      <Link to={{
+      <Link className='each-product-link' to={{
         pathname:`/shop/collections/${type}/${id}`
       }}>
         <div className='each-product'>

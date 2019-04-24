@@ -333,10 +333,11 @@ module.exports = {
         });
     }
     let userCarts = await db
-      .checkout([user.user_id, user.cart_id])
+      .checkout([user.id, user.cartId])
       .catch(err =>
         console.log(`Something happened while checking out: ${err}`)
       );
+    console.log('line 340', userCarts)
     user.cartId = userCarts[userCarts.length - 1].cart_id; // switches the cart into the NEWEST ONE
     user.cartCount = 0;
 

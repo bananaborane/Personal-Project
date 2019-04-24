@@ -3,3 +3,15 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+.display-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 400px;
+}
+
+.display-cart input {
+    width: 300px;
+    /* height: 300px; */
+}

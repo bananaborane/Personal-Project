@@ -5,6 +5,8 @@ import Footer2 from "./../Footer2/Footer2";
 import { connect } from "react-redux";
 import { reduxHandleChange } from "./../../ducks/userReducer";
 import { displayTheProduct, addToCart } from "./../../ducks/productsReducer";
+import {Link} from 'react-router-dom'
+import './EachFootwearProduct.css'
 
 export class EachFootwearProduct extends Component {
   constructor() {
@@ -63,10 +65,11 @@ export class EachFootwearProduct extends Component {
       product_id
     } = this.props.products.theProduct;
     return (
-      <div>
+      <div className='footwear-each'>
         <Header2 />
-        <div className="each-product" style={{ width: 300 }}>
-          From EachFootwearProduct.jsx
+        <div className='footwear-section'>
+
+        <div className="each-footwear-product" style={{ width: 300 }}>
           <img src={image_url} alt={title} width={220} />
           {title}
           {description}
@@ -82,7 +85,7 @@ export class EachFootwearProduct extends Component {
               onClick={() => {
                 this.decrement();
               }}
-            >
+              >
               -
             </button>
             <div>
@@ -92,7 +95,7 @@ export class EachFootwearProduct extends Component {
               onClick={() => {
                 this.increment();
               }}
-            >
+              >
               +
             </button>
           </div>
@@ -100,10 +103,12 @@ export class EachFootwearProduct extends Component {
             onClick={() => {
               this.addToCart();
             }}
-          >
+            >
             ADD TO CART
           </button>
         </div>
+            </div>
+        <Link to='/shop/collections/footwear'>Back to Footwear</Link>
         <Footer2 />
       </div>
     );

@@ -8,8 +8,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* position: absolute;
-    bottom: 0; */
+    position: fixed;
+    bottom: 0;
     /* margin: 0; */
 }
 
@@ -22,6 +22,9 @@
     padding-bottom: 3rem;
 }
 
+.second h3 {
+    font-size: 1.5rem;
+}
 
 .second-box {
     display: flex;
@@ -30,3 +33,17 @@
     align-items: center;
     width: 100%;
 }
+
+@media (max-width: 850px){
+    .first-box{
+        font-size: 0.7rem;
+    }
+    .second-box{
+        font-size: 0.7rem;
+    }
+    .second h3 {
+        font-size: 1.3rem;
+    }
+}
+
+

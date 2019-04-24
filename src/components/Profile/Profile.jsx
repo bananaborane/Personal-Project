@@ -190,16 +190,23 @@ export class Profile extends Component {
       <div>
         <Header2/>
         {this.props.user.isUserLoggedIn ? ( 
-        <div>
+          <div className='profile-section'>
           <h3>Welcome there, {this.props.user.username}</h3>
-          <input onChange={(e)=>{this.handleChange(e)}} name='city' placeholder='Enter your city here' value={this.state.city}></input>
-          <input onChange={(e)=>{this.handleChange(e)}} name='state' placeholder='Enter your state here' value={this.state.state}></input>
-        
-          <button onClick={()=>{this.addLocation()}}>Update Location</button>
-          <br></br>
-          <button onClick={()=>{this.removeLocation()}}>Remove Location</button>
-          <br></br>
-          <button onClick={()=>{this.logout()}}>Logout</button>
+          <div className='first-section'>
+            <div className='change-location-section'>
+              <input onChange={(e)=>{this.handleChange(e)}} name='city' placeholder='Enter your city here' value={this.state.city}></input>
+              <input onChange={(e)=>{this.handleChange(e)}} name='state' placeholder='Enter your state here' value={this.state.state}></input>
+            
+              <button onClick={()=>{this.addLocation()}}>Update Location</button>
+              <br></br>
+              <button onClick={()=>{this.removeLocation()}}>Remove Location</button>
+              <br></br>
+
+            </div>
+            <div className='login-button'>
+              <button onClick={()=>{this.logout()}}>Logout</button>
+            </div>
+          </div>
 
           <br></br>
           <br></br>
@@ -223,19 +230,20 @@ export class Profile extends Component {
           <br/>
 
           <div className='chat-section'>
+            Marketplace Chat
             <div className="messages" id='messages'>
               {this.state.listOfMessages.map(message => {return (
                 <div className='each-message'>{message.author}: {message.message}</div>)
               })}
             </div>
-            
-              <input type="text" name='message' placeholder="Enter a message..." className="form-control" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
-                                  <br/>
-              <button onClick={(e)=>this.sendMessage(e)} className="btn btn-primary form-control">Send</button>
+              <div className='send-message-section'>
+                <input type="text" name='message' placeholder="Enter a message..." className="form-control" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
+                <button onClick={(e)=>this.sendMessage(e)} className="btn btn-primary form-control">Send</button>
+              </div>
             </div>
 
 
-        </div> ) : ( <h2>Wrong way buddy</h2> )}
+        </div> ) : ( <div className='wrong-way-buddy'><h2>Wrong way buddy</h2></div> )}
 
         <Footer2/>
       </div>

@@ -5,6 +5,7 @@ import Footer2 from "./../Footer2/Footer2";
 import { connect } from "react-redux";
 import { reduxHandleChange } from "./../../ducks/userReducer";
 import { displayTheProduct, addToCart } from "./../../ducks/productsReducer";
+import {Link} from 'react-router-dom'
 
 export class EachMiscProduct extends Component {
   constructor() {
@@ -102,6 +103,7 @@ export class EachMiscProduct extends Component {
             ADD TO CART
           </button>
         </div>
+        <Link to='/shop/collections/misc'>Back to Misc</Link>
         <Footer2 />
       </div>
     );

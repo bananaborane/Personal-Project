@@ -4,6 +4,7 @@ import Footer2 from './../Footer2/Footer2'
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { login, register, reduxHandleChange } from './../../ducks/userReducer'
+import './LoginRegister.css'
 
 export class LoginRegister extends Component {
   constructor(props){
@@ -45,20 +46,27 @@ export class LoginRegister extends Component {
     return (
       <div>
         <Header2 />
-        From LoginRegister.jsx
-        {this.state.loginRegisterFlag ? ( <div className='login-container'>
-          <div className='login'>
-            <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
-            <input type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
-            <button onClick={()=>{this.login()}}>Login</button>
+        <div className='loginregister-section'>
+          <div className='loginregister'>
+            {this.state.loginRegisterFlag ? ( <div className='login-container'>
+              <div className='login'>
+                <h3>Login</h3>
+                <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
+                <input type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
+                <button onClick={()=>{this.login()}}>Login</button>
+              </div>
+            </div> ) : ( <div className='register-container'>
+              <div className='register' >
+                <h3>Register</h3>
+                <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
+                <input type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
+                <input name='username' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter username here'></input>
+                <button onClick={()=>{this.register()}}>Register</button>
+              </div>
+            </div> )}
+            <button onClick={()=>{this.handleToggle()}} >Toggle</button>
           </div>
-        </div> ) : ( <div className='register-container'>
-        <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
-            <input type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
-            <input name='username' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter username here'></input>
-            <button onClick={()=>{this.register()}}>Register</button>
-        </div> )}
-        <button onClick={()=>{this.handleToggle()}} >Toggle</button>
+        </div>
         <Footer2 />
       </div>
     )

@@ -23,7 +23,6 @@ export class Headwear extends Component {
     return (
       <div>
         <Header2 />
-        From Headwear.jsx
         <div className='list-of-products-container'>
           <div className='list-of-products'>
             {mappedHeadwearProducts}

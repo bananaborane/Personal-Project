@@ -53,7 +53,10 @@ export class EachBike extends Component {
               <div>
                 {description} 
               </div>
-              { isItTrue ? (null) : (<button>Inquire</button>)}
+              { isItTrue ? (null) : (<Link to='/profile'>
+              <button>Inquire</button>
+              </Link>
+              )}
             </div>
           </div>
         <Footer2/>

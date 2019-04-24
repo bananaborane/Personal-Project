@@ -27,7 +27,6 @@ export class Mens extends Component {
     return (
       <div>
         <Header2 />
-        From Mens.jsx
         <div className='list-of-products-container'>
           <div className='list-of-products'>
             {mappedMensProducts}

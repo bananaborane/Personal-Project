@@ -62,7 +62,7 @@ table {
     z-index: -10;
     /* top: -20px; */
     /* position: relative; */
-    border: dotted yellow;
+    /* border: dotted yellow; */
 }
 
 .search{
@@ -81,7 +81,7 @@ table {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px darkorange dashed;
+    /* border: 1px darkorange dashed; */
 }
 
 .first-container {
@@ -92,7 +92,7 @@ table {
     align-items: center;
     margin: 15px;
     top: 0px;
-    border: white 1px dotted;
+    /* border: white 1px dotted; */
     width: 100%;
 }
 
@@ -103,7 +103,7 @@ table {
     top: 0;
     background-color: black;
     color: white;
-    border: blue 5px dotted;
+    /* border: blue 5px dotted; */
     width: 100%;
     padding-bottom: 15px;
     display:flex;
@@ -114,7 +114,7 @@ table {
 
 .empty-offset {
     width: 15rem;
-    border: 3px darkorange pink;
+    /* border: 3px darkorange pink; */
     height: 10px;
 }
 
@@ -130,6 +130,50 @@ table {
     text-decoration: none;
     padding: 10px;
     font-size: 1.8rem;
+    color:lightgray;
+}
+
+.each-link:hover{
+    color: white;
+}
+
+.search-cart Link {
+    color:lightgray;
+}
+
+.search-cart Link:hover{
+    color:white;
+}
+
+.username {
+    color:lightgray;
+}
+
+.username:hover {
+    color: white;
+}
+
+.loginregister-link {
+    color:lightgray;
+}
+.loginregister-link:hover {
+    color: white;   
+}
+
+.cart-link {
+    color:lightgray;
+}
+
+.cart-link:hover{
+    color:white;
+}
+
+.logout-link {
+    color:lightgray;
+}
+
+.logout-link:hover{
+    color: white;
 }
 
 
@@ -137,6 +181,18 @@ table {
     .each-link{
         font-size: 1.4rem;
         padding: 5px
+    }
+    .second-container{
+        padding-left: 50px;
+    }
+}
+
+@media (max-width: 850px){
+    .second-container{
+        padding-left: 20px;
+    }
+    .each-link{
+        padding: 2px;
     }
 }
 

@@ -17,17 +17,30 @@
 }
 
 .navy-nav a {
-    color:lightgreen;
+    color:white;
     text-decoration: none;
+}
+
+.navy-nav a:hover{
+    background-color: #AE0000;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.black-nav a:hover{
+    background-color: #AE0000;
+    padding: 2px;
+    border-radius: 2px;
 }
 
 .black-nav a {
-    color:lightgreen;
+    color:white;
     text-decoration: none;
 }
 
+
 .black-nav {
-    border: 2px darkorange dashed;
+    /* border: 2px darkorange dashed; */
     background-color: black;
     width: 100%;
     height: 30px;
@@ -38,13 +51,13 @@
 }
 
 .between {
-    border: 2px purple dashed;
+    /* border: 2px purple dashed; */
     width: 100%;
     height: 94px;
 }
 
 .navy-nav {
-    border: 2px darkorange dashed;
+    /* border: 2px darkorange dashed; */
     background-color: #1E3144;
     width: 100%;
     height: 30px;
@@ -54,7 +67,7 @@
 }
 
 .empty {
-    border: 2px dashed lightblue;
+    /* border: 2px dashed lightblue; */
     width: 100%;
     height: 184px;
 }

@@ -101,6 +101,7 @@ app.post('/collections/decrementqty', productCtrl.decrementQty)
 app.put('/auth/addlocation', authCtrl.addLocation);
 app.delete('/auth/removelocation/:id', authCtrl.deleteLocation)
 app.get('/auth/logout', authCtrl.logout)
+app.post('/checkout', productCtrl.checkout)
 
 
 

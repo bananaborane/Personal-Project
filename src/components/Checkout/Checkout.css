@@ -1,0 +1,23 @@
+.checkout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.checkout-form {
+    display:flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.buttons {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+

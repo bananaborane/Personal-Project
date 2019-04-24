@@ -4,3 +4,18 @@
     justify-content: center;
     align-items: center;
 }
+
+.each-mens-product{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.qty-container{
+    display: flex;
+    
+}
+
+.qty-container div h4 {
+    padding: 8px;
+}

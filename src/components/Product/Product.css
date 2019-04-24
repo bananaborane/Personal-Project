@@ -6,7 +6,30 @@
     padding: 20px;
     width: 200px;
     text-align: center;
-    border: 1px darkorange dashed;
+    /* border: 1px black solid; */
     height: 350px;
+    margin: 5px;
+    text-decoration: none;
     
+}
+
+.each-product h3 {
+    font-weight: bold;
+    font-size: 1.4rem;  
+    color: black;
+    text-decoration: none;
+}
+
+.each-product p {
+    font-size: 1rem;  
+    color: black;
+    text-decoration: none;
+}
+
+.each-product Link {
+    text-decoration: none;
+}
+
+.each-product-link {
+    text-decoration: none;
 }

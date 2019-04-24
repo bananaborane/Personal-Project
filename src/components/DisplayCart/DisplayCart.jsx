@@ -38,7 +38,9 @@ export class DisplayCart extends Component {
     return (
       <div>
         <Header2 />
-            From DisplayCart.jsx
+          <div className='display-cart'>
+
+
 
             Your cart items:  {this.props.products.theCart ? ( <div className='cart-items'>{ this.props.products.theCart.map((val, i)=>{return ( <EachCartItem key={val.product_id} id={val.product_id} price={val.price} title={val.title} description={val.description} image_url={val.image_url} type={val.type} qty={val.qty} size={val.size} /> ) })  }</div> ) : ( <div><h2>No products to display from cart!</h2></div> )}
 
@@ -51,6 +53,7 @@ export class DisplayCart extends Component {
             <Link to='/shop/collections/checkout'>
               <button>CHECK OUT</button>
             </Link>
+          </div>
         <Footer2 />
       </div>
     )

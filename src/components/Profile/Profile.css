@@ -9,6 +9,7 @@
     margin: 0; padding: 0; 
     font: 13px Helvetica, Arial; 
     border: 1px solid black;
+    border-radius: 5px;
     height:  200px;
     width: 200px;
     overflow: auto;
@@ -21,6 +22,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-bottom: 500px;
 
 }
 
@@ -31,3 +33,52 @@
 
 #messages li { padding: 5px 10px; font: 13px Helvetica, Arial }
 #messages li:nth-child(odd) { background: #eee; }
+
+.send-message-section{
+    display:flex;
+
+}
+
+
+.profile-section{
+    width: 100%;
+    /* border: lightblue 5px dotted; */
+}
+
+.change-location-section{
+    display: flex;
+    flex-direction: column;
+    /* width: 300px; */
+    /* border: 1px solid black; */
+}
+
+.first-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+div h3{
+    font-size: 2rem;
+    padding: 20px;
+}
+
+.add-bike-form {
+    /* border: 1px dashed black; */
+    display: flex;
+    justify-content: center;
+}
+
+
+.wrong-way-buddy {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    padding-top: 50px;
+}
+
+.wrong-way-buddy h2 {
+    font-size: 4rem;
+}
+

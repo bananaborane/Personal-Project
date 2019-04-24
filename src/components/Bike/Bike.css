@@ -14,3 +14,11 @@
     flex-direction: column;
 
 }
+
+.each-marketplace-bike {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}

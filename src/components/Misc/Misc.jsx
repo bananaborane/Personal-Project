@@ -32,7 +32,6 @@ export class Misc extends Component {
     return (
       <div>
         <Header2 />
-        From Misc.jsx
         <div className="list-of-products-container">
           <div className="list-of-products">{mappedMiscProducts}</div>
         </div>
