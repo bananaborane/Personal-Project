@@ -125,7 +125,7 @@ export class Shop extends Component {
               </h3>
               <img src='https://cdn.shopify.com/s/files/1/1358/2295/products/pb-plus-tbn_large_3614352a-f3e9-4a22-bfc9-c2c3f8223ce4_1024x1024.jpg?v=1499287279' alt='yeti bike' />
             </Link>
-            <Link className='below-slide-links' to="/shop/collections/marketplace">
+            <Link className='below-slide-links last-shop-link' to="/shop/collections/marketplace">
               <h3>
                 Go to Marketplace
               </h3>

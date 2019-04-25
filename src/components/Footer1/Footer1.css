@@ -45,6 +45,10 @@
     font-size: 0.7rem;
 }
 
+.copyright-section {
+    text-align: center;
+}
+
 @media (max-width: 800px){
     .first-row div h3 {
         color: #AE0000;

@@ -170,11 +170,11 @@ export class Main extends Component {
     return (
       <div className="main">
         <Header1 />
-        <Main2>
+        <Main2 className='main-two'>
           <div className="inside-main">
             <br />
             <div className="main-container">
-              <LeftColumn>
+              <LeftColumn className='left-column'>
                 <RedContainer1 className="red-container-1">
                   <PhotoOfTheDay className="photo-of-the-day">
                     Photo of the day
@@ -217,7 +217,7 @@ export class Main extends Component {
                   <PbSponsoredEvents className="pb-sponsored-events">
                     PB Sponsored Events
                   </PbSponsoredEvents>
-                  <InsideRedContainer3>
+                  <InsideRedContainer3 className='inside-red-container-3'>
                     <InsideRedContainer3Image
                       src="https://es.pinkbike.org/246/sprt/i/pbsponsoredevents/2/p2pb15026273.jpg"
                       width={160}
