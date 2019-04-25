@@ -203,7 +203,7 @@ export class Profile extends Component {
               <br></br>
 
             </div>
-            <div className='login-button'>
+            <div className='logout-button'>
               <button onClick={()=>{this.logout()}}>Logout</button>
             </div>
           </div>
@@ -212,16 +212,22 @@ export class Profile extends Component {
           <br></br>
 
           <div className='add-bike-form'>
-            Add a bike for sale:
-            <form onSubmit={(e)=>{this.addBikeToMarketplace(e)}}>
-              <input value={this.state.title} name='title' placeholder='enter title here' onChange={(e)=>{this.handleChange(e)}} ></input>
-              <input value={this.state.description} name='description' placeholder='enter description here' onChange={(e)=>{this.handleChange(e)}} ></input>
-              <input value={this.state.make} name='make' placeholder='enter make here' onChange={(e)=>{this.handleChange(e)}} ></input>
-              <input value={this.state.model} name='model' placeholder='enter model here' onChange={(e)=>{this.handleChange(e)}} ></input>
-              <input required value={this.state.bike_size} name='bike_size' placeholder='enter bike_size here' onChange={(e)=>{this.handleChange(e)}} ></input>
-              <input required value={this.state.bike_type} name='bike_type' placeholder='enter bike_type here' onChange={(e)=>{this.handleChange(e)}} ></input>
-              <input value={this.state.wheel_size} name='wheel_size' placeholder='enter wheel_size here' onChange={(e)=>{this.handleChange(e)}} ></input>
-              <input value={this.state.image_url} name='image_url' placeholder='enter image_url here' onChange={(e)=>{this.handleChange(e)}} ></input>
+            <h3>
+              Add a bike for sale:
+            </h3>
+            <form className='the-bike-form' onSubmit={(e)=>{this.addBikeToMarketplace(e)}}>
+              <div className="first-form-row">
+                <input value={this.state.title} name='title' placeholder='enter title here' onChange={(e)=>{this.handleChange(e)}} ></input>
+                <input value={this.state.description} name='description' placeholder='enter description here' onChange={(e)=>{this.handleChange(e)}} ></input>
+                <input value={this.state.make} name='make' placeholder='enter make here' onChange={(e)=>{this.handleChange(e)}} ></input>
+                <input value={this.state.model} name='model' placeholder='enter model here' onChange={(e)=>{this.handleChange(e)}} ></input>
+              </div>
+              <div className="second-form">
+                <input required value={this.state.bike_size} name='bike_size' placeholder='enter bike_size here' onChange={(e)=>{this.handleChange(e)}} ></input>
+                <input required value={this.state.bike_type} name='bike_type' placeholder='enter bike_type here' onChange={(e)=>{this.handleChange(e)}} ></input>
+                <input value={this.state.wheel_size} name='wheel_size' placeholder='enter wheel_size here' onChange={(e)=>{this.handleChange(e)}} ></input>
+                <input value={this.state.image_url} name='image_url' placeholder='enter image_url here' onChange={(e)=>{this.handleChange(e)}} ></input>
+              </div>
               <button >Add Bike to Marketplace</button>
             </form>
           </div>

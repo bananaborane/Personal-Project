@@ -33,7 +33,9 @@ export class Header2 extends Component {
             {this.props.user.isUserLoggedIn ? (
               <div className="search-cart">
               <Link className='username' to='/profile'>
-               | {this.props.user.username} |
+                <div className="the-username">
+                | {this.props.user.username} |
+                </div>
               </Link>
               <Link className='logout-link' onClick={()=>{this.logout()}} to='/'>Logout</Link>
               <span className='search'>SEARCH</span>

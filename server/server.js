@@ -91,17 +91,18 @@ app.use(checkForSession) // checkForSession middleware has to be below login/reg
 
 
 app.get('/shop/collections/marketplace/:id', marketplaceCtrl.displayTheBike)
-app.post('/addabiketomarketplace', marketplaceCtrl.addBike)
 app.get('/displaybikes', marketplaceCtrl.displayBikes)
 app.get('/collections/gettotalprice', productCtrl.getTotalPrice)
+app.get('/auth/logout', authCtrl.logout)
+app.put('/auth/addlocation', authCtrl.addLocation);
+app.post('/addabiketomarketplace', marketplaceCtrl.addBike)
 app.post('/collections/incrementqty', productCtrl.incrementQty)
 app.post('/collections/product/retrieveqty', productCtrl.retrieveQty)
 app.post('/collections/addtocart', productCtrl.addToCart)
 app.post('/collections/decrementqty', productCtrl.decrementQty)
-app.put('/auth/addlocation', authCtrl.addLocation);
-app.delete('/auth/removelocation/:id', authCtrl.deleteLocation)
-app.get('/auth/logout', authCtrl.logout)
 app.post('/checkout', productCtrl.checkout)
+app.delete('/auth/removelocation/:id', authCtrl.deleteLocation)
+app.delete('/removebikefrommarketplace/:id', marketplaceCtrl.removeBike)
 
 
 

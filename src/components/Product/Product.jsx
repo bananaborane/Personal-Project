@@ -9,7 +9,7 @@ export class Product extends Component {
       <Link className='each-product-link' to={{
         pathname:`/shop/collections/${type}/${id}`
       }}>
-        <div className='each-product'>
+        <div className='each-product-title-desc'>
           <img src={image_url} alt={title} width={190} />
           <h3>{title}</h3>
           <p>${price} USD</p>

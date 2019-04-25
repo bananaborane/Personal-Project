@@ -6,14 +6,29 @@ import { connect } from 'react-redux';
 import { reduxHandleChange } from './../../ducks/userReducer'
 import { displayTheBike } from './../../ducks/marketplaceReducer'
 import { Link, Switch, Route } from 'react-router-dom'
+import Axios from 'axios';
 
 export class EachBike extends Component {
+  constructor(props){
+    super(props)
+  }
 
   componentDidMount() {
     let { params } = this.props.match;
     this.props.displayTheBike(params.id);
     console.log(params);
   }
+
+  removeBikeFromMarketplace = ()=>{
+    console.log('line 23')
+    Axios.delete(`/removebikefrommarketplace/${this.props.match.params.id}`)
+      .then(()=>{
+        alert('Your bike has been deleted from marketplace')
+        this.props.history.push('/shop/collections/marketplace')
+      })
+      .catch(err=>{console.log(`Something occurred while deleting bike from marketplace: ${err}`)})
+  }
+  
 
   render() {
     // console.log(this.props.match.params)
@@ -44,7 +59,7 @@ export class EachBike extends Component {
               <div>
                 Wheel size: {wheel_size}
               </div>
-              <div>
+              <div> 
                 User: {username}
               </div>
               <div>
@@ -53,7 +68,7 @@ export class EachBike extends Component {
               <div>
                 {description} 
               </div>
-              { isItTrue ? (null) : (<Link to='/profile'>
+              { isItTrue ? (<button onClick={()=>{this.removeBikeFromMarketplace()}}>Remove Bike from Marketplace</button>) : (<Link to='/profile'>
               <button>Inquire</button>
               </Link>
               )}

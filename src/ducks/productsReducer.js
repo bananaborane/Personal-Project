@@ -57,12 +57,12 @@ export const displayCart = (id, cartId)=>{
 }
 
 export const updateTotalPrice = () => {
-  let totalPrice;
-  axios.get('/collections/gettotalprice')
+  let totalPrice = axios.get('/collections/gettotalprice')
     .then(res=>{
-      totalPrice = res.data
+       return res.data
     })
     .catch(err=>console.log(`Error while getting total price ${err}`))
+    console.log('line 66', totalPrice)
   return {
     type: UPDATE_TOTAL_PRICE,
     payload: totalPrice
@@ -135,7 +135,7 @@ export default function productsReducer(state = initState, action) {
         return { ...state, loading: false, theProduct: action.payload.payload[0] }
     case DISPLAY_THE_PRODUCT + '_REJECTED':
         return {...state, loading: false}
-        case ADD_TO_CART + '_PENDING':
+    case ADD_TO_CART + '_PENDING':
         return { ...state, loading: true }
     case ADD_TO_CART + '_FULFILLED':
         console.log(action.payload.payload)
@@ -146,7 +146,7 @@ export default function productsReducer(state = initState, action) {
         return { ...state, loading: true }
     case DISPLAY_CART + '_FULFILLED':
         console.log(action.payload)
-        return { ...state, theCart: action.payload.payload, totalPrice:action.payload.payload2[0], loading: false}
+        return { ...state, theCart: action.payload.payload, totalPrice:action.payload.payload2[0].sum, loading: false}
     case DISPLAY_CART + '_REJECTED':
         return {...state, loading: false}
     case DECREMENT_QTY + '_PENDING':

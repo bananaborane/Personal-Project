@@ -32,38 +32,25 @@ export class Bike extends Component {
       username
     } = this.props;
     return (
-      <div className="each-marketplace-bike">
-        <Link
-          to={{
-            pathname: `/shop/collections/marketplace/${bike_id}`
-          }}
-        >
-          <div className="each-bike">
-            <img src={image_url} alt={title} className="each-bike-img" />
-            <div className="bike-right-column">
-              <div>{title}</div>
-              <div>Bike Size: {bike_size}</div>
-              <div>Wheel Size: {wheel_size}</div>
-              <div>
-                {city}, {unitedState}
-              </div>
-              <div>Seller: {username}</div>
-              <div>{description}</div>
+      <Link
+        to={{
+          pathname: `/shop/collections/marketplace/${bike_id}`
+        }}
+      >
+        <div className="each-bike">
+          <img src={image_url} alt={title} className="each-bike-img" />
+          <div className="bike-right-column">
+            <div>{title}</div>
+            <div>Bike Size: {bike_size}</div>
+            <div>Wheel Size: {wheel_size}</div>
+            <div>
+              {city}, {unitedState}
             </div>
+            <div>Seller: {username}</div>
+            <div>{description}</div>
           </div>
-        </Link>
-        <div className='remove-button-section'>
-          {isItTrue ? (
-            <button
-              onClick={e => {
-                this.removeBikeFromMarketplace(e);
-              }}
-            >
-              Remove your bike from marketplace
-            </button>
-          ) : null}
         </div>
-      </div>
+      </Link>
     );
   }
 }

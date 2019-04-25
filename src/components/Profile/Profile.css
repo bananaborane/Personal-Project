@@ -11,7 +11,7 @@
     border: 1px solid black;
     border-radius: 5px;
     height:  200px;
-    width: 200px;
+    width: 250px;
     overflow: auto;
 
     
@@ -37,6 +37,7 @@
 .send-message-section{
     display:flex;
 
+
 }
 
 
@@ -54,7 +55,8 @@
 
 .first-section {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
 }
@@ -68,6 +70,7 @@ div h3{
     /* border: 1px dashed black; */
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 
@@ -80,5 +83,16 @@ div h3{
 
 .wrong-way-buddy h2 {
     font-size: 4rem;
+}
+
+.the-bike-form{
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; */
+}
+
+.logout-button {
+    margin-top: 40px;
 }
 

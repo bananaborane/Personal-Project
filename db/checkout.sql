@@ -6,6 +6,7 @@ insert into orders (
     $2
 );
 
+
 insert into carts (
     user_id
 ) values (

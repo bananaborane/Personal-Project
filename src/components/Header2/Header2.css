@@ -124,6 +124,8 @@ table {
 
 .links {
     font-size: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 .each-link{
@@ -147,6 +149,16 @@ table {
 
 .username {
     color:lightgray;
+    display:flex;
+    flex-direction: row;
+    width: 120px;
+    margin-right: 0;
+}
+
+.the-username {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
 }
 
 .username:hover {
@@ -180,19 +192,26 @@ table {
 @media (max-width: 1200px){
     .each-link{
         font-size: 1.4rem;
-        padding: 5px
+        padding: 5px;
+        margin: 2px;
     }
     .second-container{
         padding-left: 50px;
+    }
+    .logo img {
+        width: 80%;
     }
 }
 
 @media (max-width: 850px){
     .second-container{
-        padding-left: 20px;
+        padding-left: 30px;
     }
     .each-link{
         padding: 2px;
+    }
+    .search-cart {
+        margin-right: 70px;
     }
 }
 
@@ -200,6 +219,19 @@ table {
 @media (max-width: 600px){
     .each-link{
         font-size: 1rem;
-        padding: 1px
+        padding: 1px;
+        margin: 0px;
+    }
+    .links{
+        flex-direction: column;
+    }
+    .logo img {
+        width: 55%;
+    }
+    .search-cart {
+        font-size: 70%;
+    }
+    .search {
+        font-size: 0.7rem;
     }
 }

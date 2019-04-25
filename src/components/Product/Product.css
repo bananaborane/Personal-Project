@@ -1,4 +1,4 @@
-.each-product{
+.each-product-title-desc{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,20 +13,20 @@
     
 }
 
-.each-product h3 {
+.each-product-title-desc h3 {
     font-weight: bold;
     font-size: 1.4rem;  
     color: black;
     text-decoration: none;
 }
 
-.each-product p {
+.each-product-title-desc p {
     font-size: 1rem;  
     color: black;
     text-decoration: none;
 }
 
-.each-product Link {
+.each-product-title-desc Link {
     text-decoration: none;
 }
 

@@ -44,11 +44,9 @@ export class EachCartItem extends Component {
     })
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     qty: this.props.qty
-  //   })
-  // }
+  componentDidMount() {
+    this.props.updateTotalPrice();
+  }
 
 
   render() {
@@ -69,7 +67,6 @@ export class EachCartItem extends Component {
       <div>
 
         <div className="each-product" style={{ width: 300 }}>
-          From EachCartItem.jsx
           <img src={image_url} alt={title} width={220} />
           {title}
           {size}

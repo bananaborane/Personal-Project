@@ -44,14 +44,16 @@ module.exports = {
     removeBike: (req, res)=>{
         let db = req.app.get('db');
         let { id: user_id } = req.session.user;
-        let { id: bike_id } = req.body;
+        let { id: bike_id } = req.params;
         db.remove_a_bike([user_id, bike_id])
             .then((response)=>{
                 return res.status(200).send({ message: 'A bike has been removed, what a bummer!', loggedIn: true, payload: response })
             })
             .catch(err=>console.log(`Something happened while removing a bike: ${err}`))
     },
-    inquireAboutBike: (req, res)=>{}
+    inquireAboutBike: (req, res)=>{
+        
+    }
 }
 
 

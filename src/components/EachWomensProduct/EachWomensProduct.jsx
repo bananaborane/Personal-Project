@@ -5,7 +5,7 @@ import Footer2 from "./../Footer2/Footer2";
 import { connect } from "react-redux";
 import { reduxHandleChange } from "./../../ducks/userReducer";
 import { displayTheProduct, addToCart } from "./../../ducks/productsReducer";
-import { Link, Switch, Route } from 'react-router-dom'
+import { Link, Switch, Route } from "react-router-dom";
 
 export class EachWomensProduct extends Component {
   constructor() {
@@ -32,29 +32,28 @@ export class EachWomensProduct extends Component {
     }
   };
 
-  handleSelectChange = (e)=>{
+  handleSelectChange = e => {
     this.setState({
       size: e.target.value
-    })
-  }
+    });
+  };
 
   componentDidMount() {
-
     let { params } = this.props.match;
     this.props.displayTheProduct("womens", params.id);
     console.log(params);
   }
 
   addToCart = async () => {
-    console.log(this.props.products)
+    console.log(this.props.products);
     let { id } = this.props.match.params;
     let { size, qty } = this.state;
     await this.props.addToCart(id, qty, size);
-    alert('Product has been added')
+    alert("Product has been added");
   };
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     let {
       title,
       description,
@@ -66,48 +65,67 @@ export class EachWomensProduct extends Component {
     return (
       <div>
         <Header2 />
-        <div className="each-product" style={{ width: 300 }}>
-          From EachWomensProduct.jsx
-          <img src={image_url} alt={title} width={220} />
-          {title}
-          {description}
-          {price}
-          {type}
-          <select onChange={(e)=>{this.handleSelectChange(e)}} >
-            <option name="size" value="Small">Small</option>
-            <option name="size" value="Medium">Medium</option>
-            <option name="size" value="Large">Large</option>
-            <option name="size" value="XL">XL</option>
-            <option name="size" value="XXL">XXL</option>
-          </select>
-          <div className="qty-container">
-            <button
-              onClick={() => {
-                this.decrement();
-              }}
-            >
-              -
-            </button>
-            <div>
-              <h4>Quantity: {this.state.qty}</h4>
+        <div className="each-womens-product">
+          <div className="each-product">
+            <div className='prod'>
+            <img src={image_url} alt={title} width={220} />
+            <div className="right-side">
+              <div>{title}</div>
+              <div>{description}</div>
+              <div>{price}</div>
+              <div>{type}</div>
+              <select
+                onChange={e => {
+                  this.handleSelectChange(e);
+                }}
+              >
+                <option name="size" value="Small">
+                  Small
+                </option>
+                <option name="size" value="Medium">
+                  Medium
+                </option>
+                <option name="size" value="Large">
+                  Large
+                </option>
+                <option name="size" value="XL">
+                  XL
+                </option>
+                <option name="size" value="XXL">
+                  XXL
+                </option>
+              </select>
+              <div className="qty-container">
+                <button
+                  onClick={() => {
+                    this.decrement();
+                  }}
+                  >
+                  -
+                </button>
+                <div>
+                  <h4>Quantity: {this.state.qty}</h4>
+                </div>
+                <button
+                  onClick={() => {
+                    this.increment();
+                  }}
+                  >
+                  +
+                </button>
+              </div>
+              <button
+                onClick={() => {
+                  this.addToCart();
+                }}
+                >
+                ADD TO CART
+              </button>
+                </div>
             </div>
-            <button
-              onClick={() => {
-                this.increment();
-              }}
-            >
-              +
-            </button>
           </div>
-          <button
-            onClick={() => {
-              this.addToCart();
-            }}
-          >
-            ADD TO CART
-          </button>
         </div>
-        <Link to='/shop/collections/womens'>Back to Womens</Link>
+        <Link to="/shop/collections/womens">Back to Womens</Link>
         <Footer2 />
       </div>
     );

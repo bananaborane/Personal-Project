@@ -1,0 +1,41 @@
+.each-product {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+.right-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    width: 200px;
+}
+
+
+
+.each-misc-product{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    padding: 10px;
+}
+
+.prod {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.qty-container{
+    display: flex;
+    
+}
+
+.qty-container div h4 {
+    padding: 8px;
+}

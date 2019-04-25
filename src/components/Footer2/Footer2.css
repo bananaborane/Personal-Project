@@ -44,6 +44,9 @@
     .second h3 {
         font-size: 1.3rem;
     }
+    .first {
+        padding-left: 20px;
+    }
 }
 
 

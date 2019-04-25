@@ -107,7 +107,6 @@ module.exports = {
       let bestResponse = await db.retrieve_products_from_cart([user.id, user.cartId])
       return res.status(200).send({
         message: 'Qty of a certain product has been increased',
-        payload: ourResponse,
         payload2: bestResponse
       })
     }
@@ -224,6 +223,7 @@ module.exports = {
   displayCart: async (req, res) => {
     const { user } = req.session;
     const db = req.app.get("db");
+    console.log('line 227', req.session.user.cartId)
     let productsFromCart = await db
       .retrieve_products_from_cart([user.id, user.cartId])
       .catch(err =>
@@ -231,15 +231,20 @@ module.exports = {
           `Something happened while retrieving products from cart: ${err}`
         )
       );
-      console.log('line 191',productsFromCart)
+      console.log('line 234',productsFromCart)
     if (!productsFromCart[0]) {
       return res
         .status(200)
-        .send({ message: "No products to display", loggedIn: true });
+        .send({ 
+          message: "No products to display", 
+          loggedIn: true,
+          payload: productsFromCart,
+          payload2: [{sum: 0}]
+         });
     } 
     let myResponse = await db.retrieve_total_price_of_cart([user.id, user.cartId])
     .catch(err=>console.log(`Something happened while retrieving total price of the cart, ${err}`))
-    console.log('line 199', myResponse)
+    console.log('line 243', myResponse)
 
 
     return res.status(200).send({

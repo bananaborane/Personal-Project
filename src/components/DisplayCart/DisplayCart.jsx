@@ -17,6 +17,14 @@ export class DisplayCart extends Component {
     }
   }
 
+  sendToCheckout = ()=>{
+    if (this.props.products.theCart[0]){
+      this.props.history.push('/shop/collections/checkout')
+    } else {
+      alert('No Products to checkout!')
+    }
+  }
+
   componentDidMount(){
     let { displayCart, user } = this.props;
     displayCart(user.id, user.cartId)
@@ -26,15 +34,15 @@ export class DisplayCart extends Component {
     .catch(err=>console.log(`Something happened while displaying cart on the front end: ${err}`))
   }
 
-  // componentDidUpdate(prevProps){
-  //   if(this.props.products.totalPrice !== prevProps.products.totalPrice){
-  //     console.log('line 31', prevProps)
-  //     this.props.updateTotalPrice();
-  //   }
-  // }
+  componentDidUpdate(prevProps){
+    if(this.props.products.totalPrice !== prevProps.products.totalPrice){
+      console.log('line 39', prevProps)
+      this.props.updateTotalPrice();
+    }
+  }
 
   render() {
-    console.log('line 29', this.props.products.totalPrice)
+    console.log('line 45', this.props.products.totalPrice)
     return (
       <div>
         <Header2 />
@@ -44,15 +52,15 @@ export class DisplayCart extends Component {
 
             Your cart items:  {this.props.products.theCart ? ( <div className='cart-items'>{ this.props.products.theCart.map((val, i)=>{return ( <EachCartItem key={val.product_id} id={val.product_id} price={val.price} title={val.title} description={val.description} image_url={val.image_url} type={val.type} qty={val.qty} size={val.size} /> ) })  }</div> ) : ( <div><h2>No products to display from cart!</h2></div> )}
 
-            {console.log('line 37', this.props.products)}
+            {/* {console.log('line 55', this.props.products)} */}
 
-            Total price: {this.props.products.theCart ? (this.props.products.totalPrice.sum || this.props.products.totalPrice) : (<span> 0 </span>) }
+            Total price: {this.props.products.theCart ? (this.props.products.totalPrice) : (<span> 0 </span>) }
 
             <h4>SPECIAL INSTRUCTIONS FOR SELLER</h4>
             <input type='text' />
-            <Link to='/shop/collections/checkout'>
-              <button>CHECK OUT</button>
-            </Link>
+
+              <button onClick={()=>{this.sendToCheckout()}}>CHECK OUT</button>
+
           </div>
         <Footer2 />
       </div>
