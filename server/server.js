@@ -28,7 +28,7 @@ massive(CONNECTION_STRING).then(db => {
 
 // const io = socket(server);
 
-
+app.use( express.static( `${__dirname}/../build` ) );
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
   });

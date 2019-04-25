@@ -4,6 +4,10 @@ import Footer2 from "./../Footer2/Footer2";
 import axios from 'axios';
 import './Chat.css'
 import io from 'socket.io-client'
+require('dotenv').config();
+const { SERVER_PORT } = process.env
+const { REACT_APP_BASE } = process.env;
+
 
 class Chat extends React.Component{
     constructor(props){
@@ -15,7 +19,7 @@ class Chat extends React.Component{
             messages: []
         };
 
-        this.socket = io('localhost:4000');
+        this.socket = io(SERVER_PORT);
 
         this.socket.on('RECEIVE_MESSAGE', function(data){
             addMessage(data);

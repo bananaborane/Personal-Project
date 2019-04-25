@@ -8,6 +8,8 @@ import { login, register, logout, reduxHandleChange } from './../../ducks/userRe
 // import Chat from './../Chat/Chat'
 import socketIOClient from 'socket.io-client'
 import io from 'socket.io-client'
+require('dotenv').config();
+const { SERVER_PORT, REACT_APP_BASE } = process.env;
 
 
 export class Profile extends Component {
@@ -24,7 +26,7 @@ export class Profile extends Component {
             bike_type: '',
             wheel_size: '',
             image_url: '',
-            endpoint: 'http://localhost:4000',
+            endpoint: REACT_APP_BASE,
             message: '',
             listOfMessages: []
 
