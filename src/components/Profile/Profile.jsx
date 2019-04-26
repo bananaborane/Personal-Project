@@ -4,7 +4,7 @@ import Footer2 from './../Footer2/Footer2'
 import axios from 'axios'
 import './Profile.css'
 import { connect } from 'react-redux'
-import { login, register, logout, reduxHandleChange } from './../../ducks/userReducer'
+import { login, register, logout, reduxHandleChange, inquireOnBike, updateListOfDirectMessages } from './../../ducks/userReducer'
 // import Chat from './../Chat/Chat'
 import socketIOClient from 'socket.io-client'
 import io from 'socket.io-client'
@@ -28,7 +28,9 @@ export class Profile extends Component {
             image_url: '',
             endpoint: REACT_APP_BASE,
             message: '',
-            listOfMessages: []
+            listOfMessages: [],
+            directMessage: '',
+            privateMessaging: false
 
         }
     this.socket = io(this.state.endpoint)
@@ -36,19 +38,52 @@ export class Profile extends Component {
       addMessage(data);
     });
 
+    this.socket.on('RECIEVE_DM', function(data){
+      addDirectMessage(data)
+    })
+
+    const addDirectMessage = (data)=>{
+      console.log(data);
+      this.props.updateListOfDirectMessages(data)
+    }
+
     const addMessage = data => {
       console.log(data);
       this.setState({listOfMessages: [...this.state.listOfMessages, data]});
-      console.log(this.state.listOfMessages);
-  };
+      // console.log(this.state.listOfMessages);
+    };
+
+    this.sendDirectMessage = (e)=>{
+      e.preventDefault();
+      this.socket.emit('SEND_DM', {
+        author: this.props.user.username,
+        myId: this.props.user.id,
+        message: this.state.directMessage
+      })
+    }
 
     this.sendMessage = e => {
       e.preventDefault();
       this.socket.emit('SEND_MESSAGE', {
           author: this.props.user.username,
+          authorId: this.props.user.id,
           message: this.state.message
       })
       this.setState({message: ''});
+
+  }
+
+  this.handleDMEnter = e => {
+    e.preventDefault();
+    const body = e.target.value;
+    if(e.keyCode === 13 && body){
+      this.socket.emit('SEND_DM', {
+        author: this.props.user.username,
+        myId: this.props.user.id,
+        message: this.state.directMessage
+      })
+      this.setState({directMessage: ''})
+    }
 
   }
 
@@ -58,13 +93,15 @@ export class Profile extends Component {
     if(e.keyCode === 13 && body){
       this.socket.emit('SEND_MESSAGE', {
         author: this.props.user.username,
+        authorId: this.props.user.id,
         message: this.state.message
       })
       this.setState({message: ''})
     }
 
-}
-    }
+  }
+  
+  }
 
 
 
@@ -117,6 +154,12 @@ export class Profile extends Component {
         [name]: value
       })
       console.log(this.state)
+    }
+
+    togglePrivateMessaging = ()=>{
+      this.setState({
+        privateMessaging: !this.state.privateMessaging
+      })
     }
 
 
@@ -191,7 +234,7 @@ export class Profile extends Component {
     return (
       <div>
         <Header2/>
-        {this.props.user.isUserLoggedIn ? ( 
+        <div className='profile-main'>{this.props.user.isUserLoggedIn ? ( 
           <div className='profile-section'>
           <h3>Welcome there, {this.props.user.username}</h3>
           <div className='first-section'>
@@ -208,7 +251,6 @@ export class Profile extends Component {
             <div className='logout-button'>
               <button onClick={()=>{this.logout()}}>Logout</button>
             </div>
-          </div>
 
           <br></br>
           <br></br>
@@ -233,11 +275,28 @@ export class Profile extends Component {
               <button >Add Bike to Marketplace</button>
             </form>
           </div>
+          </div>
 
           <br/>
           <br/>
 
-          <div className='chat-section'>
+          
+          <button onClick={()=>{this.togglePrivateMessaging()}}>{this.state.privateMessaging ? (<p>Check Marketplace Chat</p>) : (<p>Check Direct Messages</p>)}</button>
+
+          {this.state.privateMessaging ? (<div className='chat-section'>
+            Private Messages
+            <div className="messages" id='messages'>
+              {this.props.user.listOfDirectMessages.map((message, i) => { if (message.myId === this.props.user.id || message.theirId === this.props.user.id){return (
+                <div className='each-message'>{message.author}: {message.message}</div>)}
+              })}
+            </div>
+
+              <div className='send-message-section'>
+                <input type="text" name='directMessage' placeholder="Enter a message..." className="form-control" value={this.state.directMessage} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleDMEnter(e)}} />
+                <button onClick={(e)=>this.sendDirectMessage(e)} className="btn btn-primary form-control">Send</button>
+              </div>
+
+            </div>) : (<div className='chat-section'>
             Marketplace Chat
             <div className="messages" id='messages'>
               {this.state.listOfMessages.map(message => {return (
@@ -248,10 +307,13 @@ export class Profile extends Component {
                 <input type="text" name='message' placeholder="Enter a message..." className="form-control" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
                 <button onClick={(e)=>this.sendMessage(e)} className="btn btn-primary form-control">Send</button>
               </div>
-            </div>
+            </div>)}
+          
 
 
-        </div> ) : ( <div className='wrong-way-buddy'><h2>Wrong way buddy</h2></div> )}
+
+        </div> ) : ( <div className='wrong-way-buddy'><h2>Wrong way buddy</h2></div> )}</div>
+        
 
         <Footer2/>
       </div>
@@ -266,4 +328,4 @@ let mapStateToProps = (reduxState)=>{
 }
 
 
-export default connect(mapStateToProps, { login, register, logout, reduxHandleChange })(Profile)
+export default connect(mapStateToProps, { login, register, logout, reduxHandleChange, inquireOnBike, updateListOfDirectMessages })(Profile)

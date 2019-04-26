@@ -51,6 +51,18 @@ table {
 
 
 
+Link {
+    text-decoration: none;
+}
+
+Link:hover{
+    text-decoration: none;
+}
+
+.each-link:hover{
+    text-decoration: none;
+}
+
 .header-2 {
     display: flex;
     flex-direction: column;
@@ -62,7 +74,16 @@ table {
     z-index: -10;
     /* top: -20px; */
     /* position: relative; */
-    /* border: dotted yellow; */
+    /* border: dotted yellow; */   
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    color: lightgray;
+    text-decoration: none;
+}
+
+.header-2:hover{
+    color: white;
+    text-decoration: none;
 }
 
 .search{
@@ -126,12 +147,13 @@ table {
     font-size: 20px;
     display: flex;
     flex-direction: row;
+
 }
 
 .each-link{
     text-decoration: none;
     padding: 10px;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     color:lightgray;
 }
 
@@ -152,7 +174,7 @@ table {
     display:flex;
     flex-direction: row;
     width: 120px;
-    margin-right: 0;
+    margin-left: 20px;
 }
 
 .the-username {
@@ -163,6 +185,7 @@ table {
 
 .username:hover {
     color: white;
+    
 }
 
 .loginregister-link {
@@ -211,12 +234,12 @@ table {
         padding: 2px;
     }
     .search-cart {
-        margin-right: 70px;
+        margin-right: 50px;
     }
 }
 
 
-@media (max-width: 600px){
+@media (max-width: 680px){
     .each-link{
         font-size: 1rem;
         padding: 1px;

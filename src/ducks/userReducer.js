@@ -7,15 +7,49 @@ const initState = {
     password: '',
     username: '',
     loading: true,
-    theProduct: {}
+    theProduct: {},
+    inquire: false,
+    listOfDirectMessages: [],
+    message: '',
+    roomId: 0
 };
 
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 const REGISTER = "REGISTER";
 const REDUX_HANDLE_CHANGE = "REDUX_HANDLE_CHANGE";
+const INQUIRE_ON_BIKE = "INQUIRE_ON_BIKE";
+const HOLD_ROOM_ID = "HOLD_ROOM_ID";
+const UPDATE_DIRECT_MESSAGES = "UPDATE_DIRECT_MESSAGES";
+const UPDATE_IS_USER_LOGGED_IN = "UPDATE_IS_USER_LOGGED_IN";
 
+export const updateIsUserLoggedIn = (data)=>{
+  return {
+    type: UPDATE_IS_USER_LOGGED_IN,
+    payload: data
+  }
+}
 
+export const updateListOfDirectMessages =(data)=>{
+  return {
+    type: UPDATE_DIRECT_MESSAGES,
+    payload: data
+  }
+}
+
+export const inquireOnBike = ()=>{
+  return {
+    type: INQUIRE_ON_BIKE,
+    payload: true
+  }
+}
+
+export const holdRoomId = (roomId) => {
+  return {
+    type: HOLD_ROOM_ID,
+    payload: roomId
+  }
+}
 
 
 export const login = (email, password) => {
@@ -88,7 +122,15 @@ export default function userReducer(state = initState, action) {
       console.log(state)
       return { ...state, [action.payload.name]: action.payload.value }
     case LOGOUT:
-      return {...state, isUserLoggedIn: false}
+      return {...state, isUserLoggedIn: false, inquire: false}
+    case INQUIRE_ON_BIKE:
+      return {...state, inquire: action.payload}
+    case HOLD_ROOM_ID:
+      return {...state, roomId: action.payload}
+    case UPDATE_DIRECT_MESSAGES:
+      return {...state, listOfDirectMessages: [...state.listOfDirectMessages, action.payload]}
+    case UPDATE_IS_USER_LOGGED_IN:
+      return {...state, isUserLoggedIn: true, id: action.payload.id, email: action.payload.email, username: action.payload.username}
     default:
       return state;
   }

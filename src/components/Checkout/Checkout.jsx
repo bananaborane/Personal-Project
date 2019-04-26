@@ -16,7 +16,7 @@ export class Checkout extends Component {
 
   submitOrder = (e)=>{
     e.preventDefault();
-    axios.post('/checkout', {})
+    axios.put('/checkout', {})
       .then((res)=>{
         alert(res.data.message);
         this.props.history.push('/')

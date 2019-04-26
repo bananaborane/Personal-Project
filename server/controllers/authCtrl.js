@@ -35,7 +35,7 @@ module.exports = {
         // initializes new cart after registering
 
     return res.status(200).send({
-      message: "logged in",
+      message: "Register successful, welcome",
       userData: req.session.user,
       loggedIn: true
     });
@@ -69,7 +69,7 @@ module.exports = {
           // initializes new cart after logging in
 
     return res.status(200).send({ 
-      message: 'Login successful, welcome.',
+      message: 'Login successful',
       userData: req.session.user ,
       loggedIn: true 
     })
@@ -80,6 +80,9 @@ module.exports = {
       } else {
           res.status(401).send('Please log in and/or register')
       }
+  },
+  retrieveSession: (req, res)=>{
+    return res.status(200).send(req.session.user);
   },
   addLocation: (req, res)=>{
     console.log(req.session.user)

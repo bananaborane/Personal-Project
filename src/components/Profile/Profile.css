@@ -40,17 +40,47 @@
 
 }
 
+.wrong-way-buddy {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    padding-top: 50px;
+    font-size: 40px;
+}
 
 .profile-section{
+    display: flex;
+}
+
+.first-section{
+    display:flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .profile-section{
     width: 100%;
-    /* border: lightblue 5px dotted; */
+
 }
 
 .change-location-section{
     display: flex;
     flex-direction: column;
-    /* width: 300px; */
-    /* border: 1px solid black; */
+
 }
 
 .first-section {
@@ -67,32 +97,23 @@ div h3{
 }
 
 .add-bike-form {
-    /* border: 1px dashed black; */
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 
-.wrong-way-buddy {
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-    padding-top: 50px;
-}
 
 .wrong-way-buddy h2 {
     font-size: 4rem;
 }
 
 .the-bike-form{
-    /* display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; */
+
 }
 
 .logout-button {
     margin-top: 40px;
-}
+} */
 

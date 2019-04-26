@@ -26,8 +26,8 @@ export class LoginRegister extends Component {
 
   register = ()=>{
     axios.post('/auth/register', this.props.user)
-    .then(()=>{
-      alert('Register successful')
+    .then((res)=>{
+      alert(res.data.message)
       this.props.user.isUserLoggedIn = true;
       this.props.history.push('/profile')})
     .catch(err=>console.log(`Something happened while registering: ${err}`))
@@ -35,8 +35,8 @@ export class LoginRegister extends Component {
 
   login = ()=>{ 
     this.props.login(this.props.user.email, this.props.user.password)
-    .then((res)=>{
-      alert('Login successful')
+    .then(()=>{
+      alert('Login Successful')
       this.props.history.push('/profile')})
     .catch(err=>console.log(`Something happened while logging in: ${err}`))
   }
@@ -52,7 +52,7 @@ export class LoginRegister extends Component {
               <div className='login'>
                 <h3>Login</h3>
                 <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
-                <input type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
+                <input className='last-loginregister-input' type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
                 <button onClick={()=>{this.login()}}>Login</button>
               </div>
             </div> ) : ( <div className='register-container'>
@@ -60,11 +60,11 @@ export class LoginRegister extends Component {
                 <h3>Register</h3>
                 <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
                 <input type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
-                <input name='username' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter username here'></input>
+                <input className='last-loginregister-input' name='username' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter username here'></input>
                 <button onClick={()=>{this.register()}}>Register</button>
               </div>
             </div> )}
-            <button onClick={()=>{this.handleToggle()}} >Toggle</button>
+            <button onClick={()=>{this.handleToggle()}} >{this.state.loginRegisterFlag ? (<p>Don't have an account?</p>) : (<p>Need to Login instead?</p>)}</button>
           </div>
         </div>
         <Footer2 />

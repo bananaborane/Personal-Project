@@ -273,7 +273,7 @@ module.exports = {
   },
   displayTheProduct: (req, res)=>{
     let { id } = req.params;
-    console.log(req.params)
+    console.log(req.params, req.session.user)
     let db = req.app.get('db');
     db.retrieve_product_by_id([id])
     .then(response =>{

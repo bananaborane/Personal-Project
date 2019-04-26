@@ -63,17 +63,19 @@ export class EachFootwearProduct extends Component {
       product_id
     } = this.props.products.theProduct;
     return (
-      <div>
+      <div className='each-product-sec'>
         <Header2 />
         <div className="each-footwear-product">
           <div className="each-product">
             <div className='prod'>
             <img src={image_url} alt={title} width={220} />
             <div className="right-side">
-              <div>{title}</div>
+              <div className='each-product-title'>{title}</div>
+              <br/>
               <div>{description}</div>
-              <div>{price}</div>
-              <div>{type}</div>
+              <br/>
+              <div>${price}</div>
+              <br/>
               <select
                 onChange={e => {
                   this.handleSelectChange(e);
@@ -89,6 +91,7 @@ export class EachFootwearProduct extends Component {
                   Large
                 </option>
               </select>
+              <br/>
               <div className="qty-container">
                 <button
                   onClick={() => {
@@ -108,18 +111,22 @@ export class EachFootwearProduct extends Component {
                   +
                 </button>
               </div>
+              <br/>
+
               <button
+                className='add-to-cart-button'
                 onClick={() => {
                   this.addToCart();
                 }}
                 >
                 ADD TO CART
               </button>
+
                 </div>
             </div>
           </div>
         </div>
-        <Link to="/shop/collections/footwear">Back to Footwear</Link>
+        <Link className='link-back-to-products' to="/shop/collections/footwear">← Back to Footwear</Link>
         <Footer2 />
       </div>
     );

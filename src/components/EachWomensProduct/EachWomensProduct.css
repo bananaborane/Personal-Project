@@ -19,8 +19,15 @@
 
 .each-womens-product{
     display: flex;
+    /* flex-direction: column; */
     justify-content: center;
     padding: 10px;
+}
+
+.each-product-title{
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: center;
 }
 
 .prod {
@@ -35,8 +42,33 @@
     
 }
 
+.qty-container button {
+    width: 30px;
+    border-radius: 7px;
+}
+
+.add-to-cart-button {
+    border-radius: 4px;
+    padding: 3px;
+}
+
 .qty-container div h4 {
     padding: 8px;
 }
 
+.link-back-to-products{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    background-color: slategrey;
+    color: black;
+    text-decoration: none;
+    font-size: 1.8rem;
+}
 
+.link-back-to-products:hover {
+    background-color: lightgray;
+    color: black;
+    text-decoration: none;
+}

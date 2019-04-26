@@ -38,8 +38,14 @@ io.on('connection', function(socket){
 
 
     socket.on('SEND_MESSAGE', function(msg){
-        console.log('message: ' + msg)
+        console.log('message: ' + msg.message)
         io.emit('RECEIVE_MESSAGE', msg)
+    })
+
+    socket.on('SEND_DM', function(msg){
+        console.log('direct message: ' + msg.message)
+        console.log(`a convo between ${msg.myId} and ${msg.theirId}`)
+        io.emit('RECIEVE_DM', msg)
     })
 
     socket.on('disconnect', function(){
@@ -74,7 +80,7 @@ app.use(session({
     }
 }))
 
-
+app.get(`/retrievesession`, authCtrl.retrieveSession)
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.post('/collections', productCtrl.displayProductsByType)
@@ -95,12 +101,12 @@ app.get('/displaybikes', marketplaceCtrl.displayBikes)
 app.get('/collections/gettotalprice', productCtrl.getTotalPrice)
 app.get('/auth/logout', authCtrl.logout)
 app.put('/auth/addlocation', authCtrl.addLocation);
+app.put('/checkout', productCtrl.checkout)
 app.post('/addabiketomarketplace', marketplaceCtrl.addBike)
 app.post('/collections/incrementqty', productCtrl.incrementQty)
 app.post('/collections/product/retrieveqty', productCtrl.retrieveQty)
 app.post('/collections/addtocart', productCtrl.addToCart)
 app.post('/collections/decrementqty', productCtrl.decrementQty)
-app.post('/checkout', productCtrl.checkout)
 app.delete('/auth/removelocation/:id', authCtrl.deleteLocation)
 app.delete('/removebikefrommarketplace/:id', marketplaceCtrl.removeBike)
 

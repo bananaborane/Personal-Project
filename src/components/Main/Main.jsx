@@ -112,6 +112,7 @@ const VideoOfTheDay = styled.div`
 const PbSponsoredEvents = styled.div`
   padding-left: 0.3rem;
   padding-top: 0.23rem;
+  font-size: 0.85rem;
 `;
 
 const RedContainer3 = styled.div`
@@ -164,6 +165,11 @@ const ArticleImage3 = styled.img`
 const ArticleImage4 = styled.img`
   width: 25%;
 `;
+
+const PinkBikePoll = styled.div`
+  padding-left: 0.3rem;
+  padding-top: 0.1rem;
+`
 
 export class Main extends Component {
   render() {
@@ -332,15 +338,14 @@ export class Main extends Component {
                 </div>
               </div>
               <div className="red-container-5">
-                <div className="pinkbike-poll">Pinkbike Poll</div>
+                <PinkBikePoll className="pinkbike-poll">Pinkbike Poll</PinkBikePoll>
                 <div className="inside-red-container-5">
                   <div className="what-full-face">
                     What Full Face Helmet Brand do you wear?
                   </div>
-                  <div className="troy-lee-designs">
+                  <div className="each-checkbox">
                     <input type="checkbox" />
-                    <span>Troy Lee</span>
-                    <span>Designs</span>
+                    <span>Troy Lee Designs</span>
                   </div>
                   <div className="each-checkbox">
                     <input type="checkbox" />
@@ -410,10 +415,9 @@ export class Main extends Component {
                     <input type="checkbox" />
                     <span>iXS</span>
                   </div>
-                  <div className="each-checkbox one-industries">
+                  <div className="each-checkbox">
                     <input type="checkbox" />
-                    <span>One-</span>
-                    <span>Industries</span>
+                    <span>One Industries</span>
                   </div>
                   <div className="each-checkbox">
                     <input type="checkbox" />
@@ -449,7 +453,9 @@ export class Main extends Component {
                   </div>
 
                   <br />
-                  <button>Answer</button>
+                  <div className='answer-button'>
+                    <button>Answer</button>
+                  </div>
                 </div>
               </div>
             </div>

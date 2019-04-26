@@ -11,6 +11,8 @@
     position: fixed;
     bottom: 0;
     /* margin: 0; */
+    font-family: 'Montserrat', sans-serif;
+    
 }
 
 .first-box {
@@ -20,10 +22,60 @@
     align-items: center;
     width: 100%;
     padding-bottom: 3rem;
+    padding-left: 10px;
+}
+.fb-logo{
+    width: 3%;
+    border-radius: 7px;
+    padding:2px;
+}
+.tw-logo{
+    width: 3%;
+    border-radius: 7px;
+    padding:2px;
+}
+.ig-logo{
+    width: 3%;
+    border-radius: 7px;
+    padding:2px;
+}
+.yt-logo{
+    width: 3%;
+    border-radius: 7px;
+    padding:2px;
+}
+
+.amex-logo{
+    width: 5%;
+    border-radius: 4px;
+    padding: 2px;
+}
+.visa-logo{
+    width: 5%;
+    border-radius: 4px;
+    padding: 2px;
+}
+.mastercard-logo{
+    width: 5%;
+    border-radius: 4px;
+    padding: 2px;
+}
+.paypal-logo{
+    width: 5%;
+    border-radius: 4px;
+    padding: 2px;
 }
 
 .second h3 {
     font-size: 1.5rem;
+}
+
+.payment-icons {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .second-box {
@@ -47,6 +99,44 @@
     .first {
         padding-left: 20px;
     }
+    .copyright{
+        margin-left: 20px;
+    }
+    .fb-logo{
+        width: 8%;
+        border-radius: 7px;
+    }
+    .tw-logo{
+        width: 8%;
+        border-radius: 7px;
+    }
+    .ig-logo{
+        width: 8%;
+        border-radius: 7px;
+    }
+    .yt-logo{
+        width: 8%;
+        border-radius: 7px;
+    }
 }
 
+
+@media (max-width: 500px){
+    .fb-logo{
+        width: 10%;
+        border-radius: 7px;
+    }
+    .tw-logo{
+        width: 10%;
+        border-radius: 7px;
+    }
+    .ig-logo{
+        width: 10%;
+        border-radius: 7px;
+    }
+    .yt-logo{
+        width: 10%;
+        border-radius: 7px;
+    }
+}
 
