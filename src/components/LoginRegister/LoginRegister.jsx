@@ -5,13 +5,19 @@ import axios from 'axios'
 import { connect } from 'react-redux';
 import { login, register, reduxHandleChange } from './../../ducks/userReducer'
 import './LoginRegister.css'
+import socketIOClient from 'socket.io-client'
+import io from 'socket.io-client'
+require('dotenv').config();
+const { SERVER_PORT, REACT_APP_BASE } = process.env;
 
 export class LoginRegister extends Component {
   constructor(props){
     super(props);
     this.state = {
-      loginRegisterFlag: true
+      loginRegisterFlag: true,
+      endpoint: REACT_APP_BASE
     }
+    this.socket = io(this.state.endpoint)
   }
 
   handleToggle = ()=>{
@@ -30,6 +36,7 @@ export class LoginRegister extends Component {
       alert(res.data.message)
       this.props.user.isUserLoggedIn = true;
       this.props.history.push('/profile')})
+      this.socket.emit('ENTER', { id: this.props.user.id } )
     .catch(err=>console.log(`Something happened while registering: ${err}`))
   }
 
@@ -37,7 +44,8 @@ export class LoginRegister extends Component {
     this.props.login(this.props.user.email, this.props.user.password)
     .then(()=>{
       alert('Login Successful')
-      this.props.history.push('/profile')})
+      this.props.history.push('/profile')
+      this.socket.emit('ENTER', { id: this.props.user.id })})
     .catch(err=>console.log(`Something happened while logging in: ${err}`))
   }
 

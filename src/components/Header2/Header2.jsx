@@ -40,7 +40,7 @@ export class Header2 extends Component {
               <Link className='logout-link' onClick={()=>{this.logout()}} to='/'>Logout</Link>
               <span className='search'>SEARCH</span>
             <Link className='cart-link' to='/shop/displaycart'>
-              CART
+                CART
             </Link>
           </div>
             ) : (

@@ -8,14 +8,21 @@ import { connect } from 'react-redux'
 import { displayTheProduct } from './../../ducks/productsReducer'
 import { Link, Switch, Route } from 'react-router-dom'
 
+let airhorn = new Audio(`C:\Users\Louie\devmountain\week_seven\PersonalProject\personalproject\src\components\Checkout\dj-airhorn-sound-effect-kingbeatz_1.mp3`);
+airhorn.src = `C:\Users\Louie\devmountain\week_seven\PersonalProject\personalproject\src\components\Checkout\dj-airhorn-sound-effect-kingbeatz_1.mp3`;
+
 export class Checkout extends Component {
   constructor(props){
     super(props)
-    this.state={}
+    this.state={
+
+    }
+    
   }
 
   submitOrder = (e)=>{
     e.preventDefault();
+    // airhorn.play().then(()=>{console.log('woo')}).catch(err=>console.log(err))
     axios.put('/checkout', {})
       .then((res)=>{
         alert(res.data.message);

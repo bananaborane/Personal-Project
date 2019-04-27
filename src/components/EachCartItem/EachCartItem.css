@@ -1,0 +1,28 @@
+.each-display-product{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5px;
+    flex-wrap: wrap
+}
+
+.each-display-product img {
+    width: 60%;
+}
+
+.each-display-product-size {
+    border-top: gray 1px solid;
+    border-bottom: gray 1px solid;
+    width: 200px;
+    padding: 4px 0px;
+    text-align: center;
+}
+
+.each-display-product-title{
+    padding: 4px 0px;    
+}
+
+.each-display-product-calculation{
+    padding: 4px 0px;    
+}

@@ -88,11 +88,16 @@ Link:hover{
 
 .search{
     color:white;
+    margin-right: 4px;
 }
 
 .search-cart {
     display: flex;
     flex-direction: row;
+}
+
+.cart-icon {
+    width: 25%;
 }
 
 .the-containers {
@@ -197,6 +202,8 @@ Link:hover{
 
 .cart-link {
     color:lightgray;
+    margin: 0;
+    padding: 0;
 }
 
 .cart-link:hover{

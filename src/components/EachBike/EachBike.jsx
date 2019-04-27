@@ -39,6 +39,7 @@ export class EachBike extends Component {
         theirId: this.props.marketplace.theBike.user_id,
         message: this.state.directMessage
       })
+      this.setState({directMessage: ''})
     }
 
     this.handleDMEnter = e => {
@@ -110,44 +111,50 @@ export class EachBike extends Component {
     return (
       <div>
         <Header2/>
-          From EachBike.jsx
-          <div className='each-bike'>
+          <div className='each-individ-bike'>
             <img src={image_url} alt={title} className='each-bike-img' />
-            <div className='bike-right-column'>
-              <div>
-                {title}
-              </div>
-              <div>
-                Make: {make}
-              </div>
-              <div>
-                Model: {model}
-              </div>
-              <div>
-                Bike_Size: {bike_size}
-              </div>
-              <div>
-                Bike Type: {bike_type}
-              </div>
-              <div>
-                Wheel size: {wheel_size}
-              </div>
-              <div> 
-                User: {username}
-              </div>
-              <div>
-                location: {city}, {state}
-              </div>
-              <div>
-                {description} 
-              </div>
-              { isItTrue ? (<button onClick={()=>{this.removeBikeFromMarketplace()}}>Remove Bike from Marketplace</button>) : (
-              // <Link to='/profile'>
-              <button onClick={(e)=>{this.inquire(e)}}>{this.state.areTheyInquiring ? (<p>Cancel</p>) : (<p>Inquire</p>)}</button>
-              // </Link>
-              )}
 
-              {this.state.areTheyInquiring ? (<div className='chat-section'>
+              <div className='each-bike-middle-section'>
+                <div className='each-individ-bike-title'>
+                  {title}
+                </div>
+                <div className='each-individ-bike-make'>
+                  Make: {make}
+                </div>
+                <div className='each-individ-bike-model'>
+                  Model: {model}
+                </div>
+                <div className='each-individ-bike-size'>
+                  Bike Size: {bike_size}
+                </div>
+                <div className='each-individ-bike-type'>
+                  Bike Type: {bike_type}
+                </div>
+                <div className='each-individ-bike-wheel-size'>
+                  Wheel size: {wheel_size}
+                </div>
+                <div className='each-individ-bike-username'> 
+                  User: {username}
+                </div>
+                <div className='each-individ-bike-location'>
+                  location: {city}, {state}
+                </div>
+
+                Description:
+                <div className='each-individ-bike-description'>
+                  {description} 
+                </div>
+              </div>
+
+              <div className='inquiring'>
+              <div className='the-chat'>
+              { isItTrue ? (<button onClick={()=>{this.removeBikeFromMarketplace()}}>Remove Bike from Marketplace</button>) : (
+                // <Link to='/profile'>
+                <button onClick={(e)=>{this.inquire(e)}}>{this.state.areTheyInquiring ? (<p>Cancel</p>) : (<p>Inquire</p>)}</button>
+                // </Link>
+                )}
+
+              {this.state.areTheyInquiring ? (<div className='inquiry-chat-section'>
             Inquire to Seller
             <div className="messages" id='messages'>
               {this.props.user.listOfDirectMessages.map((message, i) => { if (message.myId === this.props.user.id || message.myId === this.props.marketplace.theBike.user_id){return (
@@ -161,7 +168,9 @@ export class EachBike extends Component {
               </div>
 
             </div>) : (null)}
-            </div>
+                </div>
+              </div>
+
           </div>
         <Footer2/>
       </div>

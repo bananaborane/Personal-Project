@@ -66,13 +66,18 @@ export class EachCartItem extends Component {
     return (
       <div>
 
-        <div className="each-product" style={{ width: 300 }}>
-          <img src={image_url} alt={title} width={220} />
-          {title}
-          {size}
-          {this.state.qty} x {price} = {this.state.qty*price} 
-          {type}
-          {this.state.qty}
+        <div className="each-display-product" style={{ width: 300 }}>
+          <img src={image_url} alt={title} />
+          <div className='each-display-product-title'>
+            {title}
+          </div>
+          <div className='each-display-product-size'>
+            {size}
+          </div>
+          <div className='each-display-product-calculation'>
+            {this.state.qty} x {price}  =  {this.state.qty*price} 
+          </div>
+
 
           <div className="qty-container">
             <button onClick={() => {this.decrement()}}>

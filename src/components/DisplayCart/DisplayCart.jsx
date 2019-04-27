@@ -50,14 +50,19 @@ export class DisplayCart extends Component {
 
 
 
-            Your cart items:  {this.props.products.theCart ? ( <div className='cart-items'>{ this.props.products.theCart.map((val, i)=>{return ( <EachCartItem key={val.product_id} id={val.product_id} price={val.price} title={val.title} description={val.description} image_url={val.image_url} type={val.type} qty={val.qty} size={val.size} /> ) })  }</div> ) : ( <div><h2>No products to display from cart!</h2></div> )}
+              Your cart items:  
+            <div className='the-list-from-cart'>
+              {this.props.products.theCart ? ( <div className='cart-items'>{ this.props.products.theCart.map((val, i)=>{return ( <EachCartItem key={val.product_id} id={val.product_id} price={val.price} title={val.title} description={val.description} image_url={val.image_url} type={val.type} qty={val.qty} size={val.size} /> ) })  }</div> ) : ( <div><h2>No products to display from cart!</h2></div> )}
+            </div>
 
             {/* {console.log('line 55', this.props.products)} */}
 
-            Total price: {this.props.products.theCart ? (this.props.products.totalPrice) : (<span> 0 </span>) }
+            <div className='cart-total-price'>
+              Total price: {this.props.products.theCart ? (this.props.products.totalPrice) : (<span> 0 </span>) }
+            </div>
 
-            <h4>SPECIAL INSTRUCTIONS FOR SELLER</h4>
-            <input type='text' />
+            <h4>SPECIAL INSTRUCTIONS FOR SELLER:</h4>
+            <input className='instructions-text' type='text' />
 
               <button onClick={()=>{this.sendToCheckout()}}>CHECK OUT</button>
 

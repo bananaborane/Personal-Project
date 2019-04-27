@@ -33,6 +33,7 @@ export class Bike extends Component {
     } = this.props;
     return (
       <Link
+        className='eachbike'
         to={{
           pathname: `/shop/collections/marketplace/${bike_id}`
         }}
@@ -40,7 +41,7 @@ export class Bike extends Component {
         <div className="each-bike">
           <img src={image_url} alt={title} className="each-bike-img" />
           <div className="bike-right-column">
-            <div>{title}</div>
+            <div className='bike-title'>{title}</div>
             <div>Bike Size: {bike_size}</div>
             <div>Wheel Size: {wheel_size}</div>
             <div>

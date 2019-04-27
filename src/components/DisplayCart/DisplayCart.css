@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 .display-cart {
     display: flex;
@@ -15,4 +16,34 @@
 .display-cart input {
     width: 300px;
     /* height: 300px; */
+}
+
+.cart-total-price{
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+.instructions-text{
+    margin: 2px;
+}
+
+.the-list-from-cart{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+@media(max-width:700px){
+    .the-list-from-cart{
+        flex-direction: column;
+    }
+
+    .display-cart{
+        flex-direction: column;
+    }
+    .cart-items{
+        flex-direction: column;
+    }
 }

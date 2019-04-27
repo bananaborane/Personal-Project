@@ -1,7 +1,7 @@
 .footer-2{
     background-color: black;
     color: white;
-    height: 13.6rem;
+    height: 11rem;
     width: 100%;
     z-index: 10;
     display: flex;
@@ -137,6 +137,9 @@
     .yt-logo{
         width: 10%;
         border-radius: 7px;
+    }
+    .second h3 {
+        font-size: 0.9rem !important;
     }
 }
 

@@ -36,10 +36,18 @@ export class Profile extends Component {
     this.socket = io(this.state.endpoint)
     this.socket.on('RECEIVE_MESSAGE', function(data){
       addMessage(data);
-    });
+    })
 
     this.socket.on('RECIEVE_DM', function(data){
       addDirectMessage(data)
+    })
+
+    this.socket.on('WELCOME', function(data){
+      console.log(data.greeting)
+    })
+
+    this.socket.on('LOG_ID', function(data){
+      console.log(`User ${data.id} has joined`)
     })
 
     const addDirectMessage = (data)=>{
@@ -60,6 +68,7 @@ export class Profile extends Component {
         myId: this.props.user.id,
         message: this.state.directMessage
       })
+      this.setState({message: ''});
     }
 
     this.sendMessage = e => {
@@ -232,22 +241,26 @@ export class Profile extends Component {
       const socket = socketIOClient(this.state.endpoint)
 
     return (
-      <div>
+      <div className='prof'>
         <Header2/>
+        <h3>Welcome there, {this.props.user.username}</h3>
         <div className='profile-main'>{this.props.user.isUserLoggedIn ? ( 
           <div className='profile-section'>
-          <h3>Welcome there, {this.props.user.username}</h3>
           <div className='first-section'>
             <div className='change-location-section'>
+              <h3>Update/Remove location</h3>
               <input onChange={(e)=>{this.handleChange(e)}} name='city' placeholder='Enter your city here' value={this.state.city}></input>
               <input onChange={(e)=>{this.handleChange(e)}} name='state' placeholder='Enter your state here' value={this.state.state}></input>
             
+              <br/>
               <button onClick={()=>{this.addLocation()}}>Update Location</button>
               <br></br>
               <button onClick={()=>{this.removeLocation()}}>Remove Location</button>
               <br></br>
 
             </div>
+
+            <br/>
             <div className='logout-button'>
               <button onClick={()=>{this.logout()}}>Logout</button>
             </div>
@@ -272,6 +285,7 @@ export class Profile extends Component {
                 <input value={this.state.wheel_size} name='wheel_size' placeholder='enter wheel_size here' onChange={(e)=>{this.handleChange(e)}} ></input>
                 <input value={this.state.image_url} name='image_url' placeholder='enter image_url here' onChange={(e)=>{this.handleChange(e)}} ></input>
               </div>
+            <br/>
               <button >Add Bike to Marketplace</button>
             </form>
           </div>
@@ -280,8 +294,10 @@ export class Profile extends Component {
           <br/>
           <br/>
 
+          <div className='chatty'> 
           
           <button onClick={()=>{this.togglePrivateMessaging()}}>{this.state.privateMessaging ? (<p>Check Marketplace Chat</p>) : (<p>Check Direct Messages</p>)}</button>
+          <br/>
 
           {this.state.privateMessaging ? (<div className='chat-section'>
             Private Messages
@@ -307,7 +323,7 @@ export class Profile extends Component {
                 <input type="text" name='message' placeholder="Enter a message..." className="form-control" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
                 <button onClick={(e)=>this.sendMessage(e)} className="btn btn-primary form-control">Send</button>
               </div>
-            </div>)}
+            </div>)} </div>
           
 
 

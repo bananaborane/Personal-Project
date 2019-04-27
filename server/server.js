@@ -35,7 +35,12 @@ app.get('/', function (req, res) {
 
 io.on('connection', function(socket){
     console.log('an user has connected');
+    io.emit('WELCOME', { greeting: 'welcome to marketplace chat'})
 
+    socket.on('ENTER', function(data){
+        console.log(`User ${data.id} has joined`)
+        io.emit('LOG_ID', data)
+    })
 
     socket.on('SEND_MESSAGE', function(msg){
         console.log('message: ' + msg.message)
@@ -47,6 +52,7 @@ io.on('connection', function(socket){
         console.log(`a convo between ${msg.myId} and ${msg.theirId}`)
         io.emit('RECIEVE_DM', msg)
     })
+
 
     socket.on('disconnect', function(){
       console.log('an user has disconnected');

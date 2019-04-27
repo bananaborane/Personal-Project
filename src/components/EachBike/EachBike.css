@@ -1,13 +1,80 @@
 .each-bike-img {
     width: 35%;
+    padding: 8px;
 }
 
 .bike-right-column {
     display: flex;
-    flex-direction: column;
 
+}
+
+.inquiring {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bike-right-column button {
     width: 20%;
 }
+
+.each-individ-bike {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    border: 2px dashed darkorange;
+    margin-bottom: 300px;
+}
+
+.each-individ-bike-title{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.each-individ-bike-description{
+    padding: 5px;
+    border: 1px black solid;
+    margin: 2px 0px 10px 0px;
+    width: 300px;
+    height: 120px;
+}
+
+
+.each-bike-middle-section{
+    border: 2px dashed purple;
+    padding: 5px;
+}
+
+.the-chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inquiry-chat-section{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.the-chat button {
+    margin-left: 20px;
+}
+
+@media(max-width:1000px){
+    .each-individ-bike{
+        flex-direction: column;
+    
+    }
+     img.each-bike-img{
+        width: 280px;
+        margin: 0;
+    }
+    .each-bike-middle-section{
+        font-size: 0.7rem;
+    }
+}
+

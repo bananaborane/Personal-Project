@@ -48,6 +48,15 @@ export class Marketplace extends Component {
           <br/>
           <br/>
           <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
         <Footer2 />
       </div>
     )
