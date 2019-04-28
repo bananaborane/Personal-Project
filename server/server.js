@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { SERVER_PORT, CONNECTION_STRING, SECRET } = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SECRET, SECRET_STRIPE } = process.env;
 const express = require('express');
 const socket = require('socket.io')
 const app = express();
@@ -14,6 +14,7 @@ const PORT = 3005;
 const checkForSession = require('./middlewares/checkForSession');
 const productCtrl = require('./controllers/productCtrl');
 const marketplaceCtrl = require('./controllers/marketplaceCtrl');
+const stripe = require('stripe')(SECRET_STRIPE)
 
 // app.use(express.static(__dirname + '/public'))
 
@@ -115,6 +116,22 @@ app.post('/collections/addtocart', productCtrl.addToCart)
 app.post('/collections/decrementqty', productCtrl.decrementQty)
 app.delete('/auth/removelocation/:id', authCtrl.deleteLocation)
 app.delete('/removebikefrommarketplace/:id', marketplaceCtrl.removeBike)
+
+app.post(`/stripecharge`, async (req, res) => {
+    try {
+      let {status} = await stripe.charges.create({
+        amount: 2000,
+        currency: "usd",
+        description: "pinkbike charge",
+        source: req.body.stripeToken
+      });
+
+      res.json({status});
+    } catch (err) {
+        console.log(`Something happened with stripe checkout on server side: ${err}`)
+      res.status(500).end();
+    }
+  })
 
 
 
