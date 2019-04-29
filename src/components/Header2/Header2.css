@@ -144,8 +144,40 @@ Link:hover{
     height: 10px;
 }
 
-.logo {
+.pb-logo{
+    padding: 4px;
+    letter-spacing: 1px;
+    color: white;
+    background: red;
+    font-family: 'Bangers', cursive;
+    margin-right: 2px;
+    font-size: 1.2rem;
+}
+
+.pinkbike-logo{
+    letter-spacing: 2px;
+    color: white;
+    background: black;
+    font-family: 'Bangers', cursive;
+    font-size: 1.2rem;
+
+}
+
+.pinkbike-logo-link{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pinky-link:hover {
+    text-decoration: none;
+    padding: 1px;
     
+}
+
+.pinky-link span:hover{
+    /* color: darkgray; */
 }
 
 .links {
@@ -180,11 +212,17 @@ Link:hover{
     flex-direction: row;
     width: 120px;
     margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .the-username {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     margin: 0;
 }
 
@@ -263,5 +301,13 @@ Link:hover{
     }
     .search {
         font-size: 0.7rem;
+    }
+
+    .pb-logo{
+        font-size: 0.9rem;
+    }
+
+    .pinkbike-logo{
+        font-size: 0.9rem;
     }
 }

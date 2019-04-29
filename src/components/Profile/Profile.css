@@ -55,9 +55,26 @@
     margin-bottom: 500px
 }
 
+.the-bike-form div input {
+    margin: 2px 2px 2px 0;
+    border-radius: 8px;
+
+    padding-left: 5px;
+}
+
+.change-location-section input {
+    margin: 2px 2px 2px 0;
+    border-radius: 8px;
+
+    padding-left: 5px;
+}
 
 .profile-section{
     display: flex;
+}
+
+.logout-button {
+    margin-left: 30px; 
 }
 
 .first-section{

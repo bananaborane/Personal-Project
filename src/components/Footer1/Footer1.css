@@ -27,6 +27,10 @@
     margin: 0;
 }
 
+.first-row div {
+    margin: 0px 5px;
+}
+
 .first-row div h3 {
     color: #AE0000;
     font-size: 1.3rem;

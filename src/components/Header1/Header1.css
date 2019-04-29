@@ -16,6 +16,32 @@
     width: 100%;
 }
 
+.pb-logo{
+    padding: 4px;
+    letter-spacing: 1px;
+    color: white;
+    background: red;
+    font-family: 'Bangers', cursive;
+    margin-right: 2px;
+    font-size: 1.2rem;
+}
+
+.pinkbike-logo{
+    letter-spacing: 2px;
+    color: white;
+    background: black;
+    font-family: 'Bangers', cursive;
+    font-size: 1.2rem;
+
+}
+
+.pinkbike-logo-link{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .navy-nav a {
     color:white;
     text-decoration: none;

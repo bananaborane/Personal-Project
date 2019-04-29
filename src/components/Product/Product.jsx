@@ -11,7 +11,7 @@ export class Product extends Component {
       }}>
         <div className='each-product-title-desc'>
           <img src={image_url} alt={title} width={190} />
-          <h3>{title}</h3>
+          <b>{title}</b>
           <p>${price} USD</p>
         </div>
       </Link>

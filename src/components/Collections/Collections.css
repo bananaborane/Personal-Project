@@ -1,4 +1,6 @@
-
+.collections {
+    background-color: whitesmoke;
+}
 
 
 .collections-section{
@@ -9,12 +11,16 @@
     align-items: center;
 }
 
+.collections-section p {
+    margin: 3px 0px;
+}
+
 
 
 .each-collections-link{
         width: 220px;
         height: 370px;
-        background: lightgray;
+        background: white;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
@@ -23,11 +29,13 @@
         margin-top: 50px;
         color: black;
         text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
 }
 
 .each-collections-link:hover {
     text-decoration: none;
-    background: seashell
+    font-size: 1.3rem;
+    color: black;
 
 }
 

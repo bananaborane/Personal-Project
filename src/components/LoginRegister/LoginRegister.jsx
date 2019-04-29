@@ -49,6 +49,20 @@ export class LoginRegister extends Component {
     .catch(err=>console.log(`Something happened while logging in: ${err}`))
   }
 
+  loginKeyUp(e){
+    e.preventDefault();
+    if (e.keyCode === 13 && e.target.value){
+      this.login();
+    }
+  }
+
+  registerKeyUp(e){
+    e.preventDefault();
+    if (e.keyCode === 13 && e.target.value){
+      this.register();
+    }
+  }
+
 
   render() {
     return (
@@ -60,15 +74,15 @@ export class LoginRegister extends Component {
               <div className='login'>
                 <h3>Login</h3>
                 <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
-                <input className='last-loginregister-input' type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
+                <input onKeyUp={(e)=>{this.loginKeyUp(e)}} className='last-loginregister-input' type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
                 <button onClick={()=>{this.login()}}>Login</button>
               </div>
             </div> ) : ( <div className='register-container'>
               <div className='register' >
                 <h3>Register</h3>
                 <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
-                <input type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
-                <input className='last-loginregister-input' name='username' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter username here'></input>
+                <input type='password' name='password' onChange={(e)=>{this.handleChange(e)}}    placeholder='Enter password here'></input>
+                <input className='last-loginregister-input' name='username' onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.registerKeyUp(e)}}  placeholder='Enter username here'></input>
                 <button onClick={()=>{this.register()}}>Register</button>
               </div>
             </div> )}

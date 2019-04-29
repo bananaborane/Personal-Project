@@ -111,6 +111,12 @@ export class EachBike extends Component {
     return (
       <div>
         <Header2/>
+            <div className='back-link'>
+              <Link className='link-back-to-marketplace' to='/shop/collections/marketplace'>
+                ← Back To Marketplace
+              </Link>
+            </div>
+          
           <div className='each-individ-bike'>
             <img src={image_url} alt={title} className='each-bike-img' />
 
@@ -172,6 +178,7 @@ export class EachBike extends Component {
               </div>
 
           </div>
+
         <Footer2/>
       </div>
     )

@@ -120,11 +120,11 @@ app.delete('/removebikefrommarketplace/:id', marketplaceCtrl.removeBike)
 app.post(`/stripecharge`, async (req, res) => {
     try {
       let {status} = await stripe.charges.create({
-        amount: 2000,
+        amount: req.body.totalPrice*100,
         currency: "usd",
         description: "pinkbike charge",
         source: req.body.stripeToken
-      });
+      }); 
 
       res.json({status});
     } catch (err) {

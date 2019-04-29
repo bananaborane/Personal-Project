@@ -210,10 +210,10 @@ export class Main extends Component {
                       alt=""
                       width={135}
                     />
-                    <InsideRedContainer2ATag className="inside-red-container-a">
+                    <InsideRedContainer2ATag className="inside-red-container-a votd">
                       Comments (2)
                     </InsideRedContainer2ATag>
-                    <InsideRedContainer2ATag className="inside-red-container-a">
+                    <InsideRedContainer2ATag className="inside-red-container-a votd">
                       Previous VODs
                     </InsideRedContainer2ATag>
                   </InsideRedContainer2>
@@ -277,7 +277,7 @@ export class Main extends Component {
                         the level of adjustability and improve the big hit
                         performance of RockShox's Charger dampers.
                       </p>
-                      <div>Read More | 146 Comments</div>
+                      <div><span>Read More</span> | 146 Comments</div>
                     </div>
                   </div>
 
@@ -298,7 +298,7 @@ export class Main extends Component {
                         CA and will host the final round of the EWS North
                         American Series.
                       </p>
-                      <div>Read More | 34 Comments</div>
+                      <div><span>Read More</span> | 34 Comments</div>
                     </div>
                   </div>
 
@@ -309,13 +309,13 @@ export class Main extends Component {
                       alt=""
                     />
                     <div className="article-3-text-section">
-                      <b> USFLAGHERE SPONSORED Apr 8, 2019</b>
+                      <b> <img src='https://cdn.webshopapp.com/shops/94414/files/54959460/the-united-states-flag-icon-free-download.jpg' alt='article-us-flag' className='article-us-flag'/> SPONSORED Apr 8, 2019</b>
                       <a>Enter to Win 1 of 50 Continental Tires Prize Packs</a>
                       <p>
                         Enter the Continental Tires Gripology contest to win a
                         Continental prize pack.
                       </p>
-                      <div>Read More | 32 Comments</div>
+                      <div><span>Read More</span> | 32 Comments</div>
                     </div>
                   </div>
 
@@ -332,7 +332,7 @@ export class Main extends Component {
                         Take a look at the tracks and rumoured changes lined up
                         for 2019.
                       </p>
-                      <div>Read More | 141 Comments</div>
+                      <div><span>Read More</span> | 141 Comments</div>
                     </div>
                   </div>
                 </div>
@@ -458,6 +458,9 @@ export class Main extends Component {
                   </div>
                 </div>
               </div>
+
+              {/* <iframe className='airhorn' title='airhorn' width="500px" height="300px" id="player" allow="autoplay" src="https://www.youtube.com/embed/UaUa_0qPPgc?autoplay=1&cc_load_policy=1"></iframe> */}
+
             </div>
           </div>
         </Main2>

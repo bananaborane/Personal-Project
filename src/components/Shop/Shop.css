@@ -34,6 +34,10 @@
 
 }
 
+.shop-links-section {
+    background-color: whitesmoke;
+}
+
 .w3-button {
     font-size: 30px;
     background-color: black;
@@ -77,8 +81,12 @@
 }
 
 .below-slide-links:hover{
-    background-color: seashell;
+    background-color: whitesmoke;
     text-decoration: none;
+}
+
+.below-slide-links h3{
+    margin: 8px 0px;
 }
 
 .below-slide-links img {

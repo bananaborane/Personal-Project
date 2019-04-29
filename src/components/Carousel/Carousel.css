@@ -22,20 +22,41 @@
     margin: 0;
     border-radius: 3px;
     width: 40%;
+    height: 40px;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
 }
 
 .carousel-link h3:hover{
-    text-decoration: none;
+    text-decoration: none !important;
+    color: white;
+}
+.carousel-link:hover{
+    text-decoration: none !important;
+    color: white;
+}
+.sub-title-link:hover{
+    text-decoration: none !important;
     color: white;
 }
 
 .sub-title-link p {
     color: lightgray;
     background-color:black;
+    border-radius: 3px;
     width: 40%;
+    height: 25px;
     padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
 }
 
 .sub-title-link p:hover {

@@ -21,6 +21,7 @@ import EachFootwearProduct from './components/EachFootwearProduct/EachFootwearPr
 import EachHeadwearProduct from './components/EachHeadwearProduct/EachHeadwearProduct';
 import DisplayCart from './components/DisplayCart/DisplayCart'
 import Checkout from './components/Checkout/Checkout'
+import Checkout2 from './components/Checkout2/Checkout2'
 
 export default (
   <Switch>
@@ -38,6 +39,7 @@ export default (
     <Route path="/shop/collections/footwear" component={Footwear} />
     <Route path="/shop/collections/womens" component={Womens} />
     <Route path="/shop/collections/mens" component={Mens} />
+    <Route path="/shop/collections/checkout2" component={Checkout2} />
     <Route path="/shop/collections/checkout" component={Checkout} />
     <Route path="/shop/displaycart" component={DisplayCart} />
     <Route path="/shop/collections" component={Collections} />

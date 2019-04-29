@@ -8,21 +8,44 @@
     text-align: center;
     /* border: 1px black solid; */
     height: 350px;
-    margin: 5px;
+    margin: 6px 3px;
     text-decoration: none;
+    border-radius: 4px;
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
     
 }
 
-.each-product-title-desc h3 {
+.each-product-title-desc b{
+    font-size: 1rem !important;
+}
+
+.each-product-link p{
+    margin: 2px 0px;
+}
+
+.each-product-link:hover {
+    text-decoration: none;
+}
+.each-product-link:hover b{
+    text-decoration: none;
+    color: black;
+}
+.each-product-link:hover p{
+    text-decoration: none;
+    color: black;
+}
+
+.each-product-title-desc b {
     font-weight: bold;
     font-size: 1.4rem;  
-    color: black;
+    color: slategray;
     text-decoration: none;
 }
 
 .each-product-title-desc p {
     font-size: 1rem;  
-    color: black;
+    color: slategray;
     text-decoration: none;
 }
 

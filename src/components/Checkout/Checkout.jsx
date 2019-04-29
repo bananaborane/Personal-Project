@@ -8,9 +8,10 @@ import { connect } from 'react-redux'
 import { displayTheProduct } from './../../ducks/productsReducer'
 import { Link, Switch, Route } from 'react-router-dom'
 import StripeCheckout from 'react-stripe-checkout';
+import Checkout2 from './../Checkout2/Checkout2'
 
-let airhorn = new Audio(`C:\Users\Louie\devmountain\week_seven\PersonalProject\personalproject\src\components\Checkout\dj-airhorn-sound-effect-kingbeatz_1.mp3`);
-airhorn.src = `C:\Users\Louie\devmountain\week_seven\PersonalProject\personalproject\src\components\Checkout\dj-airhorn-sound-effect-kingbeatz_1.mp3`;
+let airhorn = new Audio(`./dj-airhorn-sound-effect-kingbeatz_1.mp3`);
+airhorn.src = `./dj-airhorn-sound-effect-kingbeatz_1.mp3`;
 
 export class Checkout extends Component {
   constructor(props){
@@ -34,20 +35,25 @@ export class Checkout extends Component {
       stripeBillingAddressCity: addresses.billing_address_city || '',
       stripeBillingAddressCountry: addresses.billing_address_country || ''
     }).then(()=>{
-      axios.put('/checkout', {})
+      axios.put('/checkout', { hello: 'friend' })
         .then(()=>{
           console.log(`checkout endpoint hit`)
           alert(`STRIPE CHECKOUT SUCCESSFUL BABY`)
           this.props.history.push('/')
+          
         })
         .catch(err=>console.log(`Something wrong happened while checking out, ${err}`))
     
     }).catch(err=>{console.log(`Something happened with stripe checkout: ${err}`)})  
   }
 
+  // airhornPlay(){
+  //   airhorn.play().then(()=>{console.log('woo')}).catch(err=>console.log(err))
+  // }
+
   // submitOrder = (e)=>{
   //   e.preventDefault();
-  //   airhorn.play().then(()=>{console.log('woo')}).catch(err=>console.log(err))
+    // airhorn.play().then(()=>{console.log('woo')}).catch(err=>console.log(err))
   //   axios.put('/checkout', {})
   //     .then((res)=>{
   //       alert(res.data.message);
@@ -60,7 +66,7 @@ export class Checkout extends Component {
     return (
       <div>
         <Header2/>
-          <div className='checkout'>
+          <div id='checkout' className='checkout'>
             {/* From Checkout.jsx 
             <form className='checkout-form'>
               <input placeholder='Email' />
@@ -94,7 +100,10 @@ export class Checkout extends Component {
                       label='Cough it up baby'
                       panelLabel='Pay the piper'
             />
- 
+
+            {/* <iframe className='airhorn' title='airhorn' width="500px" height="300px" id="player" allow="autoplay" src="https://www.youtube.com/embed/UaUa_0qPPgc?autoplay=1&cc_load_policy=1"></iframe> */}
+
+
 
 
                 <br/>
