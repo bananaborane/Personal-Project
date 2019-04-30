@@ -87,8 +87,13 @@ Link:hover{
 }
 
 .search{
-    color:white;
+    color:lightgray;
     margin-right: 4px;
+}
+
+.search:hover{
+    color: white;
+    cursor: pointer;
 }
 
 .search-cart {
