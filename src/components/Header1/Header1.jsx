@@ -35,7 +35,7 @@ export class Header1 extends Component {
           </div>
           <div className="between" />
           <div className="navy-nav">
-            <Link to="/loginregister"> Login/Register</Link>
+            <div className='profile-or-login-register'>{this.props.user.isUserLoggedIn ? (<Link to='/profile'>Profile</Link>) : (<Link to="/loginregister"> Login/Register</Link>)}</div>
             <Link to="/shop"> Shop</Link>
             <Link className='collections-link' to="/shop/collections"> Collections</Link>
             <Link className='mens-link' to="/shop/collections/mens"> Mens</Link>

@@ -12,6 +12,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+}
+
+.inquiry-chat-section {  
+    border: 2px solid pink;
+    border-radius: 3px;
+    height: 350px;
+    margin-left: 3px;
+    padding: 5px;
+    
 }
 
 .bike-right-column button {

@@ -24,6 +24,13 @@
     flex-direction: column;
 }
 
+.login h3{
+    padding: 4px 0px;
+}
+.register h3{
+    padding: 4px 0px;
+}
+
 .register-container {
     display: flex;
     justify-content: center;

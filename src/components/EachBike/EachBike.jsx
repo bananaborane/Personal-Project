@@ -152,7 +152,7 @@ export class EachBike extends Component {
                 </div>
               </div>
 
-              <div className='inquiring'>
+              <div className='inquiring chat-is-on'>
               <div className='the-chat'>
               { isItTrue ? (<button onClick={()=>{this.removeBikeFromMarketplace()}}>Remove Bike from Marketplace</button>) : (
                 // <Link to='/profile'>

@@ -36,9 +36,9 @@ export class Checkout extends Component {
       stripeBillingAddressCountry: addresses.billing_address_country || ''
     }).then(()=>{
       axios.put('/checkout', { hello: 'friend' })
-        .then(()=>{
+        .then((res)=>{
           console.log(`checkout endpoint hit`)
-          alert(`STRIPE CHECKOUT SUCCESSFUL BABY`)
+          alert(res.data.message)
           this.props.history.push('/')
           
         })

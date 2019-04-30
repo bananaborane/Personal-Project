@@ -59,6 +59,8 @@
 .links-from-shop {
     padding-bottom: 600px;
     display:flex;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
 }
 
 .shop-links-section {
