@@ -1,5 +1,5 @@
 describe("Initializing application 5", function() {
-    it("User should toggle between marketplace chaat and direct messages upon logging in", function() {
+    it("User should toggle between marketplace chat and direct messages upon logging in", function() {
       cy.visit("http://localhost:3000/#/");
       cy.contains("Login/Register").click();
         cy.get('.login-email-input').click().type('p').should('have.value', 'p')

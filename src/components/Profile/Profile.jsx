@@ -321,7 +321,7 @@ export class Profile extends Component {
               })}
             </div>
               <div className='send-message-section'>
-                <input type="text" name='message' placeholder="Enter a message..." className="form-control" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
+                <input type="text" name='message' placeholder="Enter a message..." className="form-control marketplace-chat-message-input" value={this.state.message} onChange={(e)=>{this.handleChange(e)}} onKeyUp={(e)=>{this.handleEnter(e)}} />
                 <button onClick={(e)=>this.sendMessage(e)} className="btn btn-primary form-control">Send</button>
               </div>
             </div>)} </div>

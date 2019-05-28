@@ -30,7 +30,7 @@ export class Header1 extends Component {
               </Link>
             </div>
             <div>
-              {this.props.user.isUserLoggedIn ? ( <div>Welcome, <Link to='/profile'>{this.props.user.username}!</Link>  <Link onClick={()=>{this.logout()}}>Logout</Link></div> ) : ( <Link className='onto-loginregister' to="/loginregister">Login/Register</Link>)}
+              {this.props.user.isUserLoggedIn ? ( <div>Welcome, <Link to='/profile'>{this.props.user.username}!</Link>  <Link className='main-page-logout-link' onClick={()=>{this.logout()}}>Logout</Link></div> ) : ( <Link className='onto-loginregister' to="/loginregister">Login/Register</Link>)}
             </div>
           </div>
           <div className="between" />
