@@ -9,10 +9,14 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    width: 100%;
+
+    
 }
 
 .collections-section p {
     margin: 3px 0px;
+
 }
 
 
@@ -49,11 +53,15 @@
 .row-one{
     display:flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 .row-two{
     display:flex;
     margin-bottom: 250px;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 

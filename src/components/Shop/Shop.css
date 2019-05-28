@@ -126,6 +126,9 @@
         font-size: 20px;
         padding: 0px 10px;
     }
+    .below-slide-links{
+        height: 200px;
+    }
 }
 
 
@@ -138,6 +141,8 @@
 @media (max-width: 400px){
     .below-slide-links{
         width: 15%;
+        height: 120px;
+
     }
     .links-from-shop{
         width: 100vw;

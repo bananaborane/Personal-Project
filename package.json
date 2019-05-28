@@ -43,5 +43,8 @@
     "not op_mini all"
   ],
   "proxy": "http://localhost:4000",
-  "main": "server/server.js"
+  "main": "server/server.js",
+  "devDependencies": {
+    "cypress": "^3.3.1"
+  }
 }

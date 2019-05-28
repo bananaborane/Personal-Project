@@ -21,22 +21,22 @@ export class Footer1 extends Component {
           </div>
           <div className='cool-features-section'>
             <h3>Cool Features</h3>
-            <p>Submit a Story to Pink Bike</p>
-            <p>Pinkbike Daily</p>
+            <p>Submit a Story to Pinky Bike</p>
+            <p>Pinkybike Daily</p>
             <p>Friend Finder</p>
             <p>Users Online</p>
           </div>
           <div className='rss-section'>
             <h3>RSS</h3>
-            <p>Pinkbike RSS Feed</p>
-            <p>Pinkbike Twitter</p>
-            <p>Pinkbike Facebook</p>
-            <p>Pinkbike Youtube</p>
+            <p>Pinkybike RSS Feed</p>
+            <p>Pinkybike Twitter</p>
+            <p>Pinkybike Facebook</p>
+            <p>Pinkybike Youtube</p>
           </div>
          </div>
          <div className='second-row'>
            <div className='copyright-section'>
-           Copyright © 2000 - 2019. Pinkbike.com. All rights reserved. 
+           Copyright © 2000 - 2019. Pinkybike.com. All rights reserved. 
             dv65 0.046974
           </div>
          </div>

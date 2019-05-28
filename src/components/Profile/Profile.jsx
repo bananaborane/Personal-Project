@@ -42,9 +42,10 @@ export class Profile extends Component {
       addDirectMessage(data)
     })
 
-    this.socket.on('WELCOME', function(data){
-      console.log(data.greeting)
-    })
+    // this.socket.on('WELCOME', function(data){
+    //   console.log(data.greeting)
+    //   this.socket.emit('another event', { hello: 'world'})
+    // })
 
     this.socket.on('LOG_ID', function(data){
       console.log(`User ${data.id} has joined`)
@@ -243,7 +244,7 @@ export class Profile extends Component {
     return (
       <div className='prof'>
         <Header2/>
-        <h3>Welcome there, {this.props.user.username}</h3>
+        <h3 className='welcome-sign'>Welcome there, {this.props.user.username}</h3>
         <div className='profile-main'>{this.props.user.isUserLoggedIn ? ( 
           <div className='profile-section'>
           <div className='first-section'>
@@ -296,7 +297,7 @@ export class Profile extends Component {
 
           <div className='chatty'> 
           
-          <button onClick={()=>{this.togglePrivateMessaging()}}>{this.state.privateMessaging ? (<p>Check Marketplace Chat</p>) : (<p>Check Direct Messages</p>)}</button>
+          <button className='marketplace-messaging-toggle-button' onClick={()=>{this.togglePrivateMessaging()}}>{this.state.privateMessaging ? (<p>Check Marketplace Chat</p>) : (<p>Check Direct Messages</p>)}</button>
           <br/>
 
           {this.state.privateMessaging ? (<div className='chat-section'>

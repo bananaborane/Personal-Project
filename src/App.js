@@ -7,7 +7,7 @@ import Footer1 from './components/Footer1/Footer1'
 import Main from './components/Main/Main'
 import routes from './routes'
 import axios from 'axios';
-import { connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { updateIsUserLoggedIn } from "./ducks/userReducer";
 
 class App extends Component {

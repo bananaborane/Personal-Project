@@ -73,9 +73,9 @@ export class LoginRegister extends Component {
             {this.state.loginRegisterFlag ? ( <div className='login-container'>
               <div className='login'>
                 <h3>Login</h3>
-                <input name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
+                <input className='login-email-input' name='email' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter email here'></input>
                 <input onKeyUp={(e)=>{this.loginKeyUp(e)}} className='last-loginregister-input' type='password' name='password' onChange={(e)=>{this.handleChange(e)}}  placeholder='Enter password here'></input>
-                <button onClick={()=>{this.login()}}>Login</button>
+                <button className='our-login-button' onClick={()=>{this.login()}}>Login</button>
               </div>
             </div> ) : ( <div className='register-container'>
               <div className='register' >

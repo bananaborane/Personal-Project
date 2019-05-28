@@ -132,6 +132,9 @@
         align-items: center;
         display: flex;
     }
+    .profile-section h3 {
+        font-size: 1.2rem;
+    }
     .first-section{
         margin-right: 0;
     }

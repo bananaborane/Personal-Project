@@ -338,7 +338,7 @@ export class Main extends Component {
                 </div>
               </div>
               <div className="red-container-5">
-                <PinkBikePoll className="pinkbike-poll">Pinkbike Poll</PinkBikePoll>
+                <PinkBikePoll className="pinkbike-poll">Pinkybike Poll</PinkBikePoll>
                 <div className="inside-red-container-5">
                   <div className="what-full-face">
                     What Full Face Helmet Brand do you wear?
@@ -459,7 +459,7 @@ export class Main extends Component {
                 </div>
               </div>
 
-              <iframe className='airhorn' title='airhorn' width="500px" height="300px" id="player" allow="autoplay" src="https://www.youtube.com/embed/UaUa_0qPPgc?autoplay=1&cc_load_policy=1"></iframe>
+              {/* <iframe className='airhorn' title='airhorn' width="500px" height="300px" id="player" allow="autoplay" src="https://www.youtube.com/embed/UaUa_0qPPgc?autoplay=1&cc_load_policy=1"></iframe> */}
 
             </div>
           </div>

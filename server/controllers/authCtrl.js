@@ -6,7 +6,7 @@ module.exports = {
     const db = req.app.get("db");
     const accountArr = await db.find_user_by_email([email])
       .catch(err=>console.log(`Something happened while finding user by email: ${err}`))
-    if (accountArr[0]) {
+    if (accountArr[0]) {.0
       return res.status(200).send({ message: "Email already in use." });
     }
     const anotherAccountArr = await db.find_user_by_username([username])

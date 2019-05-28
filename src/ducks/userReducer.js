@@ -99,8 +99,6 @@ export const reduxHandleChange = (e) => {
     }
 }
 
-// axios request is async so the redux middleware will add '_PENDING' when the promise is fulfilled
-// when fulfilled, the reducer will be invoked again and action.type will add '_FULFILLED' 
 
 export default function userReducer(state = initState, action) {
   switch (action.type) {
